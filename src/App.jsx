@@ -1,6 +1,5 @@
-import React from "react";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./admin/Login";
 import Products from "./pages/Products";
 import Blogs from "./pages/Blogs";
 import Career from "./pages/Career";
@@ -10,15 +9,12 @@ import AboutUs from "./pages/AboutUs";
 import Application from "./pages/Application"
 import MainLayout from "./layouts/MainLayout";
 import PolymerDispersion from "./pages/PolymerDispersion"
-function App() 
-{
-
- return (
+function App() {
+  return (
     <BrowserRouter>
       <Routes>
 
-
- {/* ✅ Routes WITH Header + Footer */}
+        {/* ✅ Routes WITH Header + Footer */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
@@ -29,10 +25,13 @@ function App()
           <Route path="/career" element={<Career />} />
           <Route path="/contact_us" element={<Contact_us />} />
         </Route>
-         </Routes>
+
+        {/* ❌ Routes WITHOUT Header/Footer */}
+        <Route path="/admin/login" element={<Login />} />
+
+      </Routes>
     </BrowserRouter>
   );
-
 }
 
 export default App;
