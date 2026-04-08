@@ -106,7 +106,7 @@ const applications = [
 const stats = [
   { num: "2000", suf: "", label: "Nobel Prize", sub: "Interest in conducting polymers surged after the Nobel Prize in Chemistry" },
   { num: "5",    suf: "+", label: "Application areas", sub: "From corrosion protection to electroluminescent displays" },
-  { num: "98",   suf: "%", label: "Purity grade", sub: "All Komstruk formulations exceed 97% purity — laboratory-validated" },
+  { num: "98",   suf: "%", label: "Purity grade", sub: "All Elektroactivx  formulations exceed 97% purity — laboratory-validated" },
   { num: "100",  suf: "nm", label: "Particle size", sub: "Nanoscopic Polyaniline particles enable ultrafine, stable dispersions" },
 ];
 
@@ -392,7 +392,7 @@ export default function Applications() {
             </h3>
             <div className="w-7 h-0.5 mb-5" style={{ background:"linear-gradient(90deg,#16a34a,#c9a84c)" }} />
             <p className="text-sm text-gray-500 leading-7 font-light mb-5">
-              Komstruk's corrosion protection technology — rooted in Dr. Wessling's pioneering research — is the world's most powerful anticorrosion polymer principle. It actively passivates metal surfaces rather than simply forming a barrier.
+              Elektroactivx 's corrosion protection technology — rooted in Dr. Wessling's pioneering research — is the world's most powerful anticorrosion polymer principle. It actively passivates metal surfaces rather than simply forming a barrier.
             </p>
             <a href="/contact" className="text-sm font-medium text-gray-900 underline underline-offset-4 hover:text-green-600 transition-colors">
               Talk to our experts →
@@ -470,7 +470,7 @@ export default function Applications() {
                     <div className="absolute inset-0" style={{ background:"linear-gradient(to top,rgba(0,0,0,0.55),transparent 55%)" }} />
                     <div className="absolute top-0 left-0 right-0 h-0.5 gl" />
                     <span className="absolute top-3 right-3 text-xl">{item.icon}</span>
-                    <span className="absolute bottom-3 left-4 text-white/45 text-xs tracking-widest uppercase font-light">Komstruk</span>
+                    <span className="absolute bottom-3 left-4 text-white/45 text-xs tracking-widest uppercase font-light">Elektroactivx </span>
                   </div>
                   <div className="p-5 border-t border-gray-100">
                     <p className="text-xs font-bold uppercase tracking-widest text-gray-800 mb-2">{item.title}</p>
@@ -517,7 +517,7 @@ export default function Applications() {
                 style={{ color:"#15803d" }}>
                 Request a Sample
               </a>
-              <a href="mailto:info@komstruk.co"
+              <a href="mailto:info@Elektroactivx .co"
                 className="inline-block px-10 py-4 border border-white/30 text-white font-light text-xs tracking-widest uppercase text-center hover:border-white/65 transition-colors">
                 Email Our Experts
               </a>
