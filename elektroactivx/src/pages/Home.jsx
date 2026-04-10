@@ -267,12 +267,7 @@ export default function Home() {
             </div>
 
             {/* Scroll indicator */}
-            <div className="absolute bottom-8 right-8 md:right-24 flex flex-col items-center gap-2 opacity-60">
-              <span className="text-white text-[10px] tracking-[0.3em] uppercase rotate-90 mb-4">Scroll</span>
-              <div className="w-[1px] h-12 bg-white/40 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-1/2 bg-white shimmer-line" />
-              </div>
-            </div>
+        
           </div>
         </section>
 
@@ -361,67 +356,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════
-            3. ABOUT — split with large image
-        ═══════════════════════════════════════ */}
-        <section className="bg-stone-950 text-white overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
-            {/* Image */}
-            <Reveal direction="left">
-              <div className="relative h-80 lg:h-full min-h-[500px] overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=700&q=80"
-                  alt="Dr. Bernhard Wessling"
-                  className="w-full h-full object-cover object-top grayscale brightness-75"
-                />
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-stone-950/60 lg:to-stone-950" />
-                {/* Name tag */}
-                <div className="absolute bottom-6 left-6 bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-3">
-                  <p className="text-white text-xs font-bold tracking-widest uppercase">Dr. Bernhard Wessling</p>
-                  <p className="text-white/50 text-xs mt-0.5">German Scientist & Mentor</p>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Text */}
-            <div className="px-10 md:px-16 py-16 md:py-24 flex flex-col justify-center">
-              <Reveal delay={100}>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-6 h-[1px] bg-green-500" />
-                  <span className="text-green-400 text-xs tracking-[0.25em] uppercase font-medium">About ElektroactivX </span>
-                </div>
-                <h2 className="font-display text-4xl md:text-5xl font-black leading-tight mb-8">
-                  Guided by <span className="italic grad-text">Science</span>,<br />
-                  Driven by Purpose
-                </h2>
-                <p className="text-white/60 leading-relaxed mb-5 font-light">
-                  ElektroactivX  Private Limited is established under the guidance and
-                  mentorship of{" "}
-                  <strong className="text-white font-medium">Dr. Bernhard Wessling</strong>,
-                  the German scientist who showed the world how to process conductive
-                  polymers by dispersion — and about the corrosion resistant property of
-                  conductive polymers.
-                </p>
-                <p className="text-white/60 leading-relaxed mb-10 font-light">
-                  He successfully took this breakthrough to market, enabling a new
-                  generation of industrial applications built on the remarkable
-                  properties of conducting polymers.
-                </p>
-                <a
-                  href="/about"
-                  className="group inline-flex items-center gap-3 border border-green-500 text-green-400 hover:bg-green-500 hover:text-white font-medium text-sm px-8 py-4 transition-all duration-300 w-fit"
-                >
-                  More Information
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </a>
-              </Reveal>
-            </div>
-          </div>
-        </section>
-
+       
         {/* ═══════════════════════════════════════
             4. CONDUCTIVE POLYMER
         ═══════════════════════════════════════ */}
