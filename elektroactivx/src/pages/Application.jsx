@@ -75,39 +75,10 @@ const applications = [
     uses: ["ESD packaging trays", "Electronic component bags", "Clean room flooring", "Explosive environment components", "Semiconductor handling", "Film & sheet products"],
     products: ["Polyaniline Masterbatches", "Polyaniline Emeraldine Base"],
   },
-  {
-    id: "electroluminescence",
-    title: "Electroluminescence",
-    subtitle: "Flexible, high-performance light-emitting displays",
-    img: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=90",
-    heroImg: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1400&q=90",
-    tag: "Display Technology",
-    tagColor: "#7c3aed",
-    desc: "With our highly conductive masterbatch, products can be developed for this very flexible and easy display technology. Polyaniline serves as a highly transparent, conductive electrode layer in electroluminescent devices — enabling flexible, lightweight display panels for automotive instrument clusters, advertising displays and wearable electronics.",
-    detail: "The high optical transparency combined with excellent electrical conductivity of Polyaniline films makes them ideal replacements for conventional ITO (indium tin oxide) electrodes. Unlike ITO, Polyaniline electrodes can be applied to flexible substrates and processed from solution — dramatically reducing manufacturing complexity and enabling roll-to-roll production.",
-    uses: ["Automotive instrument clusters", "Flexible display panels", "Wearable electronics", "Advertising displays", "Smart packaging", "Architectural lighting"],
-    products: ["Polyaniline Emeraldine Salt", "Polyaniline Emeraldine Base"],
-  },
-  {
-    id: "solid-electrolyte",
-    title: "Solid Electrolyte Capacitors",
-    subtitle: "Ultra-high performance energy storage components",
-    img: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=90",
-    heroImg: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1400&q=90",
-    tag: "Energy Storage",
-    tagColor: "#dc2626",
-    desc: "Using specially prepared dispersed polyaniline, an extremely high-performing solid state capacitor had been developed. Solid electrolyte capacitors based on Polyaniline offer exceptionally low equivalent series resistance (ESR) and outstanding high-frequency performance compared to conventional liquid electrolyte systems — enabling compact, high-reliability power conditioning in demanding applications.",
-    detail: "The electrochemical stability and proton conductivity of Polyaniline in its doped form make it an ideal solid electrolyte for both aluminium and tantalum capacitor systems. The resulting devices exhibit superior temperature stability, longer service life and substantially lower ESR than conventional alternatives — making them particularly valuable in aerospace, automotive and industrial power electronics.",
-    uses: ["Power supply units", "Aerospace electronics", "Automotive ECUs", "Industrial drives", "Telecommunications", "High-frequency circuits"],
-    products: ["Polyaniline Emeraldine Salt", "Polyaniline Emeraldine Base"],
-  },
+  
 ];
-
 const stats = [
-  { num: "2000", suf: "", label: "Nobel Prize", sub: "Interest in conducting polymers surged after the Nobel Prize in Chemistry" },
-  { num: "5",    suf: "+", label: "Application areas", sub: "From corrosion protection to electroluminescent displays" },
-  { num: "98",   suf: "%", label: "Purity grade", sub: "All Elektroactivx  formulations exceed 97% purity — laboratory-validated" },
-  { num: "100",  suf: "nm", label: "Particle size", sub: "Nanoscopic Polyaniline particles enable ultrafine, stable dispersions" },
+
 ];
 
 /* ════════════════════════════════════════════════════════
@@ -331,7 +302,7 @@ export default function Applications() {
                 <p className="text-xs tracking-widest uppercase font-medium text-gray-400 mb-2">Application Areas</p>
                 <h2 className="font-light text-gray-900 tracking-tight"
                   style={{ fontSize:"clamp(1.7rem,3.2vw,2.6rem)" }}>
-                  5 core <strong className="font-bold">application areas</strong>
+                  3 core <strong className="font-bold">application areas</strong>
                 </h2>
               </div>
               <p className="text-sm text-gray-400 font-light max-w-xs">
@@ -392,7 +363,7 @@ export default function Applications() {
             </h3>
             <div className="w-7 h-0.5 mb-5" style={{ background:"linear-gradient(90deg,#16a34a,#c9a84c)" }} />
             <p className="text-sm text-gray-500 leading-7 font-light mb-5">
-              Elektroactivx 's corrosion protection technology — rooted in Dr. Wessling's pioneering research — is the world's most powerful anticorrosion polymer principle. It actively passivates metal surfaces rather than simply forming a barrier.
+              KElektroactivx's corrosion protection technology — rooted in Dr. Wessling's pioneering research — is the world's most powerful anticorrosion polymer principle. It actively passivates metal surfaces rather than simply forming a barrier.
             </p>
             <a href="/contact" className="text-sm font-medium text-gray-900 underline underline-offset-4 hover:text-green-600 transition-colors">
               Talk to our experts →
@@ -409,51 +380,14 @@ export default function Applications() {
         style={{ background:"#f9fafb" }}>
         <div className="max-w-7xl mx-auto">
           <Reveal className="mb-12">
-            <p className="text-xs tracking-widest uppercase font-medium text-gray-400 mb-2">Further Areas</p>
             <h2 className="font-light text-gray-900 tracking-tight"
               style={{ fontSize:"clamp(1.6rem,3vw,2.4rem)" }}>
-              More application <strong className="font-bold">frontiers</strong>
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background:"#e5e7eb" }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background:"#e5e7eb" }}>
             {[
-              {
-                icon:"📡",
-                img:"https://images.unsplash.com/photo-1516849677043-ef67c9557e16?w=500&q=85",
-                title:"RADAR Absorbing Materials",
-                desc:"Polyaniline-based coatings can be engineered to absorb microwave and radar frequencies — enabling stealth and signal management applications in defence, aerospace and telecommunications infrastructure.",
-              },
-              {
-                icon:"⚡",
-                img:"https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=500&q=85",
-                title:"Supercapacitors",
-                desc:"The high pseudocapacitance of Polyaniline makes it an excellent electrode material for supercapacitors — offering rapid charge/discharge cycling, high power density and long cycle life in energy storage systems.",
-              },
-              {
-                icon:"🧪",
-                img:"https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=500&q=85",
-                title:"Sensors & Actuators",
-                desc:"The sensitivity of Polyaniline's conductivity to chemical environment makes it ideal for gas sensors, pH sensors, humidity sensors and electrochemical biosensors across healthcare, environmental and industrial monitoring.",
-              },
-              {
-                icon:"🔬",
-                img:"https://images.unsplash.com/photo-1576086213369-97a306d36557?w=500&q=85",
-                title:"Catalysis",
-                desc:"Polyaniline can act as both a catalyst support and an active catalyst in various chemical processes — including oxidation reactions, acid-base catalysis and electrocatalysis for fuel cell applications.",
-              },
-              {
-                icon:"💧",
-                img:"https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&q=85",
-                title:"Membrane Technology",
-                desc:"Conducting polymer membranes exhibit unique permeation selectivity and can be electrochemically switched between open and closed states — enabling smart filtration, gas separation and ion exchange systems.",
-              },
-              {
-                icon:"🔋",
-                img:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=500&q=85",
-                title:"Battery Electrodes",
-                desc:"Polyaniline's high theoretical capacity, fast redox kinetics and chemical stability make it a promising electrode material for rechargeable lithium-ion, zinc-ion and organic batteries.",
-              },
+        
             ].map((item, i) => (
               <Reveal key={item.title} delay={i * 55}>
                 <div className="bg-white overflow-hidden group cursor-default"
@@ -470,7 +404,7 @@ export default function Applications() {
                     <div className="absolute inset-0" style={{ background:"linear-gradient(to top,rgba(0,0,0,0.55),transparent 55%)" }} />
                     <div className="absolute top-0 left-0 right-0 h-0.5 gl" />
                     <span className="absolute top-3 right-3 text-xl">{item.icon}</span>
-                    <span className="absolute bottom-3 left-4 text-white/45 text-xs tracking-widest uppercase font-light">Elektroactivx </span>
+                    <span className="absolute bottom-3 left-4 text-white/45 text-xs tracking-widest uppercase font-light">Elektroactivx</span>
                   </div>
                   <div className="p-5 border-t border-gray-100">
                     <p className="text-xs font-bold uppercase tracking-widest text-gray-800 mb-2">{item.title}</p>
@@ -503,25 +437,10 @@ export default function Applications() {
 
         <div className="max-w-7xl mx-auto relative z-20 flex flex-col md:flex-row items-center justify-between gap-10">
           <Reveal from="left">
-            <p className="text-white/45 text-xs tracking-widest uppercase font-light mb-4">Get In Touch</p>
             <h3 className="font-light text-white leading-tight tracking-tight"
               style={{ fontSize:"clamp(1.8rem,3.5vw,2.9rem)" }}>
-              Found your<br/>
-              <em className="not-italic" style={{ fontFamily:"Georgia,serif", fontStyle:"italic", color:"#fde68a" }}>application?</em>
+              
             </h3>
-          </Reveal>
-          <Reveal from="right">
-            <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0">
-              <a href="/contact"
-                className="inline-block px-10 py-4 bg-white font-bold text-xs tracking-widest uppercase text-center hover:bg-gray-50 transition-colors"
-                style={{ color:"#15803d" }}>
-                Request a Sample
-              </a>
-              <a href="mailto:info@Elektroactivx .co"
-                className="inline-block px-10 py-4 border border-white/30 text-white font-light text-xs tracking-widest uppercase text-center hover:border-white/65 transition-colors">
-                Email Our Experts
-              </a>
-            </div>
           </Reveal>
         </div>
       </section>
