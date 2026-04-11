@@ -78,7 +78,7 @@ function TeamCard({ member, delay, inView }) {
 
         {/* Photo */}
         <div style={{ position:"relative", height:200, overflow:"hidden", background:"#f3f4f6" }}>
-          <img src={member.photo} alt={member.name}
+          <img src={member.img} alt={member.name}
             style={{ width:"100%", height:"100%", objectFit:"cover", objectPosition:"center top",
               filter: hov?"grayscale(0%) brightness(0.9)":"grayscale(8%) brightness(0.85)",
               transform: hov?"scale(1.05)":"scale(1)",
@@ -115,26 +115,25 @@ export default function AboutUs() {
   const [teamRef, teamVisible] = useInView();
 
   const teamMembers = [
-    {
-      name: "Dr. Arindam Adhikari",
-      role: "Director R&D, Laboratory & Production",
-      desc: "Dr. Arindam Adhikari (Ph.D., National Chemical Laboratory, Pune) leads all research, laboratory and production operations — from molecular design to commercial scale.",
-      photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=85&fit=crop&crop=face,top",
-    },
-    {
-      name: "Dr. Bernhard Wessling",
-      role: "Chief Scientist",
-      desc: "Dr. Bernhard Wessling is the renowned authority in the field of conductive polymers. He showed the world how to process them by dispersion and uncovered their corrosion-resistant properties.",
-      photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=85&fit=crop&crop=face,top",
-    },
-    {
-      name: "Dr. Jayant Khandare",
-      role: "Advisor",
-      desc: "Dr. Jayant Khandare (Ph.D., National Chemical Laboratory, Pune) provides scientific and strategic advisory, bridging academic excellence with real-world industrial application.",
-      photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=85&fit=crop&crop=face,top",
-    },
-  ];
-
+  {
+    name: "Narayan Ghodekar",
+    role: "Director, Sales & Finances",
+    desc: "Mr. Narayan Ghodekar, a businessman based in Mumbai, India, brings extensive experience in finance, sales, and business operations.",
+    img: "/images/narayan.jpg",
+  },
+  {
+    name: "Dr. Arindam Adhikari",
+    role: "Director R&D, Laboratory & Production",
+    desc: "Dr. Arindam Adhikari (Ph.D., National Chemical Laboratory, Pune) leads all research, laboratory and production operations — from molecular design to commercial scale.",
+    img: "/images/arindam.jpg",
+  },
+  {
+    name: "Dr. Jayant Khandare",
+    role: "Advisor",
+    desc: "Dr. Jayant Khandare (Ph.D., National Chemical Laboratory, Pune) provides scientific and strategic advisory, bridging academic excellence with real-world industrial application.",
+    img: "/images/jayant.jpg",
+  },
+];
   const timelineEvents = [
     { year:"2010", title:"Company Founded", desc:"ElektroactiveX Private Limited was founded with the vision of delivering advanced material solutions through innovative research and industrial expertise. The company focuses on conductive polymers and anticorrosion technologies, bridging scientific innovation with real-world applications." },
     { year:"2014", title:"R&D Laboratory Established", desc:"Launched the ElektroactiveX Advanced Materials Lab in Navi Mumbai, with Dr. Arindam Adhikari (Ph.D., NCL Pune) heading Research, Development and Production." },
@@ -266,7 +265,7 @@ export default function AboutUs() {
             </h2>
             <div className="w-8 h-0.5 mb-5" style={{ background:"linear-gradient(90deg,#16a34a,#c9a84c)" }} />
             <p className="text-sm text-gray-500 leading-7 font-light mb-7">
-              There is no more complex challenge than making industrial infrastructure last. Komstruk is a full-stack conductive polymer company — from synthesis and dispersion to finished anticorrosion coatings and masterbatches — building the materials backbone for a world that needs to endure.
+              There is no more complex challenge than making industrial infrastructure last. strukKom is a full-stack conductive polymer company — from synthesis and dispersion to finished anticorrosion coatings and masterbatches — building the materials backbone for a world that needs to endure.
             </p>
             <a href="#team"
               className="inline-block px-7 py-3.5 text-white font-medium text-xs tracking-widest uppercase hover:opacity-90 transition-opacity"
@@ -277,8 +276,8 @@ export default function AboutUs() {
 
           <Reveal from="right" delay={120} className="lg:w-7/12 iz">
             <img
-              src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=88"
-              alt="Komstruk mission"
+              src="/images/research.jpg"
+              alt="Elektroactivx mission"
               className="w-full object-cover"
               style={{ height:340, filter:"brightness(0.86) saturate(0.78)" }}
             />
@@ -438,24 +437,41 @@ export default function AboutUs() {
             </div>
 
             {/* FOOTER CTA */}
-            <Reveal>
-              <div
-                className="flex flex-col sm:flex-row items-center justify-between gap-5 pt-8 border-t"
-                style={{ borderColor:"rgba(255,255,255,0.07)" }}
-              >
-                <p className="text-gray-500 text-sm font-light">Interested in joining this team?</p>
-                <a
-                  href="/career"
-                  className="inline-flex items-center gap-2 px-8 py-3 text-green-400 font-medium text-xs tracking-widest uppercase transition-all duration-300 hover:text-white hover:bg-green-800"
-                  style={{ border:"1px solid rgba(34,197,94,0.35)" }}
-                >
-                  View Open Roles
-                  <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-              </div>
-            </Reveal>
+            {/* FOOTER CTA */}
+<Reveal>
+  <div
+    className="flex flex-col sm:flex-row items-center justify-between gap-5 pt-10 border-t"
+    style={{ borderColor:"rgba(255,255,255,0.07)" }}
+  >
+    {/* LEFT TEXT */}
+    <div className="max-w-md">
+      <p className="text-green-400 text-xs tracking-widest uppercase mb-2 font-medium">
+        Careers at ElektroactivX
+      </p>
+
+      <h3 className="text-white text-lg font-light leading-snug mb-2">
+        Build the future of <span style={{color:"#4ade80"}}>conductive materials</span>
+      </h3>
+
+      <p className="text-gray-500 text-sm font-light leading-6">
+        Join an innovation-driven company working on advanced conductive polymers, 
+        anticorrosion technologies, EMI shielding, and next-generation industrial materials.
+      </p>
+    </div>
+
+    {/* BUTTON */}
+    <a
+      href="/career"
+      className="inline-flex items-center gap-2 px-8 py-3 text-green-400 font-medium text-xs tracking-widest uppercase transition-all duration-300 hover:text-white hover:bg-green-800"
+      style={{ border:"1px solid rgba(34,197,94,0.35)" }}
+    >
+      Explore Careers
+      <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </a>
+  </div>
+</Reveal>
           </div>
         </div>
       </section>
