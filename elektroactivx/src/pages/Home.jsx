@@ -1,8 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 
-/* ════════════════════════════════════════
-   INTERSECTION OBSERVER HOOK
-════════════════════════════════════════ */
 function useInView(threshold = 0.15) {
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
@@ -19,9 +16,6 @@ function useInView(threshold = 0.15) {
   return [ref, inView];
 }
 
-/* ════════════════════════════════════════
-   ANIMATED SECTION WRAPPER
-════════════════════════════════════════ */
 function Reveal({ children, delay = 0, direction = "up", className = "" }) {
   const [ref, inView] = useInView();
   const transforms = {
@@ -44,9 +38,6 @@ function Reveal({ children, delay = 0, direction = "up", className = "" }) {
   );
 }
 
-/* ════════════════════════════════════════
-   COUNTER ANIMATION
-════════════════════════════════════════ */
 function Counter({ target, suffix = "" }) {
   const [count, setCount] = useState(0);
   const [ref, inView] = useInView();
@@ -66,9 +57,36 @@ function Counter({ target, suffix = "" }) {
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
-/* ════════════════════════════════════════
-   FEATURES DATA
-════════════════════════════════════════ */
+const APPLICATIONS = [
+  { title: "Corrosion Protection",  desc: "Polymer-enhanced paint additives delivering outstanding long-term metal protection in harsh environments." },
+  { title: "EMI Shielding",         desc: "Effective electromagnetic shielding for electronic enclosures and sensitive device housings." },
+  { title: "RADAR Absorbing",       desc: "Microwave-absorbing coatings engineered for stealth technology and precision signal management." },
+  { title: "Antistatic",            desc: "Reliable charge-dissipation across packaging films, industrial coatings, and flexible substrates." },
+  { title: "Solid Capacitors",      desc: "Solid-state electrolyte capacitors offering superior thermal stability and electrical performance." },
+  { title: "Electroluminescence",   desc: "Light-emitting polymer coatings enabling next-generation flexible and large-area display technologies." },
+];
+
+const PRODUCTS = [
+  {
+    name: "PAni-KOT",
+    tag: "Ready-to-use Coating",
+    desc: "A ready-to-use conductive coating for EMI shielding, RADAR absorption, and anticorrosion. Suitable for direct application on metal and plastic substrates.",
+    specs: ["EMI Shielding", "RADAR Absorption", "Anticorrosion"],
+  },
+  {
+    name: "Polyaniline Masterbatch",
+    tag: "Thermoplastic Dispersion",
+    desc: "A thermoplastic-compatible conductive masterbatch for compounding into films, sheets, and moulded parts. Ideal for antistatic and EMI applications.",
+    specs: ["Antistatic Films", "EMI Shielding", "Polymer Composites"],
+  },
+  {
+    name: "Emeraldine Base",
+    tag: "Base Polymer",
+    desc: "High-purity emeraldine base polyaniline powder for research, dispersion development, and advanced material synthesis.",
+    specs: ["Research Grade", "Dispersion Systems", "Custom Formulation"],
+  },
+];
+
 const features = [
   {
     title: "EMI Shielding",
@@ -134,9 +152,6 @@ const features = [
   },
 ];
 
-/* ════════════════════════════════════════
-   MAIN HOME COMPONENT
-════════════════════════════════════════ */
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
 
@@ -148,13 +163,11 @@ export default function Home() {
 
   return (
     <>
-      {/* Google Fonts */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,700&display=swap');
         .font-display { font-family: 'Roboto', sans-serif; }
         .font-body    { font-family: 'Roboto', sans-serif; }
 
-        /* Shimmer line animation */
         @keyframes shimmer {
           0%   { transform: scaleX(0); transform-origin: left; }
           50%  { transform: scaleX(1); transform-origin: left; }
@@ -163,21 +176,18 @@ export default function Home() {
         }
         .shimmer-line { animation: shimmer 3s ease-in-out infinite; }
 
-        /* Floating badge pulse */
         @keyframes pulse-slow {
           0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
           50%       { box-shadow: 0 0 0 12px rgba(34,197,94,0); }
         }
         .badge-pulse { animation: pulse-slow 2.5s ease-in-out infinite; }
 
-        /* Marquee */
         @keyframes marquee {
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
         }
         .marquee-inner { animation: marquee 18s linear infinite; }
 
-        /* Gradient text */
         .grad-text {
           background: linear-gradient(135deg, #16a34a 0%, #4ade80 60%, #16a34a 100%);
           -webkit-background-clip: text;
@@ -185,7 +195,6 @@ export default function Home() {
           background-clip: text;
         }
 
-        /* Card hover lift */
         .card-lift {
           transition: transform 0.35s cubic-bezier(.16,1,.3,1), box-shadow 0.35s ease;
         }
@@ -194,24 +203,28 @@ export default function Home() {
           box-shadow: 0 24px 48px rgba(0,0,0,0.10);
         }
 
-        /* Number underline grow */
-        .stat-bar {
-          width: 0;
-          transition: width 1.2s cubic-bezier(.16,1,.3,1);
+        .app-card-hover {
+          transition: border-color 0.25s, background 0.25s;
         }
-        .stat-bar.active { width: 100%; }
+        .app-card-hover:hover {
+          border-color: #16a34a !important;
+          background: #f0fdf4 !important;
+        }
 
-        /* Image parallax wrapper */
-        .parallax-img {
-          transition: transform 0.1s linear;
+        .prod-card {
+          transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .prod-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 16px 40px rgba(22,163,74,0.10);
         }
       `}</style>
 
       <div className="font-body bg-white text-stone-900 overflow-x-hidden">
 
-        {/* ═══════════════════════════════════════
-            1. HERO — fullscreen video + parallax
-        ═══════════════════════════════════════ */}
+        {/* ══════════════════════════════════════
+            §1 HERO
+        ══════════════════════════════════════ */}
         <section className="relative w-full h-screen overflow-hidden">
           <video
             autoPlay muted loop playsInline
@@ -219,61 +232,50 @@ export default function Home() {
             style={{ transform: `scale(1.05) translateY(${scrollY * 0.25}px)` }}
             src="https://www.w3schools.com/html/mov_bbb.mp4"
           />
-
-          {/* Multi-layer overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
-
-          {/* Decorative grid lines */}
           <div className="absolute inset-0 opacity-10"
             style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)", backgroundSize: "80px 80px" }}
           />
 
-          {/* Content */}
-          <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-24 pb-16 md:pb-28 max-w-screen-2xl mx-auto">
-            {/* Eyebrow */}
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-8 h-[1px] bg-green-400" />
-              <span className="text-green-400 text-xs tracking-[0.3em] uppercase font-medium">
-                ElektroactivX  Private Limited
+          <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 py-16 md:py-20 max-w-screen-2xl mx-auto">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-6 h-px bg-green-400" />
+              <span className="text-green-400 text-[10px] tracking-[0.25em] uppercase font-medium">
+                ElektroactivX Private Limited
               </span>
             </div>
-
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-white font-black leading-[0.95] mb-8 max-w-3xl">
+            <h1 className="font-display text-3xl md:text-5xl lg:text-6xl text-white font-bold leading-tight mb-6 max-w-2xl">
               Science That{" "}
               <span className="italic grad-text">Conducts</span>
               <br />the Future.
             </h1>
-
-            <p className="text-white/70 text-base md:text-lg max-w-md leading-relaxed mb-10 font-light">
-              Innovation-driven manufacturing of electrically conductive
-              polymers for industrial applications worldwide.
+            <p className="text-white/70 text-sm md:text-base max-w-md leading-relaxed mb-8">
+              Innovation-driven manufacturing of electrically conductive polymers for industrial applications worldwide.
             </p>
-
-            <div className="flex flex-wrap gap-4 items-center">
+            <div className="flex flex-wrap gap-3 items-center">
               <a
                 href="/about"
-                className="group relative inline-flex items-center gap-3 bg-green-500 hover:bg-green-400 text-white font-medium text-sm px-8 py-4 tracking-wide transition-all duration-300 overflow-hidden"
+                className="group inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white text-xs md:text-sm px-6 py-3 transition-all duration-300"
               >
-                <span className="relative z-10">Discover More</span>
-                <svg className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+                Discover More
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                <div className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
               </a>
-              <a href="/products" className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm font-medium transition-colors border-b border-white/30 hover:border-white pb-0.5">
+              <a
+                href="/products"
+                className="text-white/70 hover:text-white text-xs md:text-sm border-b border-white/30 hover:border-white transition-colors"
+              >
                 View Products
               </a>
             </div>
-
-            {/* Scroll indicator */}
-        
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════
-            MARQUEE TICKER
-        ═══════════════════════════════════════ */}
+        {/* ══════════════════════════════════════
+            §2 TICKER
+        ══════════════════════════════════════ */}
         <div className="bg-green-500 py-3.5 overflow-hidden">
           <div className="marquee-inner flex gap-0 whitespace-nowrap">
             {Array(2).fill(null).map((_, i) => (
@@ -288,15 +290,14 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ═══════════════════════════════════════
-            2. WHO WE ARE — asymmetric layout
-        ═══════════════════════════════════════ */}
+        {/* ══════════════════════════════════════
+            §3 WHO WE ARE
+        ══════════════════════════════════════ */}
         <section className="px-8 md:px-24 py-24 md:py-36 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center max-w-screen-2xl mx-auto">
-          {/* Text — 5 cols */}
           <div className="lg:col-span-5">
             <Reveal delay={0}>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-6 h-[1px] bg-green-500" />
+                <div className="w-6 h-px bg-green-500" />
                 <span className="text-green-600 text-xs tracking-[0.25em] uppercase font-medium">Who We Are</span>
               </div>
               <h2 className="font-display text-5xl md:text-6xl font-black leading-tight mb-8">
@@ -305,7 +306,7 @@ export default function Home() {
                 Limited
               </h2>
               <p className="text-stone-500 leading-relaxed text-base mb-6 font-light">
-               Elektroactivx Pvt Ltd is an innovation driven enterprise. It is devoted to manufacturing and marketing of a truely suitable electrically conductive polymer for industrial applications such as anticorrosive additives for paints, EMI shielding, Antistatic, RADAR absorbing material,  solid electrolyte capacitors etc.
+                Elektroactivx Pvt Ltd is an innovation driven enterprise. It is devoted to manufacturing and marketing of a truly suitable electrically conductive polymer for industrial applications such as anticorrosive additives for paints, EMI shielding, Antistatic, RADAR absorbing material, solid electrolyte capacitors etc.
               </p>
               <a
                 href="/about"
@@ -313,13 +314,12 @@ export default function Home() {
               >
                 Read More
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </a>
             </Reveal>
           </div>
 
-          {/* Stats — 2 cols */}
           <div className="lg:col-span-2 flex lg:flex-col gap-6 justify-center">
             {[
               { num: 20, suffix: "+", label: "Years of Innovation" },
@@ -336,7 +336,6 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Image — 5 cols */}
           <div className="lg:col-span-5 relative">
             <Reveal delay={200} direction="right">
               <div className="relative">
@@ -345,9 +344,7 @@ export default function Home() {
                   alt="Innovation Laboratory"
                   className="w-full h-[500px] object-cover"
                 />
-                {/* Green accent border */}
                 <div className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-green-400 -z-10" />
-                {/* Badge */}
                 <div className="absolute -bottom-5 left-6 bg-green-500 badge-pulse text-white px-6 py-3">
                   <p className="text-xs font-bold tracking-widest uppercase">Innovation Lab</p>
                 </div>
@@ -356,17 +353,139 @@ export default function Home() {
           </div>
         </section>
 
-       
-        {/* ═══════════════════════════════════════
-            4. CONDUCTIVE POLYMER
-        ═══════════════════════════════════════ */}
+        {/* ══════════════════════════════════════
+            §4 APPLICATIONS
+        ══════════════════════════════════════ */}
+        <section className="bg-stone-50 border-t border-stone-100">
+          <div className="max-w-screen-2xl mx-auto px-8 md:px-24 py-24 md:py-36 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <Reveal direction="left">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-6 h-px bg-green-500" />
+                <span className="text-green-600 text-xs tracking-[0.25em] uppercase font-medium">What We Enable</span>
+              </div>
+              <h2 className="font-display text-5xl md:text-6xl font-black leading-tight mb-6">
+                Industrial<br />
+                <span className="italic grad-text">Applications</span>
+              </h2>
+              <p className="text-stone-500 leading-relaxed text-base font-light mb-8">
+                Our conductive polymer technology unlocks solutions across six high-value industrial domains — from corrosion protection to next-generation electronics and display technologies.
+              </p>
+
+              <div className="grid grid-cols-2 gap-3 mb-8">
+                {APPLICATIONS.map((a) => (
+                  <div
+                    key={a.title}
+                    className="app-card-hover border border-stone-200 p-3 cursor-default"
+                  >
+                    <p className="text-green-600 text-xs font-bold tracking-wide mb-1">{a.title}</p>
+                    <p className="text-stone-400 text-xs font-light leading-relaxed">{a.desc}</p>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="/applications"
+                className="inline-flex items-center gap-2 text-green-600 hover:text-green-700 font-medium text-sm border-b border-green-400 hover:border-green-600 pb-0.5 transition-colors"
+              >
+                Explore All Applications
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </Reveal>
+
+            <Reveal direction="right" delay={120}>
+              <div className="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=80"
+                  alt="Electronic circuit application"
+                  className="w-full object-cover"
+                  style={{ height: 460 }}
+                />
+                <div className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-green-400 -z-10" />
+                <div className="absolute -bottom-5 left-6 bg-green-500 text-white px-6 py-3">
+                  <p className="text-xs font-bold tracking-widest uppercase opacity-80">Domains</p>
+                  <p className="font-bold text-base mt-0.5">Broad Applicability</p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════
+            §5 PRODUCTS
+        ══════════════════════════════════════ */}
+        <section className="border-t border-stone-100">
+          <div className="max-w-screen-2xl mx-auto px-8 md:px-24 py-24 md:py-36 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <Reveal direction="left">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-6 h-px bg-green-500" />
+                <span className="text-green-600 text-xs tracking-[0.25em] uppercase font-medium">Our Products</span>
+              </div>
+              <h2 className="font-display text-5xl md:text-6xl font-black leading-tight mb-8">
+                Engineered<br />
+                <span className="italic grad-text">Formulations</span>
+              </h2>
+
+              <div className="flex flex-col gap-4 mb-8">
+                {PRODUCTS.map((p) => (
+                  <div key={p.name} className="prod-card bg-stone-50 border border-stone-100 p-5">
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="font-display text-lg font-bold text-stone-900">{p.name}</h3>
+                      <span className="text-green-600 text-[10px] tracking-widest uppercase bg-green-50 border border-green-200 px-2.5 py-1 ml-3 shrink-0 font-medium">
+                        {p.tag}
+                      </span>
+                    </div>
+                    <p className="text-stone-400 text-sm font-light leading-relaxed mb-3">{p.desc}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {p.specs.map((sp) => (
+                        <span key={sp} className="text-green-600 text-[10px] bg-green-50 border border-green-200 px-2.5 py-1 font-medium tracking-wide">
+                          {sp}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="/products"
+                className="inline-flex items-center gap-2 text-green-600 hover:text-green-700 font-medium text-sm border-b border-green-400 hover:border-green-600 pb-0.5 transition-colors"
+              >
+                View All Products
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </Reveal>
+
+            <Reveal direction="right" delay={120}>
+              <div className="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80"
+                  alt="Conductive polymer products"
+                  className="w-full object-cover"
+                  style={{ height: 520 }}
+                />
+                <div className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-green-400 -z-10" />
+                <div className="absolute -bottom-5 left-6 bg-green-500 text-white px-6 py-3">
+                  <p className="text-xs font-bold tracking-widest uppercase opacity-80">Polymer Range</p>
+                  <p className="font-bold text-base mt-0.5">3 Core Products</p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════
+            §6 CORE TECHNOLOGY
+        ══════════════════════════════════════ */}
         <section className="px-8 md:px-24 py-24 md:py-36 max-w-screen-2xl mx-auto">
-          {/* Header */}
           <Reveal>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-20">
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-6 h-[1px] bg-green-500" />
+                  <div className="w-6 h-px bg-green-500" />
                   <span className="text-green-600 text-xs tracking-[0.25em] uppercase font-medium">Core Technology</span>
                 </div>
                 <h2 className="font-display text-5xl md:text-6xl font-black leading-tight">
@@ -386,21 +505,20 @@ export default function Home() {
             </div>
           </Reveal>
 
-          {/* Formula card */}
           <Reveal delay={100}>
             <div className="bg-stone-50 border border-stone-100 p-10 mb-8 flex flex-col md:flex-row items-center gap-10">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <svg viewBox="0 0 340 110" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs">
-                  <polygon points="30,55 44,30 72,30 86,55 72,80 44,80" fill="none" stroke="#16a34a" strokeWidth="2"/>
+                  <polygon points="30,55 44,30 72,30 86,55 72,80 44,80" fill="none" stroke="#16a34a" strokeWidth="2" />
                   <text x="48" y="60" fontSize="12" fontFamily="sans-serif" fill="#1c1917">NH</text>
-                  <line x1="86" y1="55" x2="110" y2="55" stroke="#1c1917" strokeWidth="1.5"/>
-                  <polygon points="110,55 124,30 152,30 166,55 152,80 124,80" fill="none" stroke="#16a34a" strokeWidth="2"/>
-                  <line x1="166" y1="55" x2="190" y2="55" stroke="#1c1917" strokeWidth="1.5"/>
+                  <line x1="86" y1="55" x2="110" y2="55" stroke="#1c1917" strokeWidth="1.5" />
+                  <polygon points="110,55 124,30 152,30 166,55 152,80 124,80" fill="none" stroke="#16a34a" strokeWidth="2" />
+                  <line x1="166" y1="55" x2="190" y2="55" stroke="#1c1917" strokeWidth="1.5" />
                   <text x="170" y="50" fontSize="12" fontFamily="sans-serif" fill="#1c1917">N</text>
                   <text x="168" y="68" fontSize="10" fontFamily="sans-serif" fill="#16a34a">A⁻</text>
-                  <polygon points="190,55 204,30 232,30 246,55 232,80 204,80" fill="none" stroke="#4ade80" strokeWidth="2"/>
-                  <line x1="246" y1="55" x2="270" y2="55" stroke="#1c1917" strokeWidth="1.5"/>
-                  <polygon points="270,55 284,30 312,30 326,55 312,80 284,80" fill="none" stroke="#4ade80" strokeWidth="2"/>
+                  <polygon points="190,55 204,30 232,30 246,55 232,80 204,80" fill="none" stroke="#4ade80" strokeWidth="2" />
+                  <line x1="246" y1="55" x2="270" y2="55" stroke="#1c1917" strokeWidth="1.5" />
+                  <polygon points="270,55 284,30 312,30 326,55 312,80 284,80" fill="none" stroke="#4ade80" strokeWidth="2" />
                   <text x="330" y="59" fontSize="13" fontFamily="sans-serif" fill="#1c1917">n</text>
                   <text x="20" y="28" fontSize="10" fontFamily="sans-serif" fill="#78716c">H</text>
                   <text x="102" y="28" fontSize="10" fontFamily="sans-serif" fill="#78716c">H</text>
@@ -418,7 +536,6 @@ export default function Home() {
             </div>
           </Reveal>
 
-          {/* CTA */}
           <Reveal delay={150}>
             <div className="flex justify-center mb-24">
               <a
@@ -427,18 +544,16 @@ export default function Home() {
               >
                 Conductive Polymer Dispersion
                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </a>
             </div>
           </Reveal>
 
-          {/* Feature grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f, i) => (
               <Reveal key={f.title} delay={i * 80}>
                 <div className="group border border-stone-100 p-8 card-lift cursor-default bg-white hover:border-green-200">
-                  {/* Icon */}
                   <div className="w-14 h-14 bg-stone-50 group-hover:bg-green-500 text-green-600 group-hover:text-white flex items-center justify-center mb-6 transition-all duration-300">
                     {f.icon}
                   </div>
@@ -446,8 +561,7 @@ export default function Home() {
                     {f.title}
                   </h4>
                   <p className="text-stone-400 text-sm leading-relaxed">{f.desc}</p>
-                  {/* Bottom accent line */}
-                  <div className="mt-6 h-[2px] bg-stone-100 relative overflow-hidden">
+                  <div className="mt-6 h-0.5 bg-stone-100 relative overflow-hidden">
                     <div className="absolute inset-0 bg-green-500 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
                   </div>
                 </div>
@@ -456,11 +570,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════
-            5. CTA BANNER
-        ═══════════════════════════════════════ */}
+        {/* ══════════════════════════════════════
+            §7 CTA BANNER
+        ══════════════════════════════════════ */}
         <section className="relative overflow-hidden bg-green-600 px-8 md:px-24 py-20 md:py-28">
-          {/* Decorative circles */}
           <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-green-500/40" />
           <div className="absolute -bottom-32 -left-10 w-96 h-96 rounded-full bg-green-700/40" />
 

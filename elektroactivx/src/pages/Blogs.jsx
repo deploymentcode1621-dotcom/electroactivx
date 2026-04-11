@@ -484,37 +484,7 @@ export default function Blogs() {
       {/* ════════════════════════════════
           06 — TOPICS / POPULAR TAGS
       ════════════════════════════════ */}
-      <section className="w-full bg-white border-t border-gray-100 py-14 px-8 md:px-16 lg:px-24">
-        <div className="max-w-7xl mx-auto">
-          <Reveal>
-            <h3 className="text-lg font-light text-gray-900 mb-8">Browse by topic</h3>
-            <div className="flex flex-wrap gap-3">
-              {[
-                { label: "Lithium Recycling",     count: 12 },
-                { label: "Circular Economy",      count: 9  },
-                { label: "EV Battery Recovery",   count: 8  },
-                { label: "Hydrometallurgy",       count: 6  },
-                { label: "Sustainability",         count: 11 },
-                { label: "Industry Trends",       count: 7  },
-                { label: "Material Recovery",     count: 5  },
-                { label: "Green Investment",      count: 4  },
-                { label: "Process Engineering",   count: 6  },
-                { label: "ISO Certification",     count: 3  },
-              ].map(({ label, count }, i) => (
-                <Reveal key={label} delay={i * 40}>
-                  <button
-                    onClick={() => { setSearch(label); setActiveCategory("All"); }}
-                    className="flex items-center gap-2 px-4 py-2 border border-gray-200 text-xs text-gray-600 font-light hover:border-emerald-400 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-250"
-                  >
-                    {label}
-                    <span className="text-gray-300 text-xs">({count})</span>
-                  </button>
-                </Reveal>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
+    
 
       <Footer />
     </main>
