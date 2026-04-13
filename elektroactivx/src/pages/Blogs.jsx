@@ -46,58 +46,22 @@ function Reveal({ children, delay = 0, from = "bottom", className = "", style = 
 }
 
 /* ─── Blog data ──────────────────────────────────── */
+/* ─── Blog data ──────────────────────────────────── */
 const ALL_BLOGS = [
-
   {
-    id: 2,
-    category: "Technology",
-    date: "February 8, 2025",
+    id: 1,
+    category: "News / Blog",
+    date: "March 2026",
     author: "Elektroactivx",
-    title: "Smart Battery Processing and Green Certifications: The Future of Recycling Infrastructure",
-    excerpt: "The new gold standard in India's battery recycling sector is undergoing a profound transformation. Gone are the days when processing facilities were valued only on throughput.",
-    img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=700&q=80",
-    readTime: "7 min read",
-    tag: "Technology",
-  },
-  {
-    id: 3,
-    category: "Operations",
-    date: "January 30, 2025",
-    author: "Elektroactivx",
-    title: "Inside the Design Philosophy of Elektroactivx: Creating Recycling Processes That Work for You",
-    excerpt: "In today's fast-paced battery industry, the modern recycling operation faces a critical dilemma: is it merely a physical location for work, or should it be something more?",
-    img: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=700&q=80",
-    readTime: "6 min read",
-    tag: "Operations",
-  },
-
-  {
-    id: 5,
-    category: "Investment",
-    date: "January 15, 2025",
-    author: "KElektroactivx",
-    title: "5 Reasons Why Investing in Battery Recycling Infrastructure Yields Higher ROI Than Primary Mining",
-    excerpt: "As the global shift toward clean energy accelerates, forward-thinking investors are discovering that the real value in the battery supply chain lies not in extraction, but in recovery.",
-    img: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=700&q=80",
-    readTime: "9 min read",
-    tag: "Investment",
-  },
-  {
-    id: 6,
-    category: "Sustainability",
-    date: "January 10, 2025",
-    author: "Elektroactivx",
-    title: "How Energy Efficiency Enhances Circular Performance in Battery Recycling Operations",
-    excerpt: "Operational efficiency and sustainability are no longer competing priorities. At Elektroactivx, we have designed our facilities to prove that the greenest operation is also the most cost-effective.",
-    img: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=700&q=80",
-    readTime: "5 min read",
-    tag: "Sustainability",
-  },
-  
- 
+    title: "Elektroactivx Pvt. Ltd. Can Now Provide Sample Quantities to Customers",
+    excerpt: "Elektroactivx Pvt. Ltd can now provide sample quantities of all of our products to customers.",
+    img: "/images/blog.jpg",
+    readTime: "3 min read",
+    tag: "News",
+  }
 ];
 
-const CATEGORIES = ["All", "Industry", "Technology", "Sustainability", "Operations", "Investment"];
+const CATEGORIES = ["All"];
 const POSTS_PER_PAGE = 6;
 
 /* ════════════════════════════════════════════════════
@@ -335,158 +299,8 @@ export default function Blogs() {
         </section>
       )}
 
-      {/* ════════════════════════════════
-          04 — BLOG GRID (2-col, like Omicron)
-      ════════════════════════════════ */}
-      <section className="w-full bg-white px-8 md:px-16 lg:px-24 pb-16">
-        <div className="max-w-7xl mx-auto">
-
-          {filtered.length === 0 ? (
-            <Reveal style={{ textAlign: "center", padding: "5rem 0" }}>
-              <div className="text-5xl mb-4">🔍</div>
-              <p className="text-gray-400 text-sm font-light">No articles found for your search.</p>
-              <button onClick={() => { setSearch(""); setActiveCategory("All"); }}
-                className="mt-4 text-sm font-medium text-emerald-600 underline underline-offset-4 hover:text-emerald-700 transition-colors">
-                Clear filters
-              </button>
-            </Reveal>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16">
-              {paginated.map((blog, i) => (
-                <Reveal key={blog.id} delay={i * 80} from={i % 2 === 0 ? "left" : "right"}>
-                  <article className="blog-card cursor-pointer">
-                    {/* Image */}
-                    <div className="card-img overflow-hidden mb-5" style={{ height: 220 }}>
-                      <img
-                        src={blog.img}
-                        alt={blog.title}
-                        className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-500"
-                      />
-                    </div>
-
-                    {/* Meta */}
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="text-xs text-gray-400 font-light">{blog.date}</span>
-                      <span className="text-gray-200">·</span>
-                      <span className="text-xs font-bold text-gray-700 uppercase tracking-wide">{blog.author}</span>
-                      <span className="text-gray-200">·</span>
-                      <span className="text-xs px-2 py-0.5 bg-emerald-50 text-emerald-600 font-medium uppercase tracking-wide">{blog.tag}</span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-sm md:text-base font-bold text-gray-900 uppercase leading-snug mb-3 tracking-wide hover:text-emerald-600 transition-colors">
-                      {blog.title}
-                    </h3>
-
-                    {/* Excerpt */}
-                    <p className="text-xs text-gray-500 leading-6 font-light mb-4 line-clamp-3">
-                      {blog.excerpt}
-                    </p>
-
-                    {/* Read More */}
-                    <a href="#" className="read-more flex items-center gap-2 text-gray-700 text-xs font-medium tracking-widest uppercase">
-                      Read More
-                      <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
-                    </a>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
-          )}
-
-          {/* ── Pagination (Omicron: numbered pages) ── */}
-          {totalPages > 1 && (
-            <Reveal style={{ marginTop: "3rem" }}>
-              <div className="flex items-center gap-2">
-                {/* Prev */}
-                <button
-                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                  disabled={currentPage === 1}
-                  className={`page-btn w-9 h-9 flex items-center justify-center border text-sm transition-all ${currentPage === 1 ? "border-gray-100 text-gray-300 cursor-not-allowed" : "border-gray-300 text-gray-600 hover:border-gray-900"}`}
-                >
-                  <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M8 2L4 6l4 4"/></svg>
-                </button>
-
-                {/* Page numbers */}
-                {Array.from({ length: totalPages }).map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentPage(i + 1)}
-                    className={`page-btn w-9 h-9 flex items-center justify-center border text-xs font-medium ${currentPage === i + 1 ? "active border-gray-900" : "border-gray-200 text-gray-600"}`}
-                  >
-                    {i + 1}
-                  </button>
-                ))}
-
-                {/* Next */}
-                <button
-                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-                  disabled={currentPage === totalPages}
-                  className={`page-btn w-9 h-9 flex items-center justify-center border text-sm transition-all ${currentPage === totalPages ? "border-gray-100 text-gray-300 cursor-not-allowed" : "border-gray-300 text-gray-600 hover:border-gray-900"}`}
-                >
-                  <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 2l4 4-4 4"/></svg>
-                </button>
-
-                <span className="text-xs text-gray-400 font-light ml-2">
-                  Page {currentPage} of {totalPages}
-                </span>
-              </div>
-            </Reveal>
-          )}
-        </div>
-      </section>
-
-      {/* ════════════════════════════════
-          05 — NEWSLETTER SUBSCRIBE
-          (same as Contact page)
-      ════════════════════════════════ */}
-      <section className="w-full bg-gray-50 border-t border-gray-100 py-14 px-8 md:px-16 lg:px-24">
-        <div className="max-w-7xl mx-auto">
-          <Reveal>
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-              <div>
-                <h3 className="text-xl font-light text-gray-900 leading-tight">
-                  Subscribe To Our<br /><span className="font-medium">Newsletter</span>
-                </h3>
-                <p className="text-xs text-gray-400 font-light mt-2 max-w-xs">
-                  Get the latest battery recycling insights, industry news and Elektroactivx updates directly in your inbox.
-                </p>
-              </div>
-              <form
-                onSubmit={handleSubscribe}
-                className="flex items-stretch gap-0 w-full md:w-auto md:min-w-[480px]"
-              >
-                {subscribed ? (
-                  <div className="flex items-center gap-3 py-3 px-4 bg-emerald-50 border border-emerald-200 w-full">
-                    <svg width="16" height="16" fill="none" stroke="#059669" strokeWidth="2.5"><path d="M3 8l4 4 6-7" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                    <span className="text-sm text-emerald-700 font-medium">Subscribed! Thank you.</span>
-                  </div>
-                ) : (
-                  <>
-                    <input
-                      type="email"
-                      placeholder="Enter your email"
-                      value={newsletter}
-                      onChange={e => setNewsletter(e.target.value)}
-                      required
-                      className="flex-1 border-b border-gray-300 bg-transparent text-sm text-gray-700 placeholder-gray-400 font-light px-0 py-3 focus:border-gray-900 focus:outline-none transition-colors"
-                      style={{ fontFamily: "'Roboto',sans-serif" }}
-                    />
-                    <button type="submit" className="subscribe-btn ml-4">Subscribe</button>
-                  </>
-                )}
-              </form>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════
-          06 — TOPICS / POPULAR TAGS
-      ════════════════════════════════ */}
-    
-
-      <Footer />
+     
+     
     </main>
   );
 }

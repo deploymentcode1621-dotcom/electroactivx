@@ -18,10 +18,10 @@ const Footer = () => {
             {/* Address */}
             <div>
               <p className="text-gray-400 text-sm font-light leading-relaxed">
-                ElektroactivX AB ~ Alströmergatan 20
+            
               </p>
               <p className="text-gray-400 text-sm font-light leading-relaxed">
-                SE-112 47, Stockholm, Sweden
+             Branch: 604, Ramanbag Society, Shaniwar Peth, Pune, 411030, Maharashtra
               </p>
             </div>
 
@@ -174,7 +174,7 @@ const Footer = () => {
 
         {/* ── Bottom bar ── */}
         <div className="mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-600 text-xs font-light">© 2025 ElektroactivX. All rights reserved.</p>
+          <p className="text-gray-600 text-xs font-light">© 2025 ElektroactivX. All  rights reserved.</p>
           <div className="flex gap-6">
             {["Privacy Policy", "Terms of Use", "Cookie Settings"].map((link) => (
               <a key={link} href="#" className="text-gray-600 text-xs hover:text-white transition-colors font-light">
