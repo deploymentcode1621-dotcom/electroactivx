@@ -34,295 +34,7 @@ function Reveal({ children, delay = 0, className = "", from = "bottom" }) {
   );
 }
 
-/* ─── MoleculeSection ────────────────────────────────── */
-function MoleculeSection() {
-  const molRef = useRef(null);
-
-  useEffect(() => {
-    const container = molRef.current;
-    if (!container) return;
-
-    let stopped = false;
-    const timers = [];
-
-    function getSvgCoords(svgEl, svgX, svgY) {
-      const rect = svgEl.getBoundingClientRect();
-      const parentRect = container.getBoundingClientRect();
-      const scaleX = rect.width / 760;
-      const scaleY = rect.height / 240;
-      return {
-        x: svgX * scaleX + (rect.left - parentRect.left),
-        y: svgY * scaleY + (rect.top - parentRect.top),
-      };
-    }
-
-    function spawnElectron(svgEl, x1, y1, x2, y2, color, delay, period) {
-      const t1 = setTimeout(function run() {
-        if (stopped) return;
-        const dot = document.createElement("div");
-        dot.style.cssText = `position:absolute;width:6px;height:6px;border-radius:50%;background:${color};box-shadow:0 0 7px 3px ${color}88;pointer-events:none;transform:translate(-50%,-50%);`;
-        container.appendChild(dot);
-
-        const duration = 900 + Math.random() * 300;
-        const startTime = performance.now();
-
-        function animate(now) {
-          if (stopped) { dot.remove(); return; }
-          const t = Math.min((now - startTime) / duration, 1);
-          const ease = t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
-          const curr = getSvgCoords(svgEl, x1+(x2-x1)*ease, y1+(y2-y1)*ease);
-          dot.style.left = curr.x + "px";
-          dot.style.top  = curr.y + "px";
-          const alpha = t < 0.15 ? t/0.15 : t > 0.85 ? (1-t)/0.15 : 1;
-          dot.style.opacity = alpha;
-          if (t < 1) requestAnimationFrame(animate);
-          else {
-            dot.remove();
-            if (!stopped) {
-              const t2 = setTimeout(run, period + Math.random()*400);
-              timers.push(t2);
-            }
-          }
-        }
-        requestAnimationFrame(animate);
-      }, delay + Math.random()*500);
-      timers.push(t1);
-    }
-
-    function spawnAnion(svgEl, tx, ty, color) {
-      if (stopped) return;
-      const angles = [210,240,270,300];
-      const angle  = angles[Math.floor(Math.random()*angles.length)] * Math.PI/180;
-      const dist   = 55 + Math.random()*25;
-      const x1 = tx + Math.cos(angle)*dist;
-      const y1 = ty + Math.sin(angle)*dist;
-
-      const dot = document.createElement("div");
-      dot.style.cssText = `position:absolute;width:5px;height:5px;border-radius:50%;background:${color};box-shadow:0 0 5px 2px ${color}99;pointer-events:none;transform:translate(-50%,-50%);`;
-      container.appendChild(dot);
-
-      const duration  = 1200 + Math.random()*400;
-      const startTime = performance.now();
-      const ex = tx + (Math.random()-0.5)*6;
-      const ey = ty + (Math.random()-0.5)*6;
-
-      function anim(now) {
-        if (stopped) { dot.remove(); return; }
-        const t = Math.min((now - startTime)/duration, 1);
-        const ease = 1 - Math.pow(1-t, 3);
-        const curr = getSvgCoords(svgEl, x1+(ex-x1)*ease, y1+(ey-y1)*ease);
-        dot.style.left    = curr.x + "px";
-        dot.style.top     = curr.y + "px";
-        dot.style.opacity = t < 0.2 ? t/0.2 : t > 0.7 ? (1-t)/0.3 : 1;
-        if (t < 1) requestAnimationFrame(anim);
-        else dot.remove();
-      }
-      requestAnimationFrame(anim);
-    }
-
-    const initTimer = setTimeout(() => {
-      const wrapperEl = container.closest(".mol-wrapper");
-      const svgEl = wrapperEl ? wrapperEl.querySelector("svg") : null;
-      if (!svgEl) return;
-
-      const bonds = [
-        [70,120,128,120, "#facc15", 0,    2200],
-        [265,120,348,120,"#facc15", 600,  2200],
-        [348,120,265,120,"#a78bfa", 1200, 2200],
-        [410,120,495,120,"#facc15", 900,  2200],
-        [495,120,410,120,"#a78bfa", 1500, 2200],
-        [545,120,628,120,"#facc15", 1200, 2200],
-        [240,120,240,60, "#4ade80", 1800, 2800],
-        [240,120,240,178,"#4ade80", 2000, 2800],
-        [520,120,520,60, "#4ade80", 2000, 2800],
-        [520,120,520,178,"#4ade80", 2200, 2800],
-      ];
-      bonds.forEach(b => spawnElectron(svgEl, b[0],b[1],b[2],b[3],b[4],b[5],b[6]));
-
-      function scheduleAnions() {
-        if (stopped) return;
-        spawnAnion(svgEl, 240, 120, "#f87171");
-        spawnAnion(svgEl, 520, 120, "#f87171");
-        const t3 = setTimeout(scheduleAnions, 1800 + Math.random()*600);
-        timers.push(t3);
-      }
-      const t4 = setTimeout(scheduleAnions, 2500);
-      timers.push(t4);
-    }, 300);
-    timers.push(initTimer);
-
-    return () => {
-      stopped = true;
-      timers.forEach(clearTimeout);
-      if (container) container.querySelectorAll("div").forEach(d => d.remove());
-    };
-  }, []);
-
-  return (
-    <div className="mol-wrapper relative w-full rounded-none overflow-hidden"
-      style={{ background:"linear-gradient(135deg,#f8fffe 0%,#f0fdf4 50%,#fefefe 100%)", border:"1px solid #e5e7eb", minHeight:340 }}>
-
-      {/* Animated grid background */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        backgroundImage:"linear-gradient(rgba(22,163,74,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(22,163,74,0.06) 1px,transparent 1px)",
-        backgroundSize:"40px 40px",
-      }} />
-
-      {/* Ambient orbs */}
-      <div className="absolute orb" style={{ width:220,height:220,borderRadius:"50%",background:"radial-gradient(circle,rgba(22,163,74,0.12) 0%,transparent 70%)",top:-40,left:-40 }} />
-      <div className="absolute orb" style={{ width:180,height:180,borderRadius:"50%",background:"radial-gradient(circle,rgba(201,168,76,0.10) 0%,transparent 70%)",bottom:-30,right:60,animationDelay:"-3s" }} />
-
-      {/* Scan line */}
-      <div className="scan absolute left-0 right-0 h-0.5" style={{ background:"linear-gradient(90deg,transparent,rgba(22,163,74,0.35),transparent)" }} />
-
-      {/* ──── SVG MOLECULE ──── */}
-      <div className="relative z-10 flex items-center justify-center py-12 px-6">
-        <svg viewBox="0 0 760 240" xmlns="http://www.w3.org/2000/svg"
-          style={{ width:"100%", maxWidth:720, height:"auto" }}>
-          <defs>
-            <filter id="nGlow" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="5" result="blur"/>
-              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
-
-          {/* ── Brackets ── */}
-          <text x="8"   y="162" fontSize="90" fill="#c7d2d0" fontWeight="200" fontFamily="Georgia,serif" style={{animation:"fadeInUp 0.5s 0.1s both"}}>[</text>
-          <text x="714" y="162" fontSize="90" fill="#c7d2d0" fontWeight="200" fontFamily="Georgia,serif" style={{animation:"fadeInUp 0.5s 1.8s both"}}>]</text>
-          <text x="738" y="178" fontSize="16" fill="#94a3b8" fontStyle="italic" fontFamily="Georgia,serif" style={{animation:"fadeInUp 0.5s 2.0s both"}}>n</text>
-
-          {/* ── Bond: Ph1 → N1 ── */}
-          <line className="mol-bond" x1="130" y1="120" x2="215" y2="120" stroke="#94a3b8" strokeWidth="2.2" style={{animationDelay:"0.3s"}}/>
-          <line className="mol-bond" x1="130" y1="126" x2="175" y2="126" stroke="#94a3b8" strokeWidth="1.2" opacity="0.5" style={{animationDelay:"0.5s"}}/>
-
-          {/* ── Bond: N1 → Ph2 ── */}
-          <line className="mol-bond" x1="265" y1="120" x2="350" y2="120" stroke="#16a34a" strokeWidth="2.5" style={{animationDelay:"0.8s"}}/>
-          <line className="mol-bond" x1="295" y1="114" x2="340" y2="114" stroke="#16a34a" strokeWidth="1.3" opacity="0.45" style={{animationDelay:"1.0s"}}/>
-
-          {/* ── Bond: Ph2 → N2 ── */}
-          <line className="mol-bond" x1="410" y1="120" x2="495" y2="120" stroke="#94a3b8" strokeWidth="2.2" style={{animationDelay:"1.1s"}}/>
-          <line className="mol-bond" x1="410" y1="126" x2="455" y2="126" stroke="#94a3b8" strokeWidth="1.2" opacity="0.5" style={{animationDelay:"1.3s"}}/>
-
-          {/* ── Bond: N2 → Ph3 ── */}
-          <line className="mol-bond" x1="545" y1="120" x2="628" y2="120" stroke="#16a34a" strokeWidth="2.5" style={{animationDelay:"1.4s"}}/>
-          <line className="mol-bond" x1="545" y1="114" x2="595" y2="114" stroke="#16a34a" strokeWidth="1.3" opacity="0.45" style={{animationDelay:"1.6s"}}/>
-
-          {/* ── N–H vertical bonds ── */}
-          <line className="mol-bond" x1="240" y1="104" x2="240" y2="60"  stroke="#16a34a" strokeWidth="1.8" style={{animationDelay:"1.0s"}}/>
-          <line className="mol-bond" x1="240" y1="136" x2="240" y2="178" stroke="#16a34a" strokeWidth="1.8" style={{animationDelay:"1.1s"}}/>
-          <line className="mol-bond" x1="520" y1="104" x2="520" y2="60"  stroke="#16a34a" strokeWidth="1.8" style={{animationDelay:"1.5s"}}/>
-          <line className="mol-bond" x1="520" y1="136" x2="520" y2="178" stroke="#16a34a" strokeWidth="1.8" style={{animationDelay:"1.6s"}}/>
-
-          {/* ── Benzene Ring 1 ── */}
-          <g className="mol-node-g" style={{animationDelay:"0.1s", transformOrigin:"90px 110px"}}>
-            <polygon points="68,98 88,84 112,98 112,122 88,136 68,122" fill="none" stroke="#64748b" strokeWidth="2" strokeLinejoin="round"/>
-            <circle cx="90" cy="110" r="10" fill="none" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="8 4"
-              style={{animation:"ringRotate 5s linear infinite", transformOrigin:"90px 110px"}}/>
-            <circle cx="90" cy="110" r="5" fill="none" stroke="#c9a84c" strokeWidth="1" strokeDasharray="3 3"
-              style={{animation:"counterSpin 3s linear infinite", transformOrigin:"90px 110px"}}/>
-            <text x="90" y="114" fontSize="12" fill="#475569" fontWeight="700" textAnchor="middle">Ph</text>
-          </g>
-
-          {/* ── Benzene Ring 2 ── */}
-          <g className="mol-node-g" style={{animationDelay:"0.45s", transformOrigin:"370px 110px"}}>
-            <polygon points="348,98 368,84 392,98 392,122 368,136 348,122" fill="none" stroke="#64748b" strokeWidth="2" strokeLinejoin="round"/>
-            <circle cx="370" cy="110" r="10" fill="none" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="8 4"
-              style={{animation:"ringRotate 5s 0.8s linear infinite", transformOrigin:"370px 110px"}}/>
-            <circle cx="370" cy="110" r="5" fill="none" stroke="#c9a84c" strokeWidth="1" strokeDasharray="3 3"
-              style={{animation:"counterSpin 3s 0.4s linear infinite", transformOrigin:"370px 110px"}}/>
-            <text x="370" y="114" fontSize="12" fill="#475569" fontWeight="700" textAnchor="middle">Ph</text>
-          </g>
-
-          {/* ── Benzene Ring 3 ── */}
-          <g className="mol-node-g" style={{animationDelay:"1.5s", transformOrigin:"650px 110px"}}>
-            <polygon points="628,98 648,84 672,98 672,122 648,136 628,122" fill="none" stroke="#64748b" strokeWidth="2" strokeLinejoin="round"/>
-            <circle cx="650" cy="110" r="10" fill="none" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="8 4"
-              style={{animation:"ringRotate 5s 1.2s linear infinite", transformOrigin:"650px 110px"}}/>
-            <circle cx="650" cy="110" r="5" fill="none" stroke="#c9a84c" strokeWidth="1" strokeDasharray="3 3"
-              style={{animation:"counterSpin 3s 0.8s linear infinite", transformOrigin:"650px 110px"}}/>
-            <text x="650" y="114" fontSize="12" fill="#475569" fontWeight="700" textAnchor="middle">Ph</text>
-          </g>
-
-          {/* ── N Node 1 ── */}
-          <g className="mol-node-g" style={{animationDelay:"1.1s", transformOrigin:"240px 120px"}}>
-            <circle cx="240" cy="120" r="26" fill="rgba(22,163,74,0.10)"
-              style={{animation:"chargeGlow 2.4s ease-in-out infinite"}}/>
-            <circle cx="240" cy="120" r="19" fill="rgba(22,163,74,0.18)"
-              style={{animation:"chargeGlow 2.4s 0.3s ease-in-out infinite"}}/>
-            <circle cx="240" cy="120" r="14" fill="#16a34a" filter="url(#nGlow)"
-              style={{animation:"pulseN 2.4s ease-in-out infinite"}}/>
-            <text x="237" y="116" fontSize="13" fill="white" fontWeight="800">N</text>
-            <text x="248" y="112" fontSize="9"  fill="white" fontWeight="700">+</text>
-            {/* H labels */}
-            <text x="250" y="52"  fontSize="11" fill="#16a34a" fontWeight="700" style={{animation:"molHFloat 3s ease-in-out infinite", animationDelay:"0s"}}>H</text>
-            <text x="250" y="190" fontSize="11" fill="#16a34a" fontWeight="700" style={{animation:"molHFloat 3s ease-in-out infinite", animationDelay:"1.5s"}}>H</text>
-            {/* A⁻ counter-ion */}
-            <text x="188" y="68" fontSize="10" fill="#ef4444" fontWeight="800">A⁻</text>
-            <line x1="202" y1="72" x2="226" y2="90" stroke="#ef4444" strokeWidth="1.2" strokeDasharray="3 2" opacity="0.8"
-              style={{animation:"fadeInUp 0.5s 1.4s both"}}/>
-            <circle cx="194" cy="65" r="3" fill="rgba(239,68,68,0.25)"
-              style={{animation:"chargeGlow 2s 0.5s ease-in-out infinite"}}/>
-          </g>
-
-          {/* ── N Node 2 ── */}
-          <g className="mol-node-g" style={{animationDelay:"1.5s", transformOrigin:"520px 120px"}}>
-            <circle cx="520" cy="120" r="26" fill="rgba(22,163,74,0.10)"
-              style={{animation:"chargeGlow 2.4s 0.4s ease-in-out infinite"}}/>
-            <circle cx="520" cy="120" r="19" fill="rgba(22,163,74,0.18)"
-              style={{animation:"chargeGlow 2.4s 0.7s ease-in-out infinite"}}/>
-            <circle cx="520" cy="120" r="14" fill="#16a34a" filter="url(#nGlow)"
-              style={{animation:"pulseN 2.4s 0.4s ease-in-out infinite"}}/>
-            <text x="517" y="116" fontSize="13" fill="white" fontWeight="800">N</text>
-            <text x="528" y="112" fontSize="9"  fill="white" fontWeight="700">+</text>
-            <text x="530" y="52"  fontSize="11" fill="#16a34a" fontWeight="700" style={{animation:"molHFloat 3s ease-in-out infinite", animationDelay:"0.8s"}}>H</text>
-            <text x="530" y="190" fontSize="11" fill="#16a34a" fontWeight="700" style={{animation:"molHFloat 3s ease-in-out infinite", animationDelay:"2.3s"}}>H</text>
-            <text x="468" y="68" fontSize="10" fill="#ef4444" fontWeight="800">A⁻</text>
-            <line x1="482" y1="72" x2="506" y2="90" stroke="#ef4444" strokeWidth="1.2" strokeDasharray="3 2" opacity="0.8"
-              style={{animation:"fadeInUp 0.5s 1.8s both"}}/>
-            <circle cx="474" cy="65" r="3" fill="rgba(239,68,68,0.25)"
-              style={{animation:"chargeGlow 2s 1.0s ease-in-out infinite"}}/>
-          </g>
-
-          {/* ── Property tags ── */}
-          <g style={{animation:"fadeInUp 0.6s 2.1s both"}}>
-            <rect x="554" y="16" width="124" height="26" rx="4" fill="rgba(22,163,74,0.1)" stroke="#16a34a" strokeWidth="0.8"/>
-            <text x="616" y="33" fontSize="9.5" fill="#15803d" fontWeight="700" textAnchor="middle" letterSpacing="0.3">Conductive · 1–100 S/cm</text>
-          </g>
-          <g style={{animation:"fadeInUp 0.6s 2.3s both"}}>
-            <rect x="34" y="16" width="110" height="26" rx="4" fill="rgba(201,168,76,0.1)" stroke="#c9a84c" strokeWidth="0.8"/>
-            <text x="89" y="33" fontSize="9.5" fill="#92400e" fontWeight="700" textAnchor="middle" letterSpacing="0.3">Particle: ~100 nm</text>
-          </g>
-
-          {/* ── Bottom label ── */}
-          <text x="375" y="228" fontSize="10" fill="#94a3b8" letterSpacing="2" textAnchor="middle"
-            style={{animation:"fadeInUp 0.6s 2.5s both"}}>
-            POLYANILINE — EMERALDINE SALT STRUCTURE
-          </text>
-        </svg>
-      </div>
-
-      {/* ──── ELECTRON PARTICLE OVERLAY ──── */}
-      <div
-        ref={molRef}
-        className="absolute inset-0 pointer-events-none overflow-hidden"
-        style={{zIndex:20}}
-      />
-
-      {/* Caption */}
-      <div className="relative z-10 text-center pb-5">
-        <p className="text-xs text-gray-400 font-light tracking-widest uppercase">
-          Molecular structure of Polyaniline Emeraldine Salt — the basis of all Komstruk products
-        </p>
-      </div>
-
-      {/* Corner decorations */}
-      <div className="absolute top-3 left-3  w-4 h-4 border-t-2 border-l-2 border-green-500 opacity-50" />
-      <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-green-500 opacity-50" />
-      <div className="absolute bottom-3 left-3  w-4 h-4 border-b-2 border-l-2 border-green-500 opacity-50" />
-      <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-green-500 opacity-50" />
-    </div>
-  );
-}
+    
 
 /* ════════════════════════════════════════════════════════
    PRODUCTS PAGE — Konductive Polymer Dispersion
@@ -427,108 +139,85 @@ export default function Products() {
       {/* ══════════════════════════════════════════════
           02 — ANIMATED MOLECULE FIGURE
       ══════════════════════════════════════════════ */}
-      <section className="w-full bg-white py-16 px-8 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
+   <section className="w-full bg-white py-16 px-8 md:px-16 lg:px-24">
+  <div className="max-w-6xl mx-auto">
 
-          <Reveal className="mb-16">
-            <MoleculeSection />
-          </Reveal>
+    {/* ✅ IMAGE ADDED */}
+    <div className="mb-12">
+      <img 
+        src="/images/coductiveformula.png" 
+        alt="Polymer Structure"
+        className="w-full h-auto rounded-xl shadow-md"
+      />
+    </div>
 
-          {/* ── CONTENT BELOW FIGURE ── */}
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
-            {/* Left — main description */}
-<div className="lg:w-3/5">
-  <Reveal>
+    {/* EXISTING COMPONENT */}
+    {/* <MoleculeSection /> */}
 
-    {/* 🔹 NEW CONTENT (exactly as you wanted) */}
-    <p className="text-sm text-gray-500 leading-7 font-light mb-5">
-      For understanding the structure, see above graph and this link. Conducting Polymers are completely insoluble in water and organic solvents because of the extremely high charge density link with the polymeric chain. Also, they are extremely hard to disperse due to their extraordinary high surface tension, by far the highest of all known organic materials, also much higher than water.
-    </p>
+    {/* CONTENT */}
+    <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
 
-    <p className="text-sm text-gray-500 leading-7 font-light mb-5">
-      Hence, it was important to develop techniques by which they can be processed for various industrial and commercial applications. This involves ensuring adequate dispersion of the conducting polymer for the use in various media.
-    </p>
+      {/* LEFT SIDE */}
+      <div className="lg:w-3/5">
 
-    <p className="text-sm text-gray-500 leading-7 font-light mb-5">
-      We have developed a novel Thermoplastic Resin Polyaniline polymer blend which is easy to handle: a Polyaniline Masterbatches.
-    </p>
+        <p className="text-sm text-gray-500 leading-7 font-light mb-5">
+          For understanding the structure, see above graph and this link...
+        </p>
 
-    <p className="text-sm text-gray-500 leading-7 font-light mb-5">
-      The masterbatch matrix (a thermoplastic resin) is soluble in solvents like aromatics, ketones, esters, glycol ethers, glycol ether acetates, alcohols etc. allowing to use an ultrafine dispersion of the Polyaniline in various solvents and other media. In this masterbatch, Polyaniline is present in form of nanoscopic particles of around 100 nm size.
-    </p>
+        <p className="text-sm text-gray-500 leading-7 font-light mb-5">
+          Hence, it was important to develop techniques...
+        </p>
 
-    <p className="text-sm text-gray-500 leading-7 font-light mb-8">
-      This allows for easy incorporation of polyaniline into multiple solvent systems and other polymer compositions. Also, in many applications, along with improved dispersion, the conductivity is also increased.
-    </p>
+        <p className="text-sm text-gray-500 leading-7 font-light mb-5">
+          We have developed a novel Thermoplastic Resin Polyaniline polymer blend...
+        </p>
 
-    {/* 🔹 BUTTON (keep same) */}
-    <a href="/polymerdispersion"
-      className="inline-flex items-center gap-2 px-8 py-4 text-white font-medium text-sm tracking-wide"
-      style={{ background:"linear-gradient(90deg,#16a34a,#15803d)", borderRadius:30, boxShadow:"0 4px 20px rgba(22,163,74,0.35)", transition:"transform .25s,box-shadow .25s" }}
-      onMouseOver={e=>{e.currentTarget.style.transform="translateY(-2px)";e.currentTarget.style.boxShadow="0 8px 28px rgba(22,163,74,0.45)"}}
-      onMouseOut={e=>{e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="0 4px 20px rgba(22,163,74,0.35)"}}
-    >
-      Read More: Dispersion
-      <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-      </svg>
-    </a>
+        <p className="text-sm text-gray-500 leading-7 font-light mb-5">
+          The masterbatch matrix (a thermoplastic resin) is soluble in solvents...
+        </p>
 
-  </Reveal>
-</div>
+        <p className="text-sm text-gray-500 leading-7 font-light mb-8">
+          This allows for easy incorporation of polyaniline...
+        </p>
 
+        {/* BUTTON */}
+        <a href="/polymerdispersion"
+          className="inline-flex items-center gap-2 px-8 py-4 text-white font-medium text-sm tracking-wide"
+          style={{ background:"linear-gradient(90deg,#16a34a,#15803d)", borderRadius:30 }}
+        >
+          Read More: Dispersion
+        </a>
 
-            {/* Right — key property stats */}
-            <Reveal from="right" delay={120} className="lg:w-2/5">
-              <div className="border border-gray-100" style={{ background:"#f9fafb", boxShadow:"0 2px 16px rgba(0,0,0,0.05)" }}>
-                <div className="px-6 py-4 border-b border-gray-200" style={{ background:"#f3f4f6" }}>
-                  <p className="text-xs font-bold uppercase tracking-widest text-gray-500">Key Properties</p>
-                </div>
-                {[
-                  { label:"Conductivity",    value:"1–100 S/cm",          icon:"⚡" },
-                  { label:"Particle Size",   value:"~100 nm (dispersed)",  icon:"🔬" },
-                  { label:"Form",            value:"Fine green powder",    icon:"🧪" },
-                  { label:"Purity",          value:">98%",                 icon:"✅" },
-                  { label:"Surface Tension", value:"Exceptionally high",   icon:"💧" },
-                  { label:"Solubility",      value:"Insoluble (neat)",     icon:"🚫" },
-                ].map((row) => (
-                  <div key={row.label} className="srow flex items-center justify-between px-6 py-3 border-b border-gray-100 last:border-b-0">
-                    <div className="flex items-center gap-3">
-                      <span className="text-base">{row.icon}</span>
-                      <span className="text-xs font-medium text-gray-500 tracking-wide uppercase">{row.label}</span>
-                    </div>
-                    <span className="text-xs font-semibold text-gray-800">{row.value}</span>
-                  </div>
-                ))}
-              </div>
+      </div>
 
-              <div className="mt-5 p-5 border-l-4 border-green-500" style={{ background:"#f0fdf4" }}>
-                <p className="text-xs font-bold uppercase tracking-widest text-green-700 mb-1">Nobel Prize 2000</p>
-                <p className="text-xs text-gray-500 font-light leading-relaxed">
-                  Interest in research on conducting polymers surged after the 2000 Nobel Prize in Chemistry — recognising the discovery that polymers can be made electrically conductive.
-                </p>
-              </div>
-            </Reveal>
+      {/* RIGHT SIDE */}
+      <div className="lg:w-2/5">
+        <div className="border border-gray-100 bg-gray-50">
+          
+          <div className="px-6 py-4 border-b">
+            <p className="text-xs font-bold uppercase text-gray-500">Key Properties</p>
           </div>
 
-          {/* ── PRODUCT LINK CHIPS ── */}
-          <Reveal className="mt-14 pt-10 border-t border-gray-100">
-            <p className="text-xs tracking-widest uppercase font-medium text-gray-400 mb-5 text-center">Our Products</p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {productLinks.map((p, i) => (
-                <button
-                  key={p}
-                  className={`ppill text-sm font-medium px-5 py-2.5 border border-gray-300 text-gray-700 ${activeProduct === i ? "active" : ""}`}
-                  style={{ borderRadius:30 }}
-                  onClick={() => setActiveProduct(i)}
-                >
-                  {p}
-                </button>
-              ))}
+          {[
+            { label:"Conductivity", value:"1–100 S/cm" },
+            { label:"Particle Size", value:"~100 nm" },
+            { label:"Form", value:"Fine green powder" },
+            { label:"Purity", value:">98%" },
+            { label:"Surface Tension", value:"High" },
+            { label:"Solubility", value:"Insoluble" },
+          ].map((row) => (
+            <div key={row.label} className="flex justify-between px-6 py-3 border-b">
+              <span className="text-xs text-gray-500">{row.label}</span>
+              <span className="text-xs font-semibold text-gray-800">{row.value}</span>
             </div>
-          </Reveal>
+          ))}
+
         </div>
-      </section>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* ══════════════════════════════════════════════
           03 — SCIENCE BEHIND IT
