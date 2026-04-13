@@ -40,7 +40,7 @@ const applications = [
     id: "corrosion-protection",
     title: "Corrosion Protection",
     subtitle: "The world's most powerful anticorrosion polymer",
-    img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=90",
+    img: "/images/Corrosion Protection.jpeg",
     heroImg: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1400&q=90",
     tag: "Flagship Application",
     tagColor: "#16a34a",
@@ -53,7 +53,7 @@ const applications = [
     id: "emi-shielding",
     title: "EMI Shielding",
     subtitle: "Electromagnetic compatibility through conductive polymers",
-    img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=90",
+    img:"/images/EMC.jpeg",
     heroImg: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1400&q=90",
     tag: "Electronics",
     tagColor: "#2563eb",
@@ -66,7 +66,7 @@ const applications = [
     id: "permanent-antistatic",
     title: "Permanent Antistatic",
     subtitle: "Intrinsic static dissipation — no additives, no migration",
-    img: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=90",
+    img: "/images/Permanent antistatic modification.jpeg",
     heroImg: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1400&q=90",
     tag: "ESD / Packaging",
     tagColor: "#d97706",
@@ -74,6 +74,32 @@ const applications = [
     detail: "The permanent antistatic function derives from the intrinsic semiconducting nature of Polyaniline, which is uniformly distributed throughout the polymer matrix at nanoscopic particle sizes. This ensures consistent, reliable ESD protection across the full service life of the product — independent of environmental conditions.",
     uses: ["ESD packaging trays", "Electronic component bags", "Clean room flooring", "Explosive environment components", "Semiconductor handling", "Film & sheet products"],
     products: ["Polyaniline Masterbatches", "Polyaniline Emeraldine Base"],
+  },
+  {
+    id: "electroluminescence",
+    title: "Electroluminescence",
+    subtitle: "Flexible, high-performance light-emitting displays",
+    img: "images/Electroluminescence.jpeg",
+    heroImg: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1400&q=90",
+    tag: "Display Technology",
+    tagColor: "#7c3aed",
+    desc: "With our highly conductive masterbatch, products can be developed for this very flexible and easy display technology. Polyaniline serves as a highly transparent, conductive electrode layer in electroluminescent devices — enabling flexible, lightweight display panels for automotive instrument clusters, advertising displays and wearable electronics.",
+    detail: "The high optical transparency combined with excellent electrical conductivity of Polyaniline films makes them ideal replacements for conventional ITO (indium tin oxide) electrodes. Unlike ITO, Polyaniline electrodes can be applied to flexible substrates and processed from solution — dramatically reducing manufacturing complexity and enabling roll-to-roll production.",
+    uses: ["Automotive instrument clusters", "Flexible display panels", "Wearable electronics", "Advertising displays", "Smart packaging", "Architectural lighting"],
+    products: ["Polyaniline Emeraldine Salt", "Polyaniline Emeraldine Base"],
+  },
+  {
+    id: "solid-electrolyte",
+    title: "Solid Electrolyte Capacitors",
+    subtitle: "Ultra-high performance energy storage components",
+    img: "images/Solid Electrolyte Capacitors.jpeg",
+    heroImg: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1400&q=90",
+    tag: "Energy Storage",
+    tagColor: "#dc2626",
+    desc: "Using specially prepared dispersed polyaniline, an extremely high-performing solid state capacitor had been developed. Solid electrolyte capacitors based on Polyaniline offer exceptionally low equivalent series resistance (ESR) and outstanding high-frequency performance compared to conventional liquid electrolyte systems — enabling compact, high-reliability power conditioning in demanding applications.",
+    detail: "The electrochemical stability and proton conductivity of Polyaniline in its doped form make it an ideal solid electrolyte for both aluminium and tantalum capacitor systems. The resulting devices exhibit superior temperature stability, longer service life and substantially lower ESR than conventional alternatives — making them particularly valuable in aerospace, automotive and industrial power electronics.",
+    uses: ["Power supply units", "Aerospace electronics", "Automotive ECUs", "Industrial drives", "Telecommunications", "High-frequency circuits"],
+    products: ["Polyaniline Emeraldine Salt", "Polyaniline Emeraldine Base"],
   },
   
 ];
@@ -178,8 +204,8 @@ export default function Applications() {
             <span style={{ fontFamily:"Georgia,serif", fontStyle:"italic", color:"#4ade80" }}>go to work</span>
           </h1>
           <p className="text-white/55 font-light leading-relaxed fu d4"
-            style={{ fontSize:"0.95rem", maxWidth:520, lineHeight:1.75 }}>
-            Conducting polymers find application in a large variety of areas due to their conductivity and redox properties — from anticorrosion paint and EMI shielding to RADAR absorbing materials, sensors and supercapacitors.
+            style={{ fontSize:"0.80rem", maxWidth:550, lineHeight:1.80 }}>
+            Conducting polymers find application in large variety of areas which is due to their conductivity and redox properties. Some of the interesting application areas are anticorrosion paint, Antistatic, EMI Shielding, RADAR absorbing materials, Catalysis, Supercapacitor, Sensors, Membrane etc. Interest in research on conducting polymers has grown after the 2000 Nobel prize and people found the way to make polymer processible.
           </p>
           <div className="flex items-center gap-4 mt-7 fu d6">
             <a href="#applications"
@@ -302,11 +328,10 @@ export default function Applications() {
                 <p className="text-xs tracking-widest uppercase font-medium text-gray-400 mb-2">Application Areas</p>
                 <h2 className="font-light text-gray-900 tracking-tight"
                   style={{ fontSize:"clamp(1.7rem,3.2vw,2.6rem)" }}>
-                  3 core <strong className="font-bold">application areas</strong>
+                    5 core <strong className="font-bold">application areas</strong>
                 </h2>
               </div>
               <p className="text-sm text-gray-400 font-light max-w-xs">
-                Each application leverages the unique electrochemical properties of Polyaniline.
               </p>
             </div>
           </Reveal>
