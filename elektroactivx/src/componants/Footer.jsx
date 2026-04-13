@@ -18,10 +18,10 @@ const Footer = () => {
             {/* Address */}
             <div>
               <p className="text-gray-400 text-sm font-light leading-relaxed">
-                ElektroactivX AB ~ Alströmergatan 20
+            
               </p>
               <p className="text-gray-400 text-sm font-light leading-relaxed">
-                SE-112 47, Stockholm, Sweden
+             Branch: 604, Ramanbag Society, Shaniwar Peth, Pune, 411030, Maharashtra
               </p>
             </div>
 
