@@ -454,7 +454,6 @@ export default function Applications() {
             className="w-full h-full object-cover"
             style={{ objectPosition:"center 50%", filter:"brightness(0.15) saturate(0.4)" }}
           />
-          <div className="absolute inset-0" style={{ background:"rgba(21,128,61,0.88)" }} />
         </div>
         {/* Watermark */}
         <div className="absolute right-12 top-0 bottom-0 z-10 flex items-center pointer-events-none select-none"
