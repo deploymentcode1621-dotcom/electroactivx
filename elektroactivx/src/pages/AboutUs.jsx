@@ -10,7 +10,12 @@ function useInView(threshold = 0.12) {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      ([e]) => {
+        if (e.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
       { threshold }
     );
     obs.observe(el);
@@ -25,12 +30,14 @@ function useCounter(target, duration = 2000) {
   const [ref, visible] = useInView();
   useEffect(() => {
     if (!visible) return;
-    let raf, start = null;
+    let raf,
+      start = null;
     const run = (ts) => {
       if (!start) start = ts;
       const p = Math.min((ts - start) / duration, 1);
       setCount(Math.floor((1 - Math.pow(1 - p, 4)) * target));
-      if (p < 1) raf = requestAnimationFrame(run); else setCount(target);
+      if (p < 1) raf = requestAnimationFrame(run);
+      else setCount(target);
     };
     raf = requestAnimationFrame(run);
     return () => cancelAnimationFrame(raf);
@@ -41,13 +48,22 @@ function useCounter(target, duration = 2000) {
 /* ─── Reveal wrapper ─────────────────────────────────── */
 function Reveal({ children, delay = 0, className = "", from = "bottom" }) {
   const [ref, visible] = useInView();
-  const tr = { bottom:"translateY(28px)", left:"translateX(-28px)", right:"translateX(28px)", scale:"scale(0.96)" };
+  const tr = {
+    bottom: "translateY(28px)",
+    left: "translateX(-28px)",
+    right: "translateX(28px)",
+    scale: "scale(0.96)",
+  };
   return (
-    <div ref={ref} className={className} style={{
-      opacity: visible ? 1 : 0,
-      transform: visible ? "none" : tr[from],
-      transition: `opacity 0.8s cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform 0.8s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
-    }}>
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "none" : tr[from],
+        transition: `opacity 0.8s cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform 0.8s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
+      }}
+    >
       {children}
     </div>
   );
@@ -56,51 +72,158 @@ function Reveal({ children, delay = 0, className = "", from = "bottom" }) {
 /* ─── Counter display ────────────────────────────────── */
 function Counter({ target, suffix = "" }) {
   const [ref, count] = useCounter(target);
-  return <span ref={ref}>{count.toLocaleString()}{suffix}</span>;
+  return (
+    <span ref={ref}>
+      {count.toLocaleString()}
+      {suffix}
+    </span>
+  );
 }
 
 /* ─── Team Card ──────────────────────────────────────── */
 function TeamCard({ member, delay, inView }) {
   const [hov, setHov] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+  const maxLength = 210;
+  const isLong = member.desc.length > maxLength;
+  const shortText = isLong ? member.desc.slice(0, maxLength) + "..." : member.desc;
+
   return (
-    <div style={{ opacity: inView?1:0, transform: inView?"none":"translateY(28px)", transition:`opacity 0.8s cubic-bezier(0.22,1,0.36,1) ${delay}ms,transform 0.8s cubic-bezier(0.22,1,0.36,1) ${delay}ms` }}>
+    <div
+      style={{
+        opacity: inView ? 1 : 0,
+        transform: inView ? "none" : "translateY(28px)",
+        transition: `opacity 0.8s cubic-bezier(0.22,1,0.36,1) ${delay}ms,transform 0.8s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
+        height: "100%",
+      }}
+    >
       <div
         style={{
-          background:"#fff", border:"1px solid #f3f4f6", overflow:"hidden", cursor:"default",
-          boxShadow: hov?"0 20px 50px rgba(0,0,0,0.12)":"0 2px 12px rgba(0,0,0,0.05)",
-          transform: hov?"translateY(-5px)":"translateY(0)",
-          transition:"box-shadow 0.42s cubic-bezier(0.16,1,0.3,1),transform 0.42s cubic-bezier(0.16,1,0.3,1)",
+          background: "#fff",
+          border: "1px solid #f3f4f6",
+          overflow: "hidden",
+          cursor: "default",
+          boxShadow: hov ? "0 20px 50px rgba(0,0,0,0.12)" : "0 2px 12px rgba(0,0,0,0.05)",
+          transform: hov ? "translateY(-5px)" : "translateY(0)",
+          transition: "box-shadow 0.42s cubic-bezier(0.16,1,0.3,1),transform 0.42s cubic-bezier(0.16,1,0.3,1)",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
         }}
-        onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
+        onMouseEnter={() => setHov(true)}
+        onMouseLeave={() => setHov(false)}
       >
-        {/* Accent top bar */}
-        <div style={{ height:3, background:"linear-gradient(90deg,#16a34a,#c9a84c)", transform:hov?"scaleX(1)":"scaleX(0)", transformOrigin:"left", transition:"transform 0.42s cubic-bezier(0.16,1,0.3,1)" }} />
+        <div
+          style={{
+            height: 3,
+            background: "linear-gradient(90deg,#16a34a,#c9a84c)",
+            transform: hov ? "scaleX(1)" : "scaleX(0)",
+            transformOrigin: "left",
+            transition: "transform 0.42s cubic-bezier(0.16,1,0.3,1)",
+          }}
+        />
 
-        {/* Photo */}
-        <div style={{ position:"relative", height:200, overflow:"hidden", background:"#f3f4f6" }}>
-          <img src={member.img} alt={member.name}
-            style={{ width:"100%", height:"100%", objectFit:"cover", objectPosition:"center top",
-              filter: hov?"grayscale(0%) brightness(0.9)":"grayscale(8%) brightness(0.85)",
-              transform: hov?"scale(1.05)":"scale(1)",
-              transition:"filter 0.5s,transform 0.65s cubic-bezier(0.16,1,0.3,1)",
+        <div
+          style={{
+            position: "relative",
+            height: 220,
+            overflow: "hidden",
+            background: "#f3f4f6",
+            flexShrink: 0,
+          }}
+        >
+          <img
+            src={member.img}
+            alt={member.name}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center 20%",
+              filter: hov ? "grayscale(0%) brightness(0.9)" : "grayscale(8%) brightness(0.85)",
+              transform: hov ? "scale(1.05)" : "scale(1)",
+              transition: "filter 0.5s,transform 0.65s cubic-bezier(0.16,1,0.3,1)",
             }}
           />
-          {/* LinkedIn */}
-          <a href="#" onClick={e=>e.stopPropagation()} style={{
-            position:"absolute", bottom:10, right:10, width:30, height:30, borderRadius:4,
-            background:"#0a66c2", display:"flex", alignItems:"center", justifyContent:"center",
-            color:"#fff", fontSize:"0.7rem", fontWeight:700,
-            opacity: hov?1:0, transform: hov?"translateY(0)":"translateY(8px)",
-            transition:"opacity 0.3s,transform 0.3s",
-          }}>in</a>
         </div>
 
-        {/* Info */}
-        <div style={{ padding:"20px 22px 24px" }}>
-          <div style={{ height:2, background:"linear-gradient(90deg,#16a34a,#c9a84c)", width:hov?42:20, marginBottom:12, transition:"width 0.42s cubic-bezier(0.16,1,0.3,1)" }} />
-          <p style={{ fontFamily:"Georgia,serif", fontWeight:600, color:"#111", fontSize:"0.97rem", marginBottom:3, lineHeight:1.3 }}>{member.name}</p>
-          <p style={{ fontSize:"0.6rem", letterSpacing:"0.1em", textTransform:"uppercase", color:"#16a34a", fontWeight:600, marginBottom:8 }}>{member.role}</p>
-          <p style={{ fontSize:"0.8rem", color:"#9ca3af", lineHeight:1.65, fontWeight:300 }}>{member.desc}</p>
+        <div
+          style={{
+            padding: "20px 22px 24px",
+            display: "flex",
+            flexDirection: "column",
+            flexGrow: 1,
+          }}
+        >
+          <div
+            style={{
+              height: 2,
+              background: "linear-gradient(90deg,#16a34a,#c9a84c)",
+              width: hov ? 42 : 20,
+              marginBottom: 12,
+              transition: "width 0.42s cubic-bezier(0.16,1,0.3,1)",
+            }}
+          />
+          <p
+            style={{
+              fontFamily: "Georgia,serif",
+              fontWeight: 600,
+              color: "#111",
+              fontSize: "0.97rem",
+              marginBottom: 3,
+              lineHeight: 1.3,
+            }}
+          >
+            {member.name}
+          </p>
+          <p
+            style={{
+              fontSize: "0.6rem",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              color: "#16a34a",
+              fontWeight: 600,
+              marginBottom: 10,
+            }}
+          >
+            {member.role}
+          </p>
+
+          <div style={{ flexGrow: 1 }}>
+            <p
+              style={{
+                fontSize: "0.8rem",
+                color: "#9ca3af",
+                lineHeight: 1.7,
+                fontWeight: 300,
+                minHeight: 160,
+              }}
+            >
+              {expanded ? member.desc : shortText}
+            </p>
+          </div>
+
+          {isLong && (
+            <button
+              onClick={() => setExpanded(!expanded)}
+              style={{
+                marginTop: 12,
+                alignSelf: "flex-start",
+                border: "none",
+                background: "transparent",
+                color: "#16a34a",
+                fontSize: "0.72rem",
+                fontWeight: 600,
+                letterSpacing: "0.05em",
+                textTransform: "uppercase",
+                cursor: "pointer",
+                padding: 0,
+              }}
+            >
+              {expanded ? "Read Less" : "Read More"}
+            </button>
+          )}
         </div>
       </div>
     </div>
@@ -115,31 +238,64 @@ export default function AboutUs() {
   const [teamRef, teamVisible] = useInView();
 
   const teamMembers = [
-  {
-    name: "Narayan Ghodekar",
-    role: "Director, Sales & Finances",
-    desc: "Mr. Narayan Ghodekar, a businessman based in Mumbai, India, brings extensive experience in finance, sales, and business operations.",
-    img: "/images/narayan.jpg",
-  },
-  {
-    name: "Dr. Arindam Adhikari",
-    role: "Director R&D, Laboratory & Production",
-    desc: "Dr. Arindam Adhikari (Ph.D., National Chemical Laboratory, Pune) leads all research, laboratory and production operations — from molecular design to commercial scale.",
-    img: "/images/arindam.jpg",
-  },
-  {
-    name: "Dr. Jayant Khandare",
-    role: "Advisor",
-    desc: "Dr. Jayant Khandare (Ph.D., National Chemical Laboratory, Pune) provides scientific and strategic advisory, bridging academic excellence with real-world industrial application.",
-    img: "/images/jayant.jpg",
-  },
-];
+    {
+      name: "Dr. Arindam Adhikari",
+      role: "Managing Director",
+      desc: "Dr. Arindam Adhikari (Ph.D., National Chemical Laboratory, Pune) worked as a postdoctoral and senior researcher at KTH Royal Institute of Technology and YKI Institute for Surface Chemistry (RISE) in Stockholm, Sweden from 2005–2010. After returning to India he worked as a scientist at CSIR-Central Electrochemical Research Institute (CECRI). He is also founder of Aadarsh Innovations, a Pune-based contract research organisation. His research focuses on conductive polymers and their applications, with 33 publications and 5 patents.",
+      img: "/images/arindam.jpg",
+    },
+    {
+      name: "Dr. Bernhard Wessling",
+      role: "Chief Scientific Advisor",
+      desc: "Dr. Bernhard Wessling is a globally recognised authority in conductive polymers. He pioneered the dispersion processing of conductive polymers and their corrosion-resistant applications, successfully bringing them to market. His work spans chemistry, nanotechnology, and organic metals. He has published around 160 papers and holds more than 35 patents worldwide.",
+      img: "/images/bernhard.jpeg",
+    },
+    {
+      name: "Mr. Jayesh Mahajan",
+      role: "Chief Financial Officer",
+      desc: "Mr. Jayesh Mahajan oversees the financial strategy and management of ElektroactivX. With strong experience in financial planning, corporate operations and strategic investment, he ensures financial stability and sustainable growth of the organisation.",
+      img: "/images/jayesh.jpeg",
+    },
+    {
+      name: "Mr. Shammi Kumar Singh",
+      role: "Director, Operations",
+      desc: "Mr. Shammi Kumar Singh (M.Sc. Polymer Science) is co-founder of ElektroactivX and an expert in polymer manufacturing and quality control. Associated with Dr. Adhikari since 2013, he managed laboratory operations and pilot-scale production earlier. He now leads daily operations and production at ElektroactivX, ensuring manufacturing excellence.",
+      img: "/images/shammi.jpeg",
+    },
+    {
+      name: "Mrs. Joyeeta Adhikari",
+      role: "Co-Founder & HR Head",
+      desc: "Mrs. Joyeeta Adhikari (M.Sc., B.Ed.) is co-founder of ElektroactivX with over 23 years of teaching and leadership experience in STEM education. A NASA-trained educator, she leads HR, recruitment, organisational culture and team development while driving innovation and professional growth across the company.",
+      img: "/images/joyeeta.jpeg",
+    },
+  ];
+
   const timelineEvents = [
-    { year:"2010", title:"Company Founded", desc:"ElektroactiveX Private Limited was founded with the vision of delivering advanced material solutions through innovative research and industrial expertise. The company focuses on conductive polymers and anticorrosion technologies, bridging scientific innovation with real-world applications." },
-    { year:"2014", title:"R&D Laboratory Established", desc:"Launched the ElektroactiveX Advanced Materials Lab in Navi Mumbai, with Dr. Arindam Adhikari (Ph.D., NCL Pune) heading Research, Development and Production." },
-    { year:"2018", title:"Product Portfolio Expanded", desc:"Full commercial launch of Polyaniline Emeraldine Salt, Emeraldine Base and DISSIPO-WR. Entered strategic partnerships across the industrial coatings and anticorrosion sector." },
-    { year:"2021", title:"Global Presence", desc:"Expanded with the Germany office in Jersbek, OT Klein Hansdorf. Launched Polyaniline Masterbatches and Anticorrosion Primers — completing our five core product lines." },
-    { year:"2024", title:"Industry Recognition", desc:"Recognised as a leading supplier of conductive polymer materials globally. Strengthened advisory board and expanded international distribution significantly." },
+    {
+      year: "1999",
+      title: "Research Beginnings",
+      desc: "The founder Dr. Arindam Adhikari started his research in conductive polymers for various applications in the CSIR-NCL (Council for Scientific and Industrial Research- National Chemical Laboratory) Pune, India.",
+    },
+    {
+      year: "2004",
+      title: "Anticorrosion Research Development",
+      desc: "He started Conductive polymer based anticorrosion research in CSIR-NCL, India, followed by at KTH Royal Institute of Technology and YKI, Stockholm.",
+    },
+    {
+      year: "2013",
+      title: "Aadarsh Innovations Founded",
+      desc: "Aadarsh Innovations was founded with the vision of delivering advanced material solutions through innovative research and industrial expertise. The company focuses on contract research and manufacturing of conductive polymers for various applications.",
+    },
+    {
+      year: "2018",
+      title: "Ormecon India Established",
+      desc: "Ormecon Private Limited was founded. Dr. Bernhard Wessling, is on board the famous German scientist and renowned authority in the field of conductive polymers who transformed PAni from an academic curiosity into a commercially viable material.",
+    },
+    {
+      year: "2025",
+      title: "ElektroactiveX Founded",
+      desc: "ElektroactiveX Private Limited was founded with the vision of delivering advanced material solutions through innovative research and industrial expertise. The company focuses on conductive polymers and anticorrosion technologies, bridging scientific innovation with real-world applications. Recognised as a leading supplier of conductive polymer materials globally. Strengthened advisory board and expanded international distribution significantly",
+    },
   ];
 
   return (
@@ -178,72 +334,70 @@ export default function AboutUs() {
 
       <Header />
 
-      {/* ══════════════════════════════════════
-          01 — HERO
-      ══════════════════════════════════════ */}
-      <section className="relative w-full" style={{ height:"58vh", minHeight:400, maxHeight:600 }}>
+      <section className="relative w-full" style={{ height: "58vh", minHeight: 400, maxHeight: 600 }}>
         <div className="absolute inset-0 overflow-hidden">
-          <img
-            className="w-full h-full object-cover hi"
-            style={{ objectPosition:"center 38%" }}
+          <img className="w-full h-full object-cover hi" style={{ objectPosition: "center 38%" }} />
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(100deg,rgba(4,12,6,0.88) 0%,rgba(4,12,6,0.62) 45%,rgba(4,12,6,0.28) 100%)" }}
           />
-          <div className="absolute inset-0" style={{ background:"linear-gradient(100deg,rgba(4,12,6,0.88) 0%,rgba(4,12,6,0.62) 45%,rgba(4,12,6,0.28) 100%)" }} />
-          <div className="absolute inset-0" style={{ background:"linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 55%)" }} />
-          <div className="absolute inset-0" style={{ background:"radial-gradient(ellipse at 8% 60%,rgba(22,163,74,0.18) 0%,transparent 55%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 55%)" }} />
+          <div
+            className="absolute inset-0"
+            style={{ background: "radial-gradient(ellipse at 8% 60%,rgba(22,163,74,0.18) 0%,transparent 55%)" }}
+          />
         </div>
 
-        {/* Subtle vertical streaks */}
-        {[20,45,72].map((l,i)=>(
-          <div key={i} className="absolute top-0 bottom-0 z-10 pointer-events-none"
-            style={{ left:`${l}%`, width:1, background:"linear-gradient(to bottom,transparent,rgba(34,197,94,0.1),transparent)", animation:`lStreak ${3.5+i*.7}s ease-in-out infinite ${i*1.1}s` }} />
+        {[20, 45, 72].map((l, i) => (
+          <div
+            key={i}
+            className="absolute top-0 bottom-0 z-10 pointer-events-none"
+            style={{
+              left: `${l}%`,
+              width: 1,
+              background: "linear-gradient(to bottom,transparent,rgba(34,197,94,0.1),transparent)",
+              animation: `lStreak ${3.5 + i * 0.7}s ease-in-out infinite ${i * 1.1}s`,
+            }}
+          />
         ))}
 
-        {/* ✅ FIX: removed pt-45, added pb-10 so buttons stay inside the hero */}
         <div className="relative z-20 flex flex-col justify-center px-8 md:px-16 lg:px-24 h-full pb-10">
           <p className="text-white/45 text-xs tracking-widest uppercase font-light mb-3 fu">— About Us</p>
-          <h1 className="text-white font-light leading-none tracking-tight mb-4 fu d2"
-            style={{ fontSize:"clamp(1.8rem,4.8vw,3.8rem)" }}>
-            Advanced<br/>
-            <span style={{ fontFamily:"Georgia,serif", fontStyle:"italic", color:"#4ade80" }}>Materials</span> Science
+          <h1 className="text-white font-light leading-none tracking-tight mb-4 fu d2" style={{ fontSize: "clamp(1.8rem,4.8vw,3.8rem)" }}>
+            Advanced
+            <br />
+            <span style={{ fontFamily: "Georgia,serif", fontStyle: "italic", color: "#4ade80" }}>Materials</span> Science
           </h1>
-          <p className="text-white/55 font-light leading-relaxed mb-7 fu d4"
-            style={{ fontSize:"0.93rem", maxWidth:600, lineHeight:1.75 }}>
-            Conducting polymers find application in large variety of areas which is due to their conductivity and redox properties. Some of the interesting application areas are anticorrosion paint, Antistatic, EMI Shielding, RADAR absorbing materials, Catalysis, Supercapacitor, Sensors, Membrane etc. Interest in research on conducting polymers has grown after the 2000 Nobel prize and people found the way to make polymer processible.
+          <p className="text-white/55 font-light leading-relaxed mb-7 fu d4" style={{ fontSize: "0.93rem", maxWidth: 600, lineHeight: 1.75 }}>
+            Conducting polymers find application in large variety of areas which is due to their conductivity and redox properties. Some of
+            the interesting application areas are anticorrosion paint, Antistatic, EMI Shielding, RADAR absorbing materials, Catalysis,
+            Supercapacitor, Sensors, Membrane etc. Interest in research on conducting polymers has grown after the 2000 Nobel prize and people
+            found the way to make polymer processible.
           </p>
           <div className="flex items-center gap-4 fu d6">
-            <a href="#story"
+            <a
+              href="#story"
               className="inline-block px-7 py-3 text-white font-medium text-xs tracking-widest uppercase hover:opacity-90 transition-opacity"
-              style={{ background:"#15803d" }}>
+              style={{ background: "#15803d" }}
+            >
               Our Story
             </a>
-            <a href="#team"
-              className="inline-block px-6 py-3 text-white font-light text-xs tracking-widest uppercase border border-white/28 hover:border-white/60 transition-colors">
+            <a
+              href="#team"
+              className="inline-block px-6 py-3 text-white font-light text-xs tracking-widest uppercase border border-white/28 hover:border-white/60 transition-colors"
+            >
               Meet the Team
             </a>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          02 — TRUSTED BY STRIP
-      ══════════════════════════════════════ */}
       <div className="w-full border-b border-gray-200 bg-white py-4">
         <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24 flex items-center gap-10 overflow-hidden">
-          <span className="text-xs tracking-widest uppercase text-gray-500 font-medium flex-shrink-0">
-            Trusted by
-          </span>
+          <span className="text-xs tracking-widest uppercase text-gray-500 font-medium flex-shrink-0">Trusted by</span>
           <div className="flex items-center gap-10 overflow-hidden flex-1">
-            {[
-              "Industrial Partners",
-              "R&D Institutions",
-              "OEM Manufacturers",
-              "Government Bodies",
-              "Export Markets"
-            ].map(p => (
-              <span
-                key={p}
-                className="text-sm font-light text-gray-700 whitespace-nowrap hover:text-green-600 transition"
-              >
+            {["Industrial Partners", "R&D Institutions", "OEM Manufacturers", "Government Bodies", "Export Markets"].map((p) => (
+              <span key={p} className="text-sm font-light text-gray-700 whitespace-nowrap hover:text-green-600 transition">
                 {p}
               </span>
             ))}
@@ -251,25 +405,26 @@ export default function AboutUs() {
         </div>
       </div>
 
-      {/* ══════════════════════════════════════
-          05 — MISSION
-      ══════════════════════════════════════ */}
       <section className="w-full bg-white py-20 md:py-28 px-8 md:px-16 lg:px-24">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-14 lg:gap-24 items-center">
           <Reveal from="left" className="lg:w-5/12">
             <p className="text-xs tracking-widest uppercase font-medium text-gray-400 mb-3">Our Mission</p>
-            <h2 className="font-light text-gray-900 leading-tight tracking-tight mb-4"
-              style={{ fontSize:"clamp(1.8rem,3.5vw,2.8rem)" }}>
-              Solving the world's<br/>
+            <h2 className="font-light text-gray-900 leading-tight tracking-tight mb-4" style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)" }}>
+              Solving the world's
+              <br />
               <strong className="font-bold">toughest corrosion problems</strong>
             </h2>
-            <div className="w-8 h-0.5 mb-5" style={{ background:"linear-gradient(90deg,#16a34a,#c9a84c)" }} />
+            <div className="w-8 h-0.5 mb-5" style={{ background: "linear-gradient(90deg,#16a34a,#c9a84c)" }} />
             <p className="text-sm text-gray-500 leading-7 font-light mb-7">
-              There is no more complex challenge than making industrial infrastructure last. strukKom is a full-stack conductive polymer company — from synthesis and dispersion to finished anticorrosion coatings and masterbatches — building the materials backbone for a world that needs to endure.
+              There is no more complex challenge than making industrial infrastructure last. strukKom is a full-stack conductive polymer company
+              — from synthesis and dispersion to finished anticorrosion coatings and masterbatches — building the materials backbone for a world
+              that needs to endure.
             </p>
-            <a href="#team"
+            <a
+              href="#team"
               className="inline-block px-7 py-3.5 text-white font-medium text-xs tracking-widest uppercase hover:opacity-90 transition-opacity"
-              style={{ background:"#15803d" }}>
+              style={{ background: "#15803d" }}
+            >
               Meet our team
             </a>
           </Reveal>
@@ -279,69 +434,90 @@ export default function AboutUs() {
               src="/images/research.jpg"
               alt="Elektroactivx mission"
               className="w-full object-cover"
-              style={{ height:340, filter:"brightness(0.86) saturate(0.78)" }}
+              style={{ height: 340, filter: "brightness(0.86) saturate(0.78)" }}
             />
           </Reveal>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          08 — TIMELINE
-      ══════════════════════════════════════ */}
-      <section className="w-full border-t border-gray-100 py-20 md:py-28 px-8 md:px-16 lg:px-24" style={{ background:"#f9fafb" }}>
+      <section className="w-full border-t border-gray-100 py-20 md:py-28 px-8 md:px-16 lg:px-24" style={{ background: "#f9fafb" }}>
         <div className="max-w-7xl mx-auto">
           <Reveal className="mb-14">
             <div className="flex items-start gap-4">
-              <div style={{ width:3, height:60, background:"#16a34a", flexShrink:0, marginTop:4 }} />
+              <div style={{ width: 3, height: 60, background: "#16a34a", flexShrink: 0, marginTop: 4 }} />
               <div>
                 <p className="text-xs tracking-widest uppercase text-gray-400 font-medium mb-1">Our Journey</p>
-                <h2 className="font-light text-gray-900 leading-tight" style={{ fontSize:"clamp(1.8rem,3.5vw,2.8rem)" }}>
-                  14 Years of<br/><strong className="font-bold">Scientific Excellence</strong>
+                <h2 className="font-light text-gray-900 leading-tight" style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)" }}>
+                  14 Years of
+                  <br />
+                  <strong className="font-bold">Scientific Excellence</strong>
                 </h2>
               </div>
             </div>
           </Reveal>
 
-          {/* Progress track */}
           <Reveal>
             <div className="relative h-px bg-gray-200 mx-2">
-              <div className="absolute left-0 top-0 h-full bg-green-500 transition-all duration-500"
-                style={{ width:`${(activeYear/(timelineEvents.length-1))*100}%` }} />
+              <div
+                className="absolute left-0 top-0 h-full bg-green-500 transition-all duration-500"
+                style={{ width: `${(activeYear / (timelineEvents.length - 1)) * 100}%` }}
+              />
             </div>
           </Reveal>
+
           <div className="flex justify-between relative -top-2">
-            {timelineEvents.map((ev,i)=>(
-              <Reveal key={ev.year} delay={i*65}>
-                <button onClick={()=>setActiveYear(i)} className="flex flex-col items-center gap-3 group px-2">
-                  <div className="w-4 h-4 rounded-full border-2 transition-all duration-300"
-                    style={{ background:i<=activeYear?"#16a34a":"#fff", borderColor:i<=activeYear?"#16a34a":"#d1d5db" }} />
-                  <span className="text-xs font-medium transition-colors"
-                    style={{ color:i===activeYear?"#16a34a":"#9ca3af" }}>{ev.year}</span>
+            {timelineEvents.map((ev, i) => (
+              <Reveal key={ev.year} delay={i * 65}>
+                <button onClick={() => setActiveYear(i)} className="flex flex-col items-center gap-3 group px-2">
+                  <div
+                    className="w-4 h-4 rounded-full border-2 transition-all duration-300"
+                    style={{ background: i <= activeYear ? "#16a34a" : "#fff", borderColor: i <= activeYear ? "#16a34a" : "#d1d5db" }}
+                  />
+                  <span className="text-xs font-medium transition-colors" style={{ color: i === activeYear ? "#16a34a" : "#9ca3af" }}>
+                    {ev.year}
+                  </span>
                 </button>
               </Reveal>
             ))}
           </div>
 
-          {/* Active event */}
-          <div key={activeYear} className="bg-white border border-gray-100 p-8 md:p-10 mt-4"
-            style={{ animation:"fadeUp .35s cubic-bezier(0.22,1,0.36,1) both", boxShadow:"0 2px 14px rgba(0,0,0,0.05)" }}>
+          <div
+            key={activeYear}
+            className="bg-white border border-gray-100 p-8 md:p-10 mt-4"
+            style={{ animation: "fadeUp .35s cubic-bezier(0.22,1,0.36,1) both", boxShadow: "0 2px 14px rgba(0,0,0,0.05)" }}
+          >
             <p className="text-xs tracking-widest uppercase text-green-600 font-medium mb-2">{timelineEvents[activeYear].year}</p>
             <h3 className="text-xl font-medium text-gray-900 mb-3">{timelineEvents[activeYear].title}</h3>
             <p className="text-sm text-gray-500 leading-7 font-light max-w-2xl">{timelineEvents[activeYear].desc}</p>
           </div>
 
           <div className="flex gap-3 mt-5">
-            {[{dir:-1,path:"M9 3L5 7l4 4"},{dir:1,path:"M5 3l4 4-4 4"}].map(({dir,path},i)=>{
-              const disabled=(dir===-1&&activeYear===0)||(dir===1&&activeYear===timelineEvents.length-1);
+            {[{ dir: -1, path: "M9 3L5 7l4 4" }, { dir: 1, path: "M5 3l4 4-4 4" }].map(({ dir, path }, i) => {
+              const disabled = (dir === -1 && activeYear === 0) || (dir === 1 && activeYear === timelineEvents.length - 1);
               return (
-                <button key={i}
-                  onClick={()=>!disabled&&setActiveYear(y=>y+dir)}
+                <button
+                  key={i}
+                  onClick={() => !disabled && setActiveYear((y) => y + dir)}
                   className="w-10 h-10 flex items-center justify-center border transition-all duration-300"
-                  style={{ borderColor:disabled?"#e5e7eb":"#111827", color:disabled?"#d1d5db":"#111827", cursor:disabled?"not-allowed":"pointer" }}
-                  onMouseEnter={e=>{if(!disabled){e.currentTarget.style.background="#111";e.currentTarget.style.color="#fff"}}}
-                  onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color=disabled?"#d1d5db":"#111827"}}
+                  style={{
+                    borderColor: disabled ? "#e5e7eb" : "#111827",
+                    color: disabled ? "#d1d5db" : "#111827",
+                    cursor: disabled ? "not-allowed" : "pointer",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!disabled) {
+                      e.currentTarget.style.background = "#111";
+                      e.currentTarget.style.color = "#fff";
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "transparent";
+                    e.currentTarget.style.color = disabled ? "#d1d5db" : "#111827";
+                  }}
                 >
-                  <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2"><path d={path}/></svg>
+                  <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d={path} />
+                  </svg>
                 </button>
               );
             })}
@@ -349,15 +525,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          09 — OUR TEAM
-      ══════════════════════════════════════ */}
-      <section
-        id="team"
-        className="relative w-full py-24 md:py-32 px-6 md:px-12 lg:px-20 overflow-hidden"
-        style={{ background: "#0b120d" }}
-      >
-        {/* Ambient radial glows */}
+      <section id="team" className="relative w-full py-24 md:py-32 px-6 md:px-12 lg:px-20 overflow-hidden" style={{ background: "#0b120d" }}>
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -366,18 +534,15 @@ export default function AboutUs() {
           }}
         />
 
-        {/* Dot grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage:
-              "radial-gradient(circle,rgba(255,255,255,0.05) 1px,transparent 1px)",
+            backgroundImage: "radial-gradient(circle,rgba(255,255,255,0.05) 1px,transparent 1px)",
             backgroundSize: "34px 34px",
             opacity: 0.12,
           }}
         />
 
-        {/* Vertical streaks */}
         {[12, 32, 56, 78].map((l, i) => (
           <div
             key={i}
@@ -385,8 +550,7 @@ export default function AboutUs() {
             style={{
               left: `${l}%`,
               width: 1,
-              background:
-                "linear-gradient(to bottom,transparent,rgba(34,197,94,0.07),transparent)",
+              background: "linear-gradient(to bottom,transparent,rgba(34,197,94,0.07),transparent)",
               animation: `lStreak ${3 + i * 0.5}s ease-in-out infinite ${i * 1}s`,
             }}
           />
@@ -402,20 +566,16 @@ export default function AboutUs() {
               boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
             }}
           >
-            {/* HEADER */}
             <Reveal>
               <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
                 <div>
                   <p className="flex items-center gap-3 text-green-400 text-xs tracking-widest uppercase font-medium mb-5">
-                    <span style={{ width:28, height:1, background:"#4ade80", display:"inline-block" }} />
+                    <span style={{ width: 28, height: 1, background: "#4ade80", display: "inline-block" }} />
                     Our People
                   </p>
-                  <h2
-                    className="font-light text-white leading-none tracking-tight"
-                    style={{ fontSize:"clamp(2rem,4.5vw,3.8rem)" }}
-                  >
+                  <h2 className="font-light text-white leading-none tracking-tight" style={{ fontSize: "clamp(2rem,4.5vw,3.8rem)" }}>
                     Our{" "}
-                    <span style={{ fontFamily:"Georgia, serif", fontStyle:"italic", color:"#4ade80" }}>
+                    <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: "#4ade80" }}>
                       Team
                     </span>
                   </h2>
@@ -426,56 +586,55 @@ export default function AboutUs() {
               </div>
             </Reveal>
 
-            {/* TEAM GRID */}
-            <div
-              ref={teamRef}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12"
-            >
-              {teamMembers.map((m, i) => (
-                <TeamCard key={m.name} member={m} delay={i * 95} inView={teamVisible} />
-              ))}
+            <div ref={teamRef} className="mb-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {teamMembers.slice(0, 3).map((m, i) => (
+                  <TeamCard key={m.name} member={m} delay={i * 95} inView={teamVisible} />
+                ))}
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto mt-5">
+                {teamMembers.slice(3, 5).map((m, i) => (
+                  <TeamCard key={m.name} member={m} delay={(i + 3) * 95} inView={teamVisible} />
+                ))}
+              </div>
             </div>
 
-            {/* FOOTER CTA */}
-            {/* FOOTER CTA */}
-<Reveal>
-  <div
-    className="flex flex-col sm:flex-row items-center justify-between gap-5 pt-10 border-t"
-    style={{ borderColor:"rgba(255,255,255,0.07)" }}
-  >
-    {/* LEFT TEXT */}
-    <div className="max-w-md">
-      <p className="text-green-400 text-xs tracking-widest uppercase mb-2 font-medium">
-        Careers at ElektroactivX
-      </p>
+            <Reveal>
+              <div
+                className="flex flex-col sm:flex-row items-center justify-between gap-5 pt-10 border-t"
+                style={{ borderColor: "rgba(255,255,255,0.07)" }}
+              >
+                <div className="max-w-md">
+                  <p className="text-green-400 text-xs tracking-widest uppercase mb-2 font-medium">Careers at ElektroactivX</p>
 
-      <h3 className="text-white text-lg font-light leading-snug mb-2">
-        Build the future of <span style={{color:"#4ade80"}}>conductive materials</span>
-      </h3>
+                  <h3 className="text-white text-lg font-light leading-snug mb-2">
+                    Build the future of <span style={{ color: "#4ade80" }}>conductive materials</span>
+                  </h3>
 
-      <p className="text-gray-500 text-sm font-light leading-6">
-        Join an innovation-driven company working on advanced conductive polymers, 
-        anticorrosion technologies, EMI shielding, and next-generation industrial materials.
-      </p>
-    </div>
+                  <p className="text-gray-500 text-sm font-light leading-6">
+                    Join an innovation-driven company working on advanced conductive polymers, anticorrosion technologies, EMI shielding, and
+                    next-generation industrial materials.
+                  </p>
+                </div>
 
-    {/* BUTTON */}
-    <a
-      href="/career"
-      className="inline-flex items-center gap-2 px-8 py-3 text-green-400 font-medium text-xs tracking-widest uppercase transition-all duration-300 hover:text-white hover:bg-green-800"
-      style={{ border:"1px solid rgba(34,197,94,0.35)" }}
-    >
-      Explore Careers
-      <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-      </svg>
-    </a>
-  </div>
-</Reveal>
+                <a
+                  href="/career"
+                  className="inline-flex items-center gap-2 px-8 py-3 text-green-400 font-medium text-xs tracking-widest uppercase transition-all duration-300 hover:text-white hover:bg-green-800"
+                  style={{ border: "1px solid rgba(34,197,94,0.35)" }}
+                >
+                  Explore Careers
+                  <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
+     
     </main>
   );
 }

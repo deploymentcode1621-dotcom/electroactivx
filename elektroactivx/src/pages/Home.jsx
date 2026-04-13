@@ -58,11 +58,10 @@ function Counter({ target, suffix = "" }) {
 }
 
 const APPLICATIONS = [
-  { title: "Corrosion Protection",  desc: "Polymer-enhanced paint additives delivering outstanding long-term metal protection in harsh environments." },
-  { title: "EMI Shielding",         desc: "Effective electromagnetic shielding for electronic enclosures and sensitive device housings." },
-  { title: "RADAR Absorbing",       desc: "Microwave-absorbing coatings engineered for stealth technology and precision signal management." },
-  { title: "Antistatic",            desc: "Reliable charge-dissipation across packaging films, industrial coatings, and flexible substrates." },
-  { title: "Solid Capacitors",      desc: "Solid-state electrolyte capacitors offering superior thermal stability and electrical performance." },
+  { title: "Corrosion Protection",  desc: "This is an extremely powerful corrosion protection principle.  " },
+  { title: "EMI Shielding",         desc: "Using our highly conductive masterbatch, products can be developed for medium requirements in EMI shielding." },
+  { title: "Antistatic",            desc: "Using our highly conductive masterbatch, products can be developed for various antistatic applications." },
+  { title: "Solid Capacitors",      desc: "Using specially prepared dispersed polyaniline, an extremely high-performing solid state capacitor had been.." },
   { title: "Electroluminescence",   desc: "Light-emitting polymer coatings enabling next-generation flexible and large-area display technologies." },
 ];
 
@@ -106,16 +105,7 @@ const features = [
       </svg>
     ),
   },
-  {
-    title: "RADAR Absorption",
-    desc: "Advanced microwave absorbing materials for stealth and precision signal management.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="w-7 h-7">
-        <circle cx="12" cy="12" r="3" />
-        <path d="M6.3 6.3a8 8 0 0 0 0 11.4M17.7 6.3a8 8 0 0 1 0 11.4" />
-      </svg>
-    ),
-  },
+  
   {
     title: "Antistatic Solutions",
     desc: "Effective charge dissipation across films, coatings, and industrial packaging.",
@@ -368,7 +358,7 @@ export default function Home() {
                 <span className="italic grad-text">Applications</span>
               </h2>
               <p className="text-stone-500 leading-relaxed text-base font-light mb-8">
-                Our conductive polymer technology unlocks solutions across six high-value industrial domains — from corrosion protection to next-generation electronics and display technologies.
+                Our conductive polymer technology unlocks solutions across Five high-value industrial domains — from corrosion protection to next-generation electronics and display technologies.
               </p>
 
               <div className="grid grid-cols-2 gap-3 mb-8">
