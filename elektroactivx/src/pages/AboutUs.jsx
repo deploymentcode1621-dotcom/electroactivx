@@ -85,7 +85,7 @@ function TeamCard({ member, delay, inView }) {
   const [hov, setHov] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
-  const maxLength = 210;
+  const maxLength = 180;
   const isLong = member.desc.length > maxLength;
   const shortText = isLong ? member.desc.slice(0, maxLength) + "..." : member.desc;
 
@@ -93,138 +93,84 @@ function TeamCard({ member, delay, inView }) {
     <div
       style={{
         opacity: inView ? 1 : 0,
-        transform: inView ? "none" : "translateY(28px)",
-        transition: `opacity 0.8s cubic-bezier(0.22,1,0.36,1) ${delay}ms,transform 0.8s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
+        transform: inView ? "none" : "translateY(30px)",
+        transition: `all 0.8s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
         height: "100%",
       }}
     >
       <div
+        onMouseEnter={() => setHov(true)}
+        onMouseLeave={() => setHov(false)}
         style={{
-          background: "#fff",
-          border: "1px solid #f3f4f6",
-          overflow: "hidden",
-          cursor: "default",
-          boxShadow: hov ? "0 20px 50px rgba(0,0,0,0.12)" : "0 2px 12px rgba(0,0,0,0.05)",
-          transform: hov ? "translateY(-5px)" : "translateY(0)",
-          transition: "box-shadow 0.42s cubic-bezier(0.16,1,0.3,1),transform 0.42s cubic-bezier(0.16,1,0.3,1)",
+          background: "linear-gradient(145deg,#0f172a,#111827)",
+          border: "1px solid rgba(255,255,255,0.08)",
+          borderRadius: 16,
+          padding: "24px",
           height: "100%",
           display: "flex",
           flexDirection: "column",
+          justifyContent: "space-between",
+          transition: "all 0.4s ease",
+          transform: hov ? "translateY(-8px)" : "translateY(0)",
+          boxShadow: hov
+            ? "0 25px 60px rgba(0,0,0,0.6)"
+            : "0 8px 25px rgba(0,0,0,0.3)",
         }}
-        onMouseEnter={() => setHov(true)}
-        onMouseLeave={() => setHov(false)}
       >
-        <div
-          style={{
-            height: 3,
-            background: "linear-gradient(90deg,#16a34a,#c9a84c)",
-            transform: hov ? "scaleX(1)" : "scaleX(0)",
-            transformOrigin: "left",
-            transition: "transform 0.42s cubic-bezier(0.16,1,0.3,1)",
-          }}
-        />
-
-        <div
-          style={{
-            position: "relative",
-            height: 220,
-            overflow: "hidden",
-            background: "#f3f4f6",
-            flexShrink: 0,
-          }}
-        >
-          <img
-            src={member.img}
-            alt={member.name}
+        {/* CONTENT */}
+        <div>
+          <h3
             style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "center 20%",
-              filter: hov ? "grayscale(0%) brightness(0.9)" : "grayscale(8%) brightness(0.85)",
-              transform: hov ? "scale(1.05)" : "scale(1)",
-              transition: "filter 0.5s,transform 0.65s cubic-bezier(0.16,1,0.3,1)",
-            }}
-          />
-        </div>
-
-        <div
-          style={{
-            padding: "20px 22px 24px",
-            display: "flex",
-            flexDirection: "column",
-            flexGrow: 1,
-          }}
-        >
-          <div
-            style={{
-              height: 2,
-              background: "linear-gradient(90deg,#16a34a,#c9a84c)",
-              width: hov ? 42 : 20,
-              marginBottom: 12,
-              transition: "width 0.42s cubic-bezier(0.16,1,0.3,1)",
-            }}
-          />
-          <p
-            style={{
-              fontFamily: "Georgia,serif",
+              color: "#fff",
+              fontSize: "1.1rem",
               fontWeight: 600,
-              color: "#111",
-              fontSize: "0.97rem",
-              marginBottom: 3,
-              lineHeight: 1.3,
+              marginBottom: 6,
             }}
           >
             {member.name}
-          </p>
+          </h3>
+
           <p
             style={{
-              fontSize: "0.6rem",
-              letterSpacing: "0.1em",
+              color: "#4ade80",
+              fontSize: "0.7rem",
+              letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "#16a34a",
-              fontWeight: 600,
-              marginBottom: 10,
+              marginBottom: 14,
             }}
           >
             {member.role}
           </p>
 
-          <div style={{ flexGrow: 1 }}>
-            <p
-              style={{
-                fontSize: "0.8rem",
-                color: "#9ca3af",
-                lineHeight: 1.7,
-                fontWeight: 300,
-                minHeight: 160,
-              }}
-            >
-              {expanded ? member.desc : shortText}
-            </p>
-          </div>
-
-          {isLong && (
-            <button
-              onClick={() => setExpanded(!expanded)}
-              style={{
-                marginTop: 12,
-                alignSelf: "flex-start",
-                border: "none",
-                background: "transparent",
-                color: "#16a34a",
-                fontSize: "0.72rem",
-                fontWeight: 600,
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                cursor: "pointer",
-                padding: 0,
-              }}
-            >
-              {expanded ? "Read Less" : "Read More"}
-            </button>
-          )}
+          <p
+            style={{
+              fontSize: "0.85rem",
+              color: "#9ca3af",
+              lineHeight: 1.6,
+            }}
+          >
+            {expanded ? member.desc : shortText}
+          </p>
         </div>
+
+        {/* READ MORE */}
+        {isLong && (
+          <button
+            onClick={() => setExpanded(!expanded)}
+            style={{
+              marginTop: 16,
+              border: "none",
+              background: "transparent",
+              color: "#4ade80",
+              fontSize: "0.75rem",
+              fontWeight: 600,
+              cursor: "pointer",
+              alignSelf: "flex-start",
+            }}
+          >
+            {expanded ? "Read Less" : "Read More"}
+          </button>
+        )}
       </div>
     </div>
   );
@@ -242,31 +188,21 @@ export default function AboutUs() {
       name: "Dr. Arindam Adhikari",
       role: "Managing Director",
       desc: "Dr. Arindam Adhikari (Ph.D., National Chemical Laboratory, Pune) worked as a postdoctoral and senior researcher at KTH Royal Institute of Technology and YKI Institute for Surface Chemistry (RISE) in Stockholm, Sweden from 2005–2010. After returning to India he worked as a scientist at CSIR-Central Electrochemical Research Institute (CECRI). He is also founder of Aadarsh Innovations, a Pune-based contract research organisation. His research focuses on conductive polymers and their applications, with 33 publications and 5 patents.",
-      img: "/images/arindam.jpg",
-    },
-    {
-      name: "Dr. Bernhard Wessling",
-      role: "Chief Scientific Advisor",
-      desc: "Dr. Bernhard Wessling is a globally recognised authority in conductive polymers. He pioneered the dispersion processing of conductive polymers and their corrosion-resistant applications, successfully bringing them to market. His work spans chemistry, nanotechnology, and organic metals. He has published around 160 papers and holds more than 35 patents worldwide.",
-      img: "/images/bernhard.jpeg",
     },
     {
       name: "Mr. Jayesh Mahajan",
       role: "Chief Financial Officer",
       desc: "Mr. Jayesh Mahajan oversees the financial strategy and management of ElektroactivX. With strong experience in financial planning, corporate operations and strategic investment, he ensures financial stability and sustainable growth of the organisation.",
-      img: "/images/jayesh.jpeg",
     },
     {
       name: "Mr. Shammi Kumar Singh",
       role: "Director, Operations",
       desc: "Mr. Shammi Kumar Singh (M.Sc. Polymer Science) is co-founder of ElektroactivX and an expert in polymer manufacturing and quality control. Associated with Dr. Adhikari since 2013, he managed laboratory operations and pilot-scale production earlier. He now leads daily operations and production at ElektroactivX, ensuring manufacturing excellence.",
-      img: "/images/shammi.jpeg",
     },
     {
       name: "Mrs. Joyeeta Adhikari",
       role: "Co-Founder & HR Head",
       desc: "Mrs. Joyeeta Adhikari (M.Sc., B.Ed.) is co-founder of ElektroactivX with over 23 years of teaching and leadership experience in STEM education. A NASA-trained educator, she leads HR, recruitment, organisational culture and team development while driving innovation and professional growth across the company.",
-      img: "/images/joyeeta.jpeg",
     },
   ];
 
@@ -585,20 +521,21 @@ export default function AboutUs() {
                 </p>
               </div>
             </Reveal>
-
-            <div ref={teamRef} className="mb-12">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {teamMembers.slice(0, 3).map((m, i) => (
-                  <TeamCard key={m.name} member={m} delay={i * 95} inView={teamVisible} />
-                ))}
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto mt-5">
-                {teamMembers.slice(3, 5).map((m, i) => (
-                  <TeamCard key={m.name} member={m} delay={(i + 3) * 95} inView={teamVisible} />
-                ))}
-              </div>
-            </div>
+<div
+  ref={teamRef}
+  className="mb-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 place-items-center"
+>
+  {teamMembers.map((m, i) => (
+    <div key={m.name} className="w-full max-w-[320px]">
+      <TeamCard
+        member={m}
+        delay={i * 95}
+        inView={teamVisible}
+      />
+    </div>
+  ))}
+</div>
+         
 
             <Reveal>
               <div
