@@ -220,7 +220,7 @@ export default function Home() {
             autoPlay muted loop playsInline
             className="absolute inset-0 w-full h-full object-cover scale-105"
             style={{ transform: `scale(1.05) translateY(${scrollY * 0.25}px)` }}
-            src="https://www.w3schools.com/html/mov_bbb.mp4"
+            src="/images/elektroactivx.mp4"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
