@@ -41,7 +41,7 @@ const applications = [
     title: "Corrosion Protection",
     subtitle: "The world's most powerful anticorrosion polymer",
     img: "/images/Corrosion Protection.jpeg",
-    heroImg: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1400&q=90",
+    heroImg: "/images/Corrosion Protection.jpeg",
     tag: "Flagship Application",
     tagColor: "#16a34a",
     desc: "This is an extremely powerful corrosion protection principle. It was invented by Ormecon (Germany) and has been independently validated in numerous international studies. Polyaniline-based anticorrosion systems outperform conventional chromate and zinc-based primer systems — providing active, electrochemical protection at the metal-coating interface rather than just a passive barrier.",
@@ -54,7 +54,7 @@ const applications = [
     title: "EMI Shielding",
     subtitle: "Electromagnetic compatibility through conductive polymers",
     img:"/images/EMC.jpeg",
-    heroImg: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1400&q=90",
+    heroImg: "elektroactivx/public/images/EMC.jpeg",
     tag: "Electronics",
     tagColor: "#2563eb",
     desc: "Using our highly conductive masterbatch, products can be developed for medium requirements in EMI shielding. Conductive polymer-based EMC materials offer significant weight and processing advantages over traditional metal-filled composites — enabling lightweight, mouldable shielding components for electronic enclosures, automotive electronics and industrial control systems.",
@@ -67,7 +67,7 @@ const applications = [
     title: "Permanent Antistatic",
     subtitle: "Intrinsic static dissipation — no additives, no migration",
     img: "/images/Permanent antistatic modification.jpeg",
-    heroImg: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1400&q=90",
+    heroImg: "/images/Permanent antistatic modification.jpeg",
     tag: "ESD / Packaging",
     tagColor: "#d97706",
     desc: "Using our highly conductive masterbatch, products can be developed for various antistatic applications. Unlike conventional antistatic additives which depend on humidity or surface migration for their effect, Polyaniline-based antistatic systems provide permanent, humidity-independent charge dissipation — critical for sensitive electronics packaging, clean rooms and explosive environments.",
@@ -80,7 +80,7 @@ const applications = [
     title: "Electroluminescence",
     subtitle: "Flexible, high-performance light-emitting displays",
     img: "images/Electroluminescence.jpeg",
-    heroImg: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1400&q=90",
+    heroImg: "elektroactivx/public/images/Electroluminescence.jpeg",
     tag: "Display Technology",
     tagColor: "#7c3aed",
     desc: "With our highly conductive masterbatch, products can be developed for this very flexible and easy display technology. Polyaniline serves as a highly transparent, conductive electrode layer in electroluminescent devices — enabling flexible, lightweight display panels for automotive instrument clusters, advertising displays and wearable electronics.",
@@ -93,7 +93,7 @@ const applications = [
     title: "Solid Electrolyte Capacitors",
     subtitle: "Ultra-high performance energy storage components",
     img: "images/Solid Electrolyte Capacitors.jpeg",
-    heroImg: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1400&q=90",
+    heroImg: "/images/Solid Electrolyte Capacitors.jpeg",
     tag: "Energy Storage",
     tagColor: "#dc2626",
     desc: "Using specially prepared dispersed polyaniline, an extremely high-performing solid state capacitor had been developed. Solid electrolyte capacitors based on Polyaniline offer exceptionally low equivalent series resistance (ESR) and outstanding high-frequency performance compared to conventional liquid electrolyte systems — enabling compact, high-reliability power conditioning in demanding applications.",
@@ -205,7 +205,7 @@ export default function Applications() {
           </h1>
           <p className="text-white/55 font-light leading-relaxed fu d4"
             style={{ fontSize:"0.80rem", maxWidth:550, lineHeight:1.80 }}>
-            Conducting polymers find application in large variety of areas which is due to their conductivity and redox properties. Some of the interesting application areas are anticorrosion paint, Antistatic, EMI Shielding, RADAR absorbing materials, Catalysis, Supercapacitor, Sensors, Membrane etc. Interest in research on conducting polymers has grown after the 2000 Nobel prize and people found the way to make polymer processible.
+            Conductive polymers find application in large variety of areas which is due to their conductivity and redox properties. Some of the interesting application areas are anticorrosion paint, Antistatic, EMI Shielding, RADAR absorbing materials, Catalysis, Supercapacitor, Sensors, Membrane etc. Interest in research on conducting polymers has grown after the 2000 Nobel prize and people found the way to make polymer processible.
           </p>
           <div className="flex items-center gap-4 mt-7 fu d6">
             <a href="#applications"
@@ -213,10 +213,7 @@ export default function Applications() {
               style={{ background:"#15803d" }}>
               Explore All
             </a>
-            <a href="/contact"
-              className="inline-block px-6 py-3 text-white font-light text-xs tracking-widest uppercase border border-white/28 hover:border-white/60 transition-colors">
-              Request Info
-            </a>
+            
           </div>
         </div>
         <div className="absolute bottom-5 right-10 z-20 flex flex-col items-center gap-1.5 opacity-32">
@@ -368,7 +365,7 @@ export default function Applications() {
       <div className="relative w-full">
         <div className="relative overflow-hidden" style={{ height:"48vh", minHeight:320, maxHeight:540 }}>
           <img
-            src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1800&q=90"
+            src="/images/protect industry.png"
             alt="Industrial application"
             className="w-full h-full object-cover"
             style={{ filter:"brightness(0.55) saturate(0.6)", objectPosition:"center 45%" }}
@@ -388,9 +385,9 @@ export default function Applications() {
             </h3>
             <div className="w-7 h-0.5 mb-5" style={{ background:"linear-gradient(90deg,#16a34a,#c9a84c)" }} />
             <p className="text-sm text-gray-500 leading-7 font-light mb-5">
-              KElektroactivx's corrosion protection technology — rooted in Dr. Wessling's pioneering research — is the world's most powerful anticorrosion polymer principle. It actively passivates metal surfaces rather than simply forming a barrier.
+              Elektroactivx's corrosion protection technology — rooted in Dr. Wessling's pioneering research — is the world's most powerful anticorrosion polymer principle. It actively passivates metal surfaces rather than simply forming a barrier.
             </p>
-            <a href="/contact" className="text-sm font-medium text-gray-900 underline underline-offset-4 hover:text-green-600 transition-colors">
+            <a href="/contact_us" className="text-sm font-medium text-gray-900 underline underline-offset-4 hover:text-green-600 transition-colors">
               Talk to our experts →
             </a>
           </div>
