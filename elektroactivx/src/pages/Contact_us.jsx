@@ -197,9 +197,9 @@ export default function ContactUs() {
                     India
                   </span>
                   <p className="text-sm text-gray-500 leading-6 font-light">
-                    A-309, Nand Dham, Plot No. 59, Sector 11,<br />
-                    CBD Belapur, Navi Mumbai – 400614,<br />
-                    Maharashtra, India
+                   	HQ: Lower Gangapara, <br />
+                    Behind Circuit House,<br />
+                    Dibrugarh, Assam, 786125 India
                   </p>
                 </div>
               </div>
@@ -211,7 +211,7 @@ export default function ContactUs() {
                   </svg>
                 </div>
                 <a href="tel:9820251549" className="text-sm text-gray-600 font-light hover:text-green-600 transition-colors">
-                  9820251549
+                	9028004416
                 </a>
               </div>
 
@@ -222,7 +222,7 @@ export default function ContactUs() {
                   </svg>
                 </div>
                 <a href="mailto:info@komstruk.co" className="text-sm text-gray-600 font-light hover:text-green-600 transition-colors">
-                  info@komstruk.co
+                 	info@Elektroactivx.com
                 </a>
               </div>
             </div>
@@ -244,8 +244,8 @@ export default function ContactUs() {
                     Germany
                   </span>
                   <p className="text-sm text-gray-500 leading-6 font-light">
-                    Am Wischhof 38a,<br />
-                    D-22941 Jersbek OT Klein Hansdorf,<br />
+                    	Germany : Am Wischhof 38a<br />
+                    D-22941 Jersbek OT Klein Hansdorf<br />
                     Germany
                   </p>
                 </div>
@@ -258,7 +258,7 @@ export default function ContactUs() {
                   </svg>
                 </div>
                 <a href="mailto:bernhard.wessling@komstruk.eu" className="text-sm text-gray-600 font-light hover:text-green-600 transition-colors">
-                  bernhard.wessling@komstruk.eu
+                 	bernhard.wessling@Elektroactivx.com
                 </a>
               </div>
             </div>
