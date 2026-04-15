@@ -672,8 +672,8 @@ export default function Career() {
         <div className="absolute inset-0 z-20 flex flex-col justify-end px-8 md:px-16 lg:px-24 pb-14">
           <p className="text-white/50 text-xs tracking-widest uppercase font-light mb-4 animate-fade-up">— Join Us</p>
           <h1 className="text-white font-light leading-none tracking-tight mb-5 animate-fade-up delay-200" style={{fontSize:"clamp(2.6rem,6vw,5.5rem)"}}>
-            Calling all<br/>
-            <span style={{fontFamily:"Georgia,serif",fontStyle:"italic",color:"#4ade80"}}>problem solvers</span>
+            Build the Future<br/>
+            <span style={{fontFamily:"Georgia,serif",fontStyle:"italic",color:"#4ade80"}}>with Elektroactivx</span>
           </h1>
           <p className="text-white/60 font-light leading-relaxed mb-8 animate-fade-up delay-400" style={{fontSize:"0.96rem",maxWidth:480}}>
             There's no greater challenge than advancing the science of materials protection. Join Elektroactivx — help us build a world that lasts, atom by atom.
@@ -707,7 +707,7 @@ export default function Career() {
           <Reveal from="left" className="lg:w-5/12">
             <p className="text-xs tracking-widest uppercase font-medium text-gray-400 mb-4">Why Elektroactivx</p>
             <h2 className="font-light text-gray-900 leading-tight mb-5 tracking-tight" style={{fontSize:"clamp(1.8rem,3.5vw,2.9rem)"}}>
-              Calling all<br/><strong className="font-bold">problem solvers</strong>
+             Build the Future<br/><strong className="font-bold">with Elektroactivx</strong>
             </h2>
             <div className="w-8 h-0.5 mb-5" style={{background:"linear-gradient(90deg,#16a34a,#c9a84c)"}}/>
             <p className="text-sm text-gray-500 leading-7 font-light mb-7">
@@ -1148,8 +1148,8 @@ export default function Career() {
   </div>
 </section>
 
-{/* GLOBAL FOOTER */}
-<Footer />
+
+
       
     </main>
   );

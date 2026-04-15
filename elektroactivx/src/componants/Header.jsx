@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 
 const navLinks = [
   { label: "HOME", href: "/" },
@@ -7,8 +7,16 @@ const navLinks = [
   { label: "PRODUCTS", href: "/products" },
   { label: "APPLICATION", href: "/applications" },
   { label: "BLOGS", href: "/blogs" },
-  // { label: "CAREERS", href: "/career" },
   { label: "CONTACT US", href: "/contact_us" },
+];
+
+const productLinks = [
+  { label: "Conductive Polymer Dispersion", href: "/products/dispersion" },
+  { label: "Polyaniline Emeraldine Base", href: "/products/pani-eb" },
+  { label: "PAni-KOT Coating", href: "/products/pani-kot" },
+  { label: "Polyaniline Masterbatches", href: "/products/masterbatch" },
+  { label: "ORMECON ST Primer", href: "/products/ormecon-st" },
+  { label: "ORMECON AL Primer", href: "/products/ormecon-al" },
 ];
 
 export default function Header() {
@@ -27,106 +35,136 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        (!isHome || scrolled)
+        !isHome || scrolled
           ? "bg-black/60 backdrop-blur-md border-b border-white/10"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-screen-xl mx-auto px-6 md:px-10 flex items-center justify-between h-16 md:h-20">
-        
-        {/* Logo */}
-        <a
-          href="/"
-          className="text-white font-bold text-2xl tracking-tight"
-          style={{ fontFamily: "'Syne', sans-serif" }}
-        >
-          ElektroactivX
-        </a>
 
-        {/* Desktop Nav */}
+        {/* Logo */}
+        <NavLink to="/" className="flex items-center">
+  <img
+    src="/images/logo.png"
+    alt="ElektroactivX"
+    className="h-10 w-auto object-contain"
+  />
+</NavLink>
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => {
-            const isActive = location.pathname === link.href;
+
+            if (link.label === "PRODUCTS") {
+              return (
+                <div key={link.label} className="relative group">
+
+                  <NavLink
+                    to={link.href}
+                    className={({ isActive }) =>
+                      `text-sm font-medium flex items-center gap-1 ${
+                        isActive ? "text-emerald-400" : "text-white/80 hover:text-white"
+                      }`
+                    }
+                  >
+                    {link.label}
+                    <span className="text-[10px] mt-[1px]">▾</span>
+                  </NavLink>
+
+                  {/* Dropdown */}
+                  <div className="absolute left-0 top-[calc(100%+16px)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                    <div
+  className={`w-64 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl py-2
+  ${!isHome || scrolled ? "bg-black/60" : "bg-black/20"}
+`}
+>
+
+                      {productLinks.map((item) => (
+                        <NavLink
+                          key={item.label}
+                          to={item.href}
+                          className={({ isActive }) =>
+                            `block px-4 py-2.5 text-sm ${
+                              isActive
+                                ? "text-emerald-400 bg-white/5"
+                                : "text-white/80 hover:text-white hover:bg-white/5"
+                            }`
+                          }
+                        >
+                          {item.label}
+                        </NavLink>
+                      ))}
+
+                    </div>
+                  </div>
+
+                </div>
+              );
+            }
 
             return (
-              <a
+              <NavLink
                 key={link.label}
-                href={link.href}
-                className={`text-sm font-medium transition-colors duration-200 relative group ${
-                  isActive
-                    ? "text-emerald-400"
-                    : "text-white/80 hover:text-white"
-                }`}
-                style={{ fontFamily: "'Syne', sans-serif" }}
+                to={link.href}
+                className={({ isActive }) =>
+                  `text-sm font-medium ${
+                    isActive ? "text-emerald-400" : "text-white/80 hover:text-white"
+                  }`
+                }
               >
                 {link.label}
-
-                {/* underline */}
-                <span
-                  className={`absolute -bottom-1 left-0 h-0.5 bg-emerald-400 transition-all duration-300 ${
-                    isActive ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
-                />
-              </a>
+              </NavLink>
             );
           })}
         </nav>
 
-        {/* Hamburger */}
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="flex flex-col gap-1.5 p-2 md:hidden"
         >
-          <span
-            className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-              menuOpen ? "rotate-45 translate-y-2" : ""
-            }`}
-          />
-          <span
-            className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-              menuOpen ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-              menuOpen ? "-rotate-45 -translate-y-2" : ""
-            }`}
-          />
+          <span className="block h-0.5 w-6 bg-white" />
+          <span className="block h-0.5 w-6 bg-white" />
+          <span className="block h-0.5 w-6 bg-white" />
         </button>
-
-        {/* Desktop icon */}
-        <div className="hidden md:flex flex-col gap-1.5 p-2 cursor-pointer">
-          <span className="block h-0.5 w-6 bg-white/70" />
-          <span className="block h-0.5 w-4 bg-white/70" />
-        </div>
       </div>
 
       {/* Mobile Menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ${
-          menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          menuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         } bg-black/80 backdrop-blur-md`}
       >
         <nav className="flex flex-col px-6 py-4 gap-4">
-          {navLinks.map((link) => {
-            const isActive = location.pathname === link.href;
 
-            return (
-              <a
-                key={link.label}
-                href={link.href}
+          {navLinks.map((link) => (
+            <div key={link.label}>
+
+              <NavLink
+                to={link.href}
                 onClick={() => setMenuOpen(false)}
-                className={`text-base font-medium transition-colors duration-200 ${
-                  isActive
-                    ? "text-emerald-400"
-                    : "text-white/80 hover:text-white"
-                }`}
-                style={{ fontFamily: "'Syne', sans-serif" }}
+                className="text-base text-white/80 hover:text-white"
               >
                 {link.label}
-              </a>
-            );
-          })}
+              </NavLink>
+
+              {link.label === "PRODUCTS" && (
+                <div className="pl-4 flex flex-col gap-2 border-l border-white/10 mt-2">
+                  {productLinks.map((item) => (
+                    <NavLink
+                      key={item.label}
+                      to={item.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="text-sm text-white/70 hover:text-white"
+                    >
+                      {item.label}
+                    </NavLink>
+                  ))}
+                </div>
+              )}
+
+            </div>
+          ))}
+
         </nav>
       </div>
     </header>

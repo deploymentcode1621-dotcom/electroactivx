@@ -471,95 +471,103 @@ export default function Home() {
             §6 CORE TECHNOLOGY
         ══════════════════════════════════════ */}
         <section className="px-8 md:px-24 py-24 md:py-36 max-w-screen-2xl mx-auto">
-          <Reveal>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-20">
-              <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-6 h-px bg-green-500" />
-                  <span className="text-green-600 text-xs tracking-[0.25em] uppercase font-medium">Core Technology</span>
-                </div>
-                <h2 className="font-display text-5xl md:text-6xl font-black leading-tight">
-                  Conductive<br />
-                  <span className="italic grad-text">Polymer</span><br />
-                  Dispersion
-                </h2>
-              </div>
-              <div>
-                <p className="text-stone-500 leading-relaxed font-light text-base">
-                  Conducting Polymers such as Polyaniline have stimulated material
-                  scientists worldwide for their game-changing industrial potential.
-                  Completely insoluble in water and organic solvents, they require
-                  innovative dispersion techniques for real-world processing.
-                </p>
-              </div>
-            </div>
-          </Reveal>
+  <Reveal>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-20">
+      <div>
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-6 h-px bg-green-500" />
+          <span className="text-green-600 text-xs tracking-[0.25em] uppercase font-medium">
+            Core Technology
+          </span>
+        </div>
 
-          <Reveal delay={100}>
-            <div className="bg-stone-50 border border-stone-100 p-10 mb-8 flex flex-col md:flex-row items-center gap-10">
-              <div className="shrink-0">
-                <svg viewBox="0 0 340 110" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xs">
-                  <polygon points="30,55 44,30 72,30 86,55 72,80 44,80" fill="none" stroke="#16a34a" strokeWidth="2" />
-                  <text x="48" y="60" fontSize="12" fontFamily="sans-serif" fill="#1c1917">NH</text>
-                  <line x1="86" y1="55" x2="110" y2="55" stroke="#1c1917" strokeWidth="1.5" />
-                  <polygon points="110,55 124,30 152,30 166,55 152,80 124,80" fill="none" stroke="#16a34a" strokeWidth="2" />
-                  <line x1="166" y1="55" x2="190" y2="55" stroke="#1c1917" strokeWidth="1.5" />
-                  <text x="170" y="50" fontSize="12" fontFamily="sans-serif" fill="#1c1917">N</text>
-                  <text x="168" y="68" fontSize="10" fontFamily="sans-serif" fill="#16a34a">A⁻</text>
-                  <polygon points="190,55 204,30 232,30 246,55 232,80 204,80" fill="none" stroke="#4ade80" strokeWidth="2" />
-                  <line x1="246" y1="55" x2="270" y2="55" stroke="#1c1917" strokeWidth="1.5" />
-                  <polygon points="270,55 284,30 312,30 326,55 312,80 284,80" fill="none" stroke="#4ade80" strokeWidth="2" />
-                  <text x="330" y="59" fontSize="13" fontFamily="sans-serif" fill="#1c1917">n</text>
-                  <text x="20" y="28" fontSize="10" fontFamily="sans-serif" fill="#78716c">H</text>
-                  <text x="102" y="28" fontSize="10" fontFamily="sans-serif" fill="#78716c">H</text>
-                </svg>
-              </div>
-              <div className="flex-1">
-                <p className="text-xs text-stone-400 tracking-widest uppercase mb-3">Polyaniline Structure</p>
-                <p className="text-stone-600 text-sm leading-relaxed">
-                  The extraordinary high surface tension of conducting polymers — by far
-                  the highest of all known organic materials — makes adequate dispersion
-                  the central challenge and our core innovation for industrial
-                  processability.
-                </p>
-              </div>
-            </div>
-          </Reveal>
+        <h2 className="font-display text-5xl md:text-6xl font-black leading-tight">
+          Conductive<br />
+          <span className="italic grad-text">Polymer</span><br />
+          Dispersion
+        </h2>
+      </div>
 
-          <Reveal delay={150}>
-            <div className="flex justify-center mb-24">
-              <a
-                href="/products"
-                className="group inline-flex items-center gap-3 bg-stone-900 hover:bg-green-600 text-white font-medium text-sm px-10 py-4 tracking-wide transition-all duration-300"
-              >
-                Conductive Polymer Dispersion
-                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-            </div>
-          </Reveal>
+      <div>
+        <p className="text-stone-500 leading-relaxed font-light text-base">
+          Conducting Polymers such as Polyaniline have stimulated material
+          scientists worldwide for their game-changing industrial potential.
+          Completely insoluble in water and organic solvents, they require
+          innovative dispersion techniques for real-world processing.
+        </p>
+      </div>
+    </div>
+  </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((f, i) => (
-              <Reveal key={f.title} delay={i * 80}>
-                <div className="group border border-stone-100 p-8 card-lift cursor-default bg-white hover:border-green-200">
-                  <div className="w-14 h-14 bg-stone-50 group-hover:bg-green-500 text-green-600 group-hover:text-white flex items-center justify-center mb-6 transition-all duration-300">
-                    {f.icon}
-                  </div>
-                  <h4 className="font-display text-lg font-bold mb-3 group-hover:text-green-700 transition-colors">
-                    {f.title}
-                  </h4>
-                  <p className="text-stone-400 text-sm leading-relaxed">{f.desc}</p>
-                  <div className="mt-6 h-0.5 bg-stone-100 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-green-500 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+  <Reveal delay={100}>
+    <div className="bg-stone-50 border border-stone-100 p-10 mb-8 flex flex-col md:flex-row items-center gap-10">
+
+      {/* IMAGE REPLACED HERE */}
+      <div className="shrink-0 flex justify-center">
+        <img
+          src="/images/coductiveformula.png"
+          alt="Polyaniline Conductive Polymer Structure"
+          className="w-full max-w-xs object-contain"
+        />
+      </div>
+
+      <div className="flex-1">
+        <p className="text-xs text-stone-400 tracking-widest uppercase mb-3">
+          Polyaniline Structure
+        </p>
+
+        <p className="text-stone-600 text-sm leading-relaxed">
+          The extraordinary high surface tension of conducting polymers — by far
+          the highest of all known organic materials — makes adequate dispersion
+          the central challenge and our core innovation for industrial
+          processability.
+        </p>
+      </div>
+    </div>
+  </Reveal>
+
+  <Reveal delay={150}>
+    <div className="flex justify-center mb-24">
+      <a
+        href="/products"
+        className="group inline-flex items-center gap-3 bg-stone-900 hover:bg-green-600 text-white font-medium text-sm px-10 py-4 tracking-wide transition-all duration-300"
+      >
+        Conductive Polymer Dispersion
+        <svg
+          className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+        >
+          <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </a>
+    </div>
+  </Reveal>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {features.map((f, i) => (
+      <Reveal key={f.title} delay={i * 80}>
+        <div className="group border border-stone-100 p-8 card-lift cursor-default bg-white hover:border-green-200">
+          <div className="w-14 h-14 bg-stone-50 group-hover:bg-green-500 text-green-600 group-hover:text-white flex items-center justify-center mb-6 transition-all duration-300">
+            {f.icon}
           </div>
-        </section>
 
+          <h4 className="font-display text-lg font-bold mb-3 group-hover:text-green-700 transition-colors">
+            {f.title}
+          </h4>
+
+          <p className="text-stone-400 text-sm leading-relaxed">{f.desc}</p>
+
+          <div className="mt-6 h-0.5 bg-stone-100 relative overflow-hidden">
+            <div className="absolute inset-0 bg-green-500 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
+          </div>
+        </div>
+      </Reveal>
+    ))}
+  </div>
+</section>
         {/* ══════════════════════════════════════
             §7 CTA BANNER
         ══════════════════════════════════════ */}

@@ -143,13 +143,13 @@ export default function Products() {
   <div className="max-w-6xl mx-auto">
 
     {/* ✅ IMAGE ADDED */}
-    <div className="mb-12">
-      <img 
-        src="/images/coductiveformula.png" 
-        alt="Polymer Structure"
-        className="w-full h-auto rounded-xl shadow-md"
-      />
-    </div>
+    <div className="mb-12 flex justify-center">
+  <img 
+    src="/images/coductiveformula.png" 
+    alt="Polymer Structure"
+    className="w-[650px] max-w-full h-auto rounded-xl shadow-md"
+  />
+</div>
 
     {/* EXISTING COMPONENT */}
     {/* <MoleculeSection /> */}
