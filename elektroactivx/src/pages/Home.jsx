@@ -220,7 +220,7 @@ export default function Home() {
             autoPlay muted loop playsInline
             className="absolute inset-0 w-full h-full object-cover scale-105"
             style={{ transform: `scale(1.05) translateY(${scrollY * 0.25}px)` }}
-            src="/images/elektroactivx.mp4"
+            src="https://www.w3schools.com/html/mov_bbb.mp4"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
@@ -244,15 +244,7 @@ export default function Home() {
               Innovation-driven manufacturing of electrically conductive polymers for industrial applications worldwide.
             </p>
             <div className="flex flex-wrap gap-3 items-center">
-              <a
-                href="/about"
-                className="group inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white text-xs md:text-sm px-6 py-3 transition-all duration-300"
-              >
-                Discover More
-                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
+              
               <a
                 href="/products"
                 className="text-white/70 hover:text-white text-xs md:text-sm border-b border-white/30 hover:border-white transition-colors"
@@ -270,7 +262,7 @@ export default function Home() {
           <div className="marquee-inner flex gap-0 whitespace-nowrap">
             {Array(2).fill(null).map((_, i) => (
               <div key={i} className="flex gap-0">
-                {["EMI Shielding", "Anticorrosive Coatings", "RADAR Absorption", "Solid Electrolyte Capacitors", "Antistatic Films", "Electroluminescence", "Conductive Polymers"].map((t) => (
+                {["EMI Shielding", "Anticorrosive Coatings", "RADAR Absorption", "Solid Electrolyte Capacitors", "Antistatic ", "Electroluminescence", "Conductive Polymers"].map((t) => (
                   <span key={t} className="text-white text-xs tracking-[0.2em] uppercase font-medium px-8 border-r border-white/20 last:border-r-0">
                     {t}
                   </span>
@@ -312,7 +304,7 @@ export default function Home() {
 
           <div className="lg:col-span-2 flex lg:flex-col gap-6 justify-center">
             {[
-              { num: 20, suffix: "+", label: "Years of Innovation" },
+              { num: 25, suffix: "+", label: "Years of Innovation" },
               { num: 6,  suffix: "+", label: "Application Areas"  },
             ].map((s, i) => (
               <Reveal key={s.label} delay={i * 150}>
