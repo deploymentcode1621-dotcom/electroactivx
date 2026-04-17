@@ -221,7 +221,7 @@ const Footer = () => {
 
             <a
               href="mailto:bernhard.wessling@Elektroactivx.eu"
-              className="text-white text-sm underline underline-offset-4 block mt-4 hover:text-emerald-400 transition-colors break-all"
+              className="text-white text-sm underline underline-offset-4 block mt-4 hover:text-emerald-400 transition-colors whitespace-nowrap"
             >
               bernhard.wessling@elektroactivx.eu
             </a>
