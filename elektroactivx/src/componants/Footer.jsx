@@ -24,13 +24,14 @@ const Footer = () => {
 
   {/* India Address */}
   <div>
-    <p className="text-white text-xs font-semibold mb-1">India</p>
+    <p className="text-white text-xs font-semibold mb-1">Elektroactivx Private Limited</p>
     <p>
-      Branch: 604, Ramanbag Society, Shaniwar Peth, Pune, 411030, Maharashtra
+HO: Lower Gangapara, Near Circuit House
+Dibrugarh, 786125, Assam
     </p>
   </div>
 
-  {/* Germany Address */}
+  {/* Germany Address
   <div>
     <p className="text-white text-xs font-semibold mb-1">Germany</p>
     <p>
@@ -38,7 +39,7 @@ const Footer = () => {
       D-22941 Jersbek OT Klein Hansdorf<br/>
       Germany
     </p>
-  </div>
+  </div> */}
 
 </div>
 
@@ -53,17 +54,16 @@ const Footer = () => {
               href="mailto:hi@elektroactivx.com"
               className="text-white text-sm underline underline-offset-4 hover:text-emerald-400 transition-colors w-fit"
             >
-              hi@elektroactivx.com
-            </a>
+Email : info@elektroactivx.com            </a>
 
             {/* Social Icons */}
-            <div className="flex items-center gap-5 mt-3 text-lg">
+            {/* <div className="flex items-center gap-5 mt-3 text-lg">
               <a href="#" className="text-white hover:text-emerald-400"><FaXTwitter /></a>
               <a href="#" className="text-white hover:text-emerald-400"><FaFacebookF /></a>
               <a href="#" className="text-white hover:text-emerald-400"><FaLinkedinIn /></a>
               <a href="#" className="text-white hover:text-emerald-400"><FaInstagram /></a>
               <a href="#" className="text-white hover:text-emerald-400"><FaYoutube /></a>
-            </div>
+            </div> */}
           </div>
 
           {/* Right Section */}
@@ -74,13 +74,13 @@ const Footer = () => {
               <p className="text-white text-sm font-bold mb-4">Products</p>
               <ul className="flex flex-col gap-2">
                 {[
-                  "Cells",
-                  "Lithium-ion",
-                  "Sodium-ion",
-                  "Lithium-metal",
-                  "Systems",
-                  "Voltpack Core",
-                  "Voltpack Mobile System"
+                  "Conductive Polymer Dispersion",
+                  "Polyaniline Emeraldine Base",
+                  "PAni-KOT Coating",
+                  "Polyaniline Masterbatches",
+                  "ORMECON ST Primer",
+                  "ORMECON AL Primer",
+                  
                 ].map((item) => (
                   <li key={item}>
                     <a
@@ -112,7 +112,7 @@ const Footer = () => {
             </div>
 
             {/* Map */}
-            <div>
+            {/* <div>
               <p className="text-white text-sm font-bold mb-4">Location</p>
 
               <iframe
@@ -124,7 +124,7 @@ const Footer = () => {
                 className="rounded-md"
               ></iframe>
 
-            </div>
+            </div> */}
 
           </div>
         </div>
