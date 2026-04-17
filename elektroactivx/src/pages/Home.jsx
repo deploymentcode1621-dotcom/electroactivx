@@ -352,7 +352,7 @@ export default function Home() {
             <Reveal delay={200} direction="right">
               <div className="relative">
                 <img
-                   src="/images/Innovation.jpg"
+                   src="/images/innovation.jpeg"
                   alt="Innovation Laboratory"
                   className="w-full h-[500px] object-cover"
                 />
@@ -409,7 +409,7 @@ export default function Home() {
             <Reveal direction="right" delay={120}>
               <div className="relative">
                 <img
-                  src="/images/industrial applications.png"
+                  src="/images/industrial applications.jpeg"
                   alt="Electronic circuit application"
                   className="w-full object-cover"
                   style={{ height: 460 }}
