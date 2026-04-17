@@ -215,45 +215,75 @@ export default function Home() {
         {/* ══════════════════════════════════════
             §1 HERO
         ══════════════════════════════════════ */}
-        <section className="relative w-full h-screen overflow-hidden">
-          <video
-            autoPlay muted loop playsInline
-            className="absolute inset-0 w-full h-full object-cover scale-105"
-            style={{ transform: `scale(1.05) translateY(${scrollY * 0.25}px)` }}
-            src="/images/elektroactivx.mp4"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
-          <div className="absolute inset-0 opacity-10"
-            style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)", backgroundSize: "80px 80px" }}
-          />
+      <section className="relative w-full h-screen overflow-hidden">
 
-          <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 py-16 md:py-20 max-w-screen-2xl mx-auto">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-px bg-green-400" />
-              <span className="text-green-400 text-[10px] tracking-[0.25em] uppercase font-medium">
-                ElektroactivX Private Limited
-              </span>
-            </div>
-            <h1 className="font-display text-3xl md:text-5xl lg:text-6xl text-white font-bold leading-tight mb-6 max-w-2xl">
-              Science That{" "}
-              <span className="italic grad-text">Conducts</span>
-              <br />the Future.
-            </h1>
-            <p className="text-white/70 text-sm md:text-base max-w-md leading-relaxed mb-8">
-              Innovation-driven manufacturing of electrically conductive polymers for industrial applications worldwide.
-            </p>
-            <div className="flex flex-wrap gap-3 items-center">
-              
-              <a
-                href="/products"
-                className="text-white/70 hover:text-white text-xs md:text-sm border-b border-white/30 hover:border-white transition-colors"
-              >
-                View Products
-              </a>
-            </div>
-          </div>
-        </section>
+  {/* Video */}
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    className="absolute inset-0 w-full h-full object-cover scale-105"
+    style={{ transform: `scale(1.05) translateY(${scrollY * 0.25}px)` }}
+    src="/images/elektroactivx.mp4"
+  />
+
+  {/* Gradient Overlays */}
+  <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
+
+  {/* Grid Pattern */}
+  <div
+    className="absolute inset-0 opacity-10"
+    style={{
+      backgroundImage:
+        "linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)",
+      backgroundSize: "80px 80px",
+    }}
+  />
+
+  {/* Content */}
+  <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 py-16 md:py-20 max-w-screen-2xl mx-auto">
+
+    {/* Top Label */}
+    <div className="flex items-center gap-2 mb-4">
+      <div className="w-6 h-px bg-green-400" />
+      <span className="text-green-400 text-[10px] tracking-[0.25em] uppercase font-medium">
+        ElektroactivX Private Limited
+      </span>
+    </div>
+
+    {/* Heading */}
+    <h1
+      className="font-display text-3xl md:text-5xl lg:text-6xl text-white font-bold leading-tight mb-6 max-w-2xl"
+      style={{ textShadow: "10px 10px 12px rgba(0,0,0,0.4)" }}
+    >
+      Science That{" "}
+      <span className="italic grad-text">Conducts</span>
+      <br />
+      the Future.
+    </h1>
+
+    {/* Description */}
+    <p
+      className="text-white/70 text-sm md:text-base max-w-md leading-relaxed mb-10"
+      style={{ textShadow: "6px 6px 10px rgba(0,0,0,0.35)" }}
+    >
+      Innovation-driven manufacturing of electrically conductive polymers for industrial applications worldwide.
+    </p>
+
+    {/* Button */}
+    <div className="relative">
+      <a
+        href="/products"
+        className="inline-block bg-green-500 badge-pulse text-white px-6 py-3 text-xs font-bold tracking-widest uppercase hover:bg-green-600 transition-all shadow-lg"
+      >
+        View Products
+      </a>
+    </div>
+
+  </div>
+</section>
 
         {/* ══════════════════════════════════════
             §2 TICKER
@@ -304,7 +334,7 @@ export default function Home() {
 
           <div className="lg:col-span-2 flex lg:flex-col gap-6 justify-center">
             {[
-              { num: 25, suffix: "+", label: "Years of Innovation" },
+              { num: 25, suffix: "+", label: "Years of Research" },
               { num: 6,  suffix: "+", label: "Application Areas"  },
             ].map((s, i) => (
               <Reveal key={s.label} delay={i * 150}>
@@ -328,7 +358,7 @@ export default function Home() {
                 />
                 <div className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-green-400 -z-10" />
                 <div className="absolute -bottom-5 left-6 bg-green-500 badge-pulse text-white px-6 py-3">
-                  <p className="text-xs font-bold tracking-widest uppercase">Innovation Lab</p>
+                  <p className="text-xs font-bold tracking-widest uppercase">R & D Lab</p>
                 </div>
               </div>
             </Reveal>
