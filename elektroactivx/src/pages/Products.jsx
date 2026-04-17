@@ -215,10 +215,9 @@ export default function Products() {
       <div className="lg:w-3/5">
 
         <p className="text-sm text-gray-500 leading-7 font-light mb-5">
-          For understanding the structure, see above graph and this link...
-        </p>
+For understanding the structure, see above graph and this link. Conducting Polymers are completely insoluble in water and organic solvents because of the extremely high charge density link with the polymeric chain. Also, they are extremely hard to disperse due to their extraordinary high surface tension, by far the highest of all known organic materials, also much higher than water.        </p>
 
-        <p className="text-sm text-gray-500 leading-7 font-light mb-5">
+        {/* <p className="text-sm text-gray-500 leading-7 font-light mb-5">
           Hence, it was important to develop techniques...
         </p>
 
@@ -232,7 +231,7 @@ export default function Products() {
 
         <p className="text-sm text-gray-500 leading-7 font-light mb-8">
           This allows for easy incorporation of polyaniline...
-        </p>
+        </p> */}
 
         {/* BUTTON */}
         <a href="/polymerdispersion"
