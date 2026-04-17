@@ -409,7 +409,7 @@ export default function Home() {
             <Reveal direction="right" delay={120}>
               <div className="relative">
                 <img
-                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=80"
+                  src="/images/industrial applications.png"
                   alt="Electronic circuit application"
                   className="w-full object-cover"
                   style={{ height: 460 }}
