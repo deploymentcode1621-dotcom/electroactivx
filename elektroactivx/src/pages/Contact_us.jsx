@@ -197,9 +197,11 @@ export default function ContactUs() {
                     India
                   </span>
                   <p className="text-sm text-gray-500 leading-6 font-light">
-                   	HQ: Lower Gangapara, <br />
-                    Behind Circuit House,<br />
-                    Dibrugarh, Assam, 786125 India
+                   	HQ:Lower Gangapara, Behind Circuit <br />
+                    House, Dibrugarh, Assam, 786125 India<br />
+
+                    Branch: 604, Ramanbag Society, Shaniwar Peth<br />
+                    Pune, 411030, Maharashtra<br />
                   </p>
                 </div>
               </div>
@@ -222,7 +224,7 @@ export default function ContactUs() {
                   </svg>
                 </div>
                 <a href="mailto:info@komstruk.co" className="text-sm text-gray-600 font-light hover:text-green-600 transition-colors">
-                 	info@Elektroactivx.com
+                 	info@elektroactivx.com
                 </a>
               </div>
             </div>
@@ -258,7 +260,7 @@ export default function ContactUs() {
                   </svg>
                 </div>
                 <a href="mailto:bernhard.wessling@komstruk.eu" className="text-sm text-gray-600 font-light hover:text-green-600 transition-colors">
-                 	bernhard.wessling@Elektroactivx.com
+                 	bernhard.wessling@elektroactivx.eu
                 </a>
               </div>
             </div>
