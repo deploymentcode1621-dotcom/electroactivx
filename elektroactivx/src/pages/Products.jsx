@@ -35,7 +35,61 @@ function Reveal({ children, delay = 0, className = "", from = "bottom" }) {
 }
 
     
-
+const features = [
+  {
+    title: "EMI Shielding",
+    desc: "Superior electromagnetic interference shielding for sensitive electronic enclosures.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="w-7 h-7">
+        <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.25C17.25 22.15 21 17.25 21 12V7z" />
+      </svg>
+    ),
+  },
+  {
+    title: "Anticorrosive Coatings",
+    desc: "Long-lasting corrosion protection for metals through polymer-enhanced paint additives.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="w-7 h-7">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    ),
+  },
+  
+  {
+    title: "Antistatic Solutions",
+    desc: "Effective charge dissipation across films, coatings, and industrial packaging.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="w-7 h-7">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+      </svg>
+    ),
+  },
+  {
+    title: "Solid Capacitors",
+    desc: "Reliable solid electrolyte capacitors with superior thermal and electrical stability.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="w-7 h-7">
+        <rect x="2" y="7" width="20" height="10" rx="2" />
+        <line x1="8" y1="12" x2="16" y2="12" />
+      </svg>
+    ),
+  },
+  {
+    title: "Electroluminescence",
+    desc: "Innovative light-emitting coatings enabling next-generation display technologies.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="w-7 h-7">
+        <circle cx="12" cy="12" r="5" />
+        <line x1="12" y1="1" x2="12" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="23" />
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+        <line x1="1" y1="12" x2="3" y2="12" />
+        <line x1="21" y1="12" x2="23" y2="12" />
+      </svg>
+    ),
+  },
+];
 /* ════════════════════════════════════════════════════════
    PRODUCTS PAGE — Konductive Polymer Dispersion
 ════════════════════════════════════════════════════════ */
@@ -219,6 +273,51 @@ export default function Products() {
   </div>
 </section>
 
+<section>
+<div className="px-6 md:px-12 py-12">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    
+    {features.map((f, i) => {
+      const isLastRow = i >= features.length - 2; // last 2 cards
+
+      return (
+        <Reveal key={f.title} delay={i * 80}>
+          
+          <div
+            className={`group border border-stone-200 p-8 bg-white hover:border-green-300 transition-all duration-300
+              ${isLastRow ? "lg:col-span-1 lg:mx-auto lg:w-full max-w-md" : ""}
+            `}
+          >
+            
+            {/* Icon */}
+            <div className="w-14 h-14 bg-stone-100 group-hover:bg-green-500 text-green-600 group-hover:text-white flex items-center justify-center mb-6 transition-all duration-300">
+              {f.icon}
+            </div>
+
+            {/* Title */}
+            <h4 className="text-lg font-semibold mb-3 group-hover:text-green-700 transition-colors">
+              {f.title}
+            </h4>
+
+            {/* Description */}
+            <p className="text-stone-500 text-sm leading-relaxed">
+              {f.desc}
+            </p>
+
+            {/* Bottom line */}
+            <div className="mt-6 h-[2px] bg-stone-200 relative overflow-hidden">
+              <div className="absolute inset-0 bg-green-500 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
+            </div>
+
+          </div>
+
+        </Reveal>
+      );
+    })}
+
+  </div>
+</div>
+  </section>
       {/* ══════════════════════════════════════════════
           03 — SCIENCE BEHIND IT
       ══════════════════════════════════════════════ */}

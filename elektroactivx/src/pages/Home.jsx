@@ -568,7 +568,7 @@ export default function Home() {
     </div>
   </Reveal>
 
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {features.map((f, i) => (
       <Reveal key={f.title} delay={i * 80}>
         <div className="group border border-stone-100 p-8 card-lift cursor-default bg-white hover:border-green-200">
@@ -588,7 +588,7 @@ export default function Home() {
         </div>
       </Reveal>
     ))}
-  </div>
+  </div> */}
 </section>
         {/* ══════════════════════════════════════
             §7 CTA BANNER
