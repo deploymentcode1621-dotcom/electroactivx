@@ -85,7 +85,7 @@ function TeamCard({ member, delay, inView }) {
   const [hov, setHov] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
-  const maxLength = 180;
+  const maxLength = 210;
   const isLong = member.desc.length > maxLength;
   const shortText = isLong ? member.desc.slice(0, maxLength) + "..." : member.desc;
 
@@ -93,84 +93,116 @@ function TeamCard({ member, delay, inView }) {
     <div
       style={{
         opacity: inView ? 1 : 0,
-        transform: inView ? "none" : "translateY(30px)",
-        transition: `all 0.8s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
+        transform: inView ? "none" : "translateY(28px)",
+        transition: `opacity 0.8s cubic-bezier(0.22,1,0.36,1) ${delay}ms,transform 0.8s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
         height: "100%",
       }}
     >
       <div
-        onMouseEnter={() => setHov(true)}
-        onMouseLeave={() => setHov(false)}
         style={{
-          background: "linear-gradient(145deg,#0f172a,#111827)",
-          border: "1px solid rgba(255,255,255,0.08)",
-          borderRadius: 16,
-          padding: "24px",
+          background: "#fff",
+          border: "1px solid #f3f4f6",
+          overflow: "hidden",
+          cursor: "default",
+          boxShadow: hov ? "0 20px 50px rgba(0,0,0,0.12)" : "0 2px 12px rgba(0,0,0,0.05)",
+          transform: hov ? "translateY(-5px)" : "translateY(0)",
+          transition: "box-shadow 0.42s cubic-bezier(0.16,1,0.3,1),transform 0.42s cubic-bezier(0.16,1,0.3,1)",
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          transition: "all 0.4s ease",
-          transform: hov ? "translateY(-8px)" : "translateY(0)",
-          boxShadow: hov
-            ? "0 25px 60px rgba(0,0,0,0.6)"
-            : "0 8px 25px rgba(0,0,0,0.3)",
         }}
+        onMouseEnter={() => setHov(true)}
+        onMouseLeave={() => setHov(false)}
       >
-        {/* CONTENT */}
-        <div>
-          <h3
+        <div
+          style={{
+            height: 3,
+            background: "linear-gradient(90deg,#16a34a,#c9a84c)",
+            transform: hov ? "scaleX(1)" : "scaleX(0)",
+            transformOrigin: "left",
+            transition: "transform 0.42s cubic-bezier(0.16,1,0.3,1)",
+          }}
+        />
+
+        {/* ✅ Image removed */}
+
+        <div
+          style={{
+            padding: "28px 22px 26px",
+            display: "flex",
+            flexDirection: "column",
+            flexGrow: 1,
+          }}
+        >
+          <div
             style={{
-              color: "#fff",
-              fontSize: "1.1rem",
+              height: 2,
+              background: "linear-gradient(90deg,#16a34a,#c9a84c)",
+              width: hov ? 42 : 20,
+              marginBottom: 12,
+              transition: "width 0.42s cubic-bezier(0.16,1,0.3,1)",
+            }}
+          />
+          <p
+            style={{
+              fontFamily: "Georgia,serif",
               fontWeight: 600,
-              marginBottom: 6,
+              color: "#111",
+              fontSize: "0.97rem",
+              marginBottom: 3,
+              lineHeight: 1.3,
             }}
           >
             {member.name}
-          </h3>
-
+          </p>
           <p
             style={{
-              color: "#4ade80",
-              fontSize: "0.7rem",
-              letterSpacing: "0.08em",
+              fontSize: "0.6rem",
+              letterSpacing: "0.1em",
               textTransform: "uppercase",
-              marginBottom: 14,
+              color: "#16a34a",
+              fontWeight: 600,
+              marginBottom: 10,
             }}
           >
             {member.role}
           </p>
 
-          <p
-            style={{
-              fontSize: "0.85rem",
-              color: "#9ca3af",
-              lineHeight: 1.6,
-            }}
-          >
-            {expanded ? member.desc : shortText}
-          </p>
-        </div>
+          <div style={{ flexGrow: 1 }}>
+            <p
+              style={{
+                fontSize: "0.8rem",
+                color: "#9ca3af",
+                lineHeight: 1.7,
+                fontWeight: 300,
+                minHeight: 160,
+              }}
+            >
+              {expanded ? member.desc : shortText}
+            </p>
+          </div>
 
-        {/* READ MORE */}
-        {isLong && (
-          <button
-            onClick={() => setExpanded(!expanded)}
-            style={{
-              marginTop: 16,
-              border: "none",
-              background: "transparent",
-              color: "#4ade80",
-              fontSize: "0.75rem",
-              fontWeight: 600,
-              cursor: "pointer",
-              alignSelf: "flex-start",
-            }}
-          >
-            {expanded ? "Read Less" : "Read More"}
-          </button>
-        )}
+          {isLong && (
+            <button
+              onClick={() => setExpanded(!expanded)}
+              style={{
+                marginTop: 12,
+                alignSelf: "flex-start",
+                border: "none",
+                background: "transparent",
+                color: "#16a34a",
+                fontSize: "0.72rem",
+                fontWeight: 600,
+                letterSpacing: "0.05em",
+                textTransform: "uppercase",
+                cursor: "pointer",
+                padding: 0,
+              }}
+            >
+              {expanded ? "Read Less" : "Read More"}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -188,21 +220,31 @@ export default function AboutUs() {
       name: "Dr. Arindam Adhikari",
       role: "Managing Director",
       desc: "Dr. Arindam Adhikari (Ph.D., National Chemical Laboratory, Pune) worked as a postdoctoral and senior researcher at KTH Royal Institute of Technology and YKI Institute for Surface Chemistry (RISE) in Stockholm, Sweden from 2005–2010. After returning to India he worked as a scientist at CSIR-Central Electrochemical Research Institute (CECRI). He is also founder of Aadarsh Innovations, a Pune-based contract research organisation. His research focuses on conductive polymers and their applications, with 33 publications and 5 patents.",
+      img: "/images/arindam.jpg",
+    },
+    {
+      name: "Dr. Bernhard Wessling",
+      role: "Chief Scientific Advisor",
+      desc: "Dr. Bernhard Wessling is a globally recognised authority in conductive polymers. He pioneered the dispersion processing of conductive polymers and their corrosion-resistant applications, successfully bringing them to market. His work spans chemistry, nanotechnology, and organic metals. He has published around 160 papers and holds more than 35 patents worldwide.",
+      img: "/images/bernhard.jpeg",
     },
     {
       name: "Mr. Jayesh Mahajan",
       role: "Chief Financial Officer",
       desc: "Mr. Jayesh Mahajan oversees the financial strategy and management of ElektroactivX. With strong experience in financial planning, corporate operations and strategic investment, he ensures financial stability and sustainable growth of the organisation.",
+      img: "/images/jayesh.jpeg",
     },
     {
       name: "Mr. Shammi Kumar Singh",
       role: "Director, Operations",
       desc: "Mr. Shammi Kumar Singh (M.Sc. Polymer Science) is co-founder of ElektroactivX and an expert in polymer manufacturing and quality control. Associated with Dr. Adhikari since 2013, he managed laboratory operations and pilot-scale production earlier. He now leads daily operations and production at ElektroactivX, ensuring manufacturing excellence.",
+      img: "/images/shammi.jpeg",
     },
     {
       name: "Mrs. Joyeeta Adhikari",
       role: "Co-Founder & HR Head",
       desc: "Mrs. Joyeeta Adhikari (M.Sc., B.Ed.) is co-founder of ElektroactivX with over 23 years of teaching and leadership experience in STEM education. A NASA-trained educator, she leads HR, recruitment, organisational culture and team development while driving innovation and professional growth across the company.",
+      img: "/images/joyeeta.jpeg",
     },
   ];
 
@@ -298,7 +340,7 @@ export default function AboutUs() {
         ))}
 
         <div className="relative z-20 flex flex-col justify-center px-8 md:px-16 lg:px-24 h-full pb-10">
-          <p className="text-white/45 text-xs tracking-widest uppercase font-light mb-3 fu">— About Us</p>
+          
           <h1 className="text-white font-light leading-none tracking-tight mb-4 fu d2" style={{ fontSize: "clamp(1.8rem,4.8vw,3.8rem)" }}>
             Advanced
             <br />
@@ -311,19 +353,8 @@ export default function AboutUs() {
             found the way to make polymer processible.
           </p>
           <div className="flex items-center gap-4 fu d6">
-            <a
-              href="#story"
-              className="inline-block px-7 py-3 text-white font-medium text-xs tracking-widest uppercase hover:opacity-90 transition-opacity"
-              style={{ background: "#15803d" }}
-            >
-              Our Story
-            </a>
-            <a
-              href="#team"
-              className="inline-block px-6 py-3 text-white font-light text-xs tracking-widest uppercase border border-white/28 hover:border-white/60 transition-colors"
-            >
-              Meet the Team
-            </a>
+            
+           
           </div>
         </div>
       </section>
@@ -344,7 +375,7 @@ export default function AboutUs() {
       <section className="w-full bg-white py-20 md:py-28 px-8 md:px-16 lg:px-24">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-14 lg:gap-24 items-center">
           <Reveal from="left" className="lg:w-5/12">
-            <p className="text-xs tracking-widest uppercase font-medium text-gray-400 mb-3">Our Mission</p>
+
             <h2 className="font-light text-gray-900 leading-tight tracking-tight mb-4" style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)" }}>
               Solving the world's
               <br />
@@ -384,7 +415,7 @@ export default function AboutUs() {
               <div>
                 <p className="text-xs tracking-widest uppercase text-gray-400 font-medium mb-1">Our Journey</p>
                 <h2 className="font-light text-gray-900 leading-tight" style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)" }}>
-                  14 Years of
+                  25 Years of
                   <br />
                   <strong className="font-bold">Scientific Excellence</strong>
                 </h2>
@@ -521,56 +552,22 @@ export default function AboutUs() {
                 </p>
               </div>
             </Reveal>
-<div
-  ref={teamRef}
-  className="mb-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 place-items-center"
->
-  {teamMembers.map((m, i) => (
-    <div key={m.name} className="w-full max-w-[320px]">
-      <TeamCard
-        member={m}
-        delay={i * 95}
-        inView={teamVisible}
-      />
-    </div>
-  ))}
-</div>
 
-
-
-
-         
-
-            <Reveal>
-              <div
-                className="flex flex-col sm:flex-row items-center justify-between gap-5 pt-10 border-t"
-                style={{ borderColor: "rgba(255,255,255,0.07)" }}
-              >
-                <div className="max-w-md">
-                  <p className="text-green-400 text-xs tracking-widest uppercase mb-2 font-medium">Careers at ElektroactivX</p>
-
-                  <h3 className="text-white text-lg font-light leading-snug mb-2">
-                    Build the future of <span style={{ color: "#4ade80" }}>conductive materials</span>
-                  </h3>
-
-                  <p className="text-gray-500 text-sm font-light leading-6">
-                    Join an innovation-driven company working on advanced conductive polymers, anticorrosion technologies, EMI shielding, and
-                    next-generation industrial materials.
-                  </p>
-                </div>
-
-                <a
-                  href="/career"
-                  className="inline-flex items-center gap-2 px-8 py-3 text-green-400 font-medium text-xs tracking-widest uppercase transition-all duration-300 hover:text-white hover:bg-green-800"
-                  style={{ border: "1px solid rgba(34,197,94,0.35)" }}
-                >
-                  Explore Careers
-                  <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
+            <div ref={teamRef} className="mb-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {teamMembers.slice(0, 3).map((m, i) => (
+                  <TeamCard key={m.name} member={m} delay={i * 95} inView={teamVisible} />
+                ))}
               </div>
-            </Reveal>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto mt-5">
+                {teamMembers.slice(3, 5).map((m, i) => (
+                  <TeamCard key={m.name} member={m} delay={(i + 3) * 95} inView={teamVisible} />
+                ))}
+              </div>
+            </div>
+
+
           </div>
         </div>
       </section>
