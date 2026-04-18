@@ -223,11 +223,20 @@ export default function ProductPageLayout({
 
               <div className="p-6">
                 <Link
-                  to="/contact_us"
-                  className={`inline-flex items-center justify-center w-full px-6 py-3.5 text-white font-medium text-sm tracking-wide rounded-full bg-gradient-to-r ${accentClasses.button}`}
-                >
-                  Enquire Now
-                </Link>
+  to="/contact_us"
+  className={`inline-flex items-center justify-center w-full px-6 py-4 text-white font-bold text-sm uppercase tracking-[0.14em] transition-all duration-300 ${
+    accent === "gold"
+      ? "bg-amber-500 hover:bg-amber-600"
+      : "bg-green-500 hover:bg-green-600"
+  }`}
+  style={{
+    borderRadius: "0px",
+    border: "2px solid rgba(255,255,255,0.08)",
+    boxShadow: "0 6px 18px rgba(0,0,0,0.18)",
+  }}
+>
+  Enquire Now
+</Link>
               </div>
             </div>
           </Reveal>
@@ -292,11 +301,16 @@ export default function ProductPageLayout({
               </div>
 
               <Link
-                to="/contact_us"
-                className="inline-flex items-center gap-2 px-8 py-4 text-white font-medium text-sm tracking-wide rounded-full bg-gradient-to-r from-green-600 to-green-700"
-              >
-                Contact Us
-              </Link>
+  to="/contact_us"
+  className="inline-flex items-center justify-center px-8 py-4 text-white font-bold text-sm uppercase tracking-[0.14em] bg-green-500 hover:bg-green-600 transition-all duration-300"
+  style={{
+    borderRadius: "0px",
+    border: "2px solid rgba(255,255,255,0.08)",
+    boxShadow: "0 6px 18px rgba(0,0,0,0.18)",
+  }}
+>
+  Contact Us
+</Link>
             </div>
           </div>
         </div>
