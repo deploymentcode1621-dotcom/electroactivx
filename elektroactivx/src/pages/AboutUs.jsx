@@ -406,7 +406,7 @@ export default function AboutUs() {
 
           <Reveal from="right" delay={120} className="lg:w-7/12 iz">
             <img
-              src="/images/research.jpg"
+              src="/images/corrosion.jpg"
               alt="Elektroactivx mission"
               className="w-full object-cover"
               style={{ height: 340, filter: "brightness(0.86) saturate(0.78)" }}
