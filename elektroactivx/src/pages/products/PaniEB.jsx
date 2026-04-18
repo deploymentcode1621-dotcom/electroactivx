@@ -31,7 +31,8 @@ export default function PaniEB() {
         "Formulation work for specialized systems",
         "Material science experimentation",
       ]}
-      accent="gold"
+      accent="green"
+      buttonShape="rectangle" // ✅ this is correct
     />
   );
 }
