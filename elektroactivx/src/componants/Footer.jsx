@@ -204,7 +204,7 @@ const Footer = () => {
               href="mailto:info@Elektroactivx.co"
               className="text-white text-sm underline underline-offset-4 block mt-2 hover:text-emerald-400 transition-colors break-all"
             >
-              info@elektroactivx.co
+              info@elektroactivx.com
             </a>
           </div>
 
@@ -223,7 +223,7 @@ const Footer = () => {
               href="mailto:bernhard.wessling@Elektroactivx.eu"
               className="text-white text-sm underline underline-offset-4 block mt-4 hover:text-emerald-400 transition-colors whitespace-nowrap"
             >
-              bernhard.wessling@elektroactivx.eu
+              bernhard.wessling@elektroactivx.co
             </a>
           </div>
 
