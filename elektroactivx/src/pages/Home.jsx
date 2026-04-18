@@ -474,7 +474,7 @@ export default function Home() {
             <Reveal direction="right" delay={120}>
               <div className="relative">
                 <img
-                  src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80"
+                  src="/images/Engineered Formulations.jpg"
                   alt="Conductive polymer products"
                   className="w-full object-cover"
                   style={{ height: 520 }}

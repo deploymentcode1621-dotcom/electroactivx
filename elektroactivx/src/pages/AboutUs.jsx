@@ -340,7 +340,6 @@ export default function AboutUs() {
         ))}
 
         <div className="relative z-20 flex flex-col justify-center px-8 md:px-16 lg:px-24 h-full pb-10">
-          
           <h1 className="text-white font-light leading-none tracking-tight mb-4 fu d2" style={{ fontSize: "clamp(1.8rem,4.8vw,3.8rem)" }}>
             Advanced
             <br />
@@ -352,10 +351,20 @@ export default function AboutUs() {
             Supercapacitor, Sensors, Membrane etc. Interest in research on conducting polymers has grown after the 2000 Nobel prize and people
             found the way to make polymer processible.
           </p>
+
           <div className="flex items-center gap-4 fu d6">
-            
-           
-          </div>
+  <a
+    href="#team"
+    className="inline-block px-7 py-3.5 text-white font-semibold text-xs tracking-widest uppercase transition-all duration-300 hover:scale-[1.02]"
+    style={{
+      background: "linear-gradient(90deg, #22c55e 0%, #16a34a 100%)",
+      boxShadow: "0 8px 24px rgba(34,197,94,0.28)",
+      border: "1px solid rgba(255,255,255,0.08)",
+    }}
+  >
+    Meet the Team
+  </a>
+</div>
         </div>
       </section>
 
@@ -375,7 +384,6 @@ export default function AboutUs() {
       <section className="w-full bg-white py-20 md:py-28 px-8 md:px-16 lg:px-24">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-14 lg:gap-24 items-center">
           <Reveal from="left" className="lg:w-5/12">
-
             <h2 className="font-light text-gray-900 leading-tight tracking-tight mb-4" style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)" }}>
               Solving the world's
               <br />
@@ -398,7 +406,7 @@ export default function AboutUs() {
 
           <Reveal from="right" delay={120} className="lg:w-7/12 iz">
             <img
-              src="/images/research.jpg"
+              src="/images/corrosion.jpg"
               alt="Elektroactivx mission"
               className="w-full object-cover"
               style={{ height: 340, filter: "brightness(0.86) saturate(0.78)" }}
@@ -567,12 +575,43 @@ export default function AboutUs() {
               </div>
             </div>
 
+            <Reveal>
+              <div
+                className="flex flex-col sm:flex-row items-center justify-between gap-5 pt-10 border-t"
+                style={{ borderColor: "rgba(255,255,255,0.07)" }}
+              >
+                <div className="max-w-md">
+                  <p className="text-green-400 text-xs tracking-widest uppercase mb-2 font-medium">
+                    Careers at ElektroactivX
+                  </p>
 
+                  <h3 className="text-white text-lg font-light leading-snug mb-2">
+                    Build the future of <span style={{ color: "#4ade80" }}>conductive materials</span>
+                  </h3>
+
+                  <p className="text-gray-500 text-sm font-light leading-6">
+                    Join an innovation-driven company working on advanced conductive polymers, anticorrosion technologies, EMI shielding, and
+                    next-generation industrial materials.
+                  </p>
+                </div>
+
+                <a
+                  href="/career"
+                  className="inline-flex items-center gap-2 px-8 py-3 text-green-400 font-medium text-xs tracking-widest uppercase transition-all duration-300 hover:text-white hover:bg-green-800"
+                  style={{ border: "1px solid rgba(34,197,94,0.35)" }}
+                >
+                  Explore Careers
+                  <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-     
+      <Footer />
     </main>
   );
 }

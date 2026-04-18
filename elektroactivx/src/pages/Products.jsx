@@ -199,7 +199,7 @@ export default function Products() {
     {/* ✅ IMAGE ADDED */}
     <div className="mb-12 flex justify-center">
   <img 
-    src="/images/coductiveformula.png" 
+     src="/images/coductiveformula.png" 
     alt="Polymer Structure"
     className="w-[650px] max-w-full h-auto rounded-xl shadow-md"
   />
@@ -334,7 +334,7 @@ For understanding the structure, see above graph and this link. Conducting Polym
           <Reveal className="iz mb-12 overflow-hidden" style={{ boxShadow:"0 4px 32px rgba(0,0,0,0.08)" }}>
             <div className="relative overflow-hidden" style={{ height:320 }}>
               <img
-                src="https://images.unsplash.com/photo-1607962837359-5e7e89f86776?w=1400&q=92"
+                src="/images/PolyanilineProcessing.jpg"
                 alt="Polymer science laboratory"
                 className="w-full h-full object-cover"
                 style={{ filter:"brightness(0.82) saturate(0.78)", objectPosition:"center 40%" }}
@@ -358,19 +358,19 @@ For understanding the structure, see above graph and this link. Conducting Polym
               {
                 num:"01",
                 title:"Dispersion Challenge",
-                img:"https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=500&q=88",
+                img:"/images/DispersionChallenge.png",
                 text:"Polyaniline has the highest surface tension of all known organic materials — making it extraordinarily difficult to disperse in any solvent. Standard mixing approaches fail entirely.",
               },
               {
                 num:"02",
                 title:"The Breakthrough",
-                img:"https://images.unsplash.com/photo-1576086213369-97a306d36557?w=500&q=88",
+                img:"/images/TheBreakthrough.png",
                 text:"Dr. Bernhard Wessling pioneered techniques to process Polyaniline at nanoscopic particle sizes of ~100 nm — enabling stable, ultrafine dispersions across a wide range of industrial media.",
               },
               {
                 num:"03",
                 title:"The Masterbatch Solution",
-                img:"https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=500&q=88",
+                img:"/images/MasterbatchSolution.png",
                 text:"Our Thermoplastic Resin Polyaniline Masterbatches solve the handling problem entirely. Soluble matrices allow easy incorporation into any solvent system or polymer composition.",
               },
             ].map((card, i) => (

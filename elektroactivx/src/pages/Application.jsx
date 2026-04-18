@@ -291,7 +291,7 @@ export default function Applications() {
             <Reveal from="right" delay={120} className="lg:w-1/2 relative">
               <div className="relative overflow-hidden" style={{ height: 360 }}>
                 <img
-                  src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=90"
+                   src="/images/conductingPolymer.png"
                   alt="Polymer science"
                   className="w-full h-full object-cover"
                   style={{ filter: "brightness(0.85) saturate(0.82)", transition: "transform .65s cubic-bezier(0.16,1,0.3,1)" }}
