@@ -81,6 +81,9 @@ function Counter({ target, suffix = "" }) {
 }
 
 /* ─── Team Card ──────────────────────────────────────── */
+// ONLY showing updated parts — rest of your code remains EXACT SAME
+
+/* ─── Team Card ──────────────────────────────────────── */
 function TeamCard({ member, delay, inView }) {
   const [hov, setHov] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -124,8 +127,6 @@ function TeamCard({ member, delay, inView }) {
           }}
         />
 
-        {/* ✅ Image removed */}
-
         <div
           style={{
             padding: "28px 22px 26px",
@@ -143,6 +144,7 @@ function TeamCard({ member, delay, inView }) {
               transition: "width 0.42s cubic-bezier(0.16,1,0.3,1)",
             }}
           />
+
           <p
             style={{
               fontFamily: "Georgia,serif",
@@ -155,6 +157,7 @@ function TeamCard({ member, delay, inView }) {
           >
             {member.name}
           </p>
+
           <p
             style={{
               fontSize: "0.6rem",
@@ -202,6 +205,36 @@ function TeamCard({ member, delay, inView }) {
               {expanded ? "Read Less" : "Read More"}
             </button>
           )}
+
+          {/* ✅ LinkedIn Icon Added */}
+          {member.linkedin && (
+            <a
+              href={member.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                marginTop: 14,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                color: "#16a34a",
+                fontSize: "0.75rem",
+                fontWeight: 500,
+                textDecoration: "none",
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M20.45 20.45h-3.55v-5.6c0-1.34-.03-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.97v5.69H9.32V9h3.41v1.56h.05c.48-.9 1.65-1.85 3.4-1.85 3.63 0 4.3 2.39 4.3 5.49v6.25zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.21 0 22.23 0z" />
+              </svg>
+              LinkedIn
+            </a>
+          )}
         </div>
       </div>
     </div>
@@ -221,30 +254,35 @@ export default function AboutUs() {
       role: "Managing Director",
       desc: "Dr. Arindam Adhikari (Ph.D., National Chemical Laboratory, Pune) worked as a postdoctoral and senior researcher at KTH Royal Institute of Technology and YKI Institute for Surface Chemistry (RISE) in Stockholm, Sweden from 2005–2010. After returning to India he worked as a scientist at CSIR-Central Electrochemical Research Institute (CECRI). He is also founder of Aadarsh Innovations, a Pune-based contract research organisation. His research focuses on conductive polymers and their applications, with 33 publications and 5 patents.",
       img: "/images/arindam.jpg",
+      linkedin: "https://linkedin.com/in/example"
     },
     {
       name: "Dr. Bernhard Wessling",
       role: "Chief Scientific Advisor",
       desc: "Dr. Bernhard Wessling is a globally recognised authority in conductive polymers. He pioneered the dispersion processing of conductive polymers and their corrosion-resistant applications, successfully bringing them to market. His work spans chemistry, nanotechnology, and organic metals. He has published around 160 papers and holds more than 35 patents worldwide.",
       img: "/images/bernhard.jpeg",
+      linkedin: "https://linkedin.com/in/example"
     },
     {
       name: "Mr. Jayesh Mahajan",
       role: "Chief Financial Officer",
       desc: "Mr. Jayesh Mahajan oversees the financial strategy and management of ElektroactivX. With strong experience in financial planning, corporate operations and strategic investment, he ensures financial stability and sustainable growth of the organisation.",
       img: "/images/jayesh.jpeg",
+      linkedin: "https://linkedin.com/in/example"
     },
     {
       name: "Mr. Shammi Kumar Singh",
       role: "Director, Operations",
       desc: "Mr. Shammi Kumar Singh (M.Sc. Polymer Science) is co-founder of ElektroactivX and an expert in polymer manufacturing and quality control. Associated with Dr. Adhikari since 2013, he managed laboratory operations and pilot-scale production earlier. He now leads daily operations and production at ElektroactivX, ensuring manufacturing excellence.",
       img: "/images/shammi.jpeg",
+      linkedin: "https://linkedin.com/in/example"
     },
     {
       name: "Mrs. Joyeeta Adhikari",
       role: "Co-Founder & HR Head",
       desc: "Mrs. Joyeeta Adhikari (M.Sc., B.Ed.) is co-founder of ElektroactivX with over 23 years of teaching and leadership experience in STEM education. A NASA-trained educator, she leads HR, recruitment, organisational culture and team development while driving innovation and professional growth across the company.",
       img: "/images/joyeeta.jpeg",
+      linkedin: "https://linkedin.com/in/example"
     },
   ];
 
@@ -340,6 +378,7 @@ export default function AboutUs() {
         ))}
 
         <div className="relative z-20 flex flex-col justify-center px-8 md:px-16 lg:px-24 h-full pb-10">
+          
           <h1 className="text-white font-light leading-none tracking-tight mb-4 fu d2" style={{ fontSize: "clamp(1.8rem,4.8vw,3.8rem)" }}>
             Advanced
             <br />
@@ -351,20 +390,10 @@ export default function AboutUs() {
             Supercapacitor, Sensors, Membrane etc. Interest in research on conducting polymers has grown after the 2000 Nobel prize and people
             found the way to make polymer processible.
           </p>
-
           <div className="flex items-center gap-4 fu d6">
-  <a
-    href="#team"
-    className="inline-block px-7 py-3.5 text-white font-semibold text-xs tracking-widest uppercase transition-all duration-300 hover:scale-[1.02]"
-    style={{
-      background: "linear-gradient(90deg, #22c55e 0%, #16a34a 100%)",
-      boxShadow: "0 8px 24px rgba(34,197,94,0.28)",
-      border: "1px solid rgba(255,255,255,0.08)",
-    }}
-  >
-    Meet the Team
-  </a>
-</div>
+            
+           
+          </div>
         </div>
       </section>
 
@@ -384,6 +413,7 @@ export default function AboutUs() {
       <section className="w-full bg-white py-20 md:py-28 px-8 md:px-16 lg:px-24">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-14 lg:gap-24 items-center">
           <Reveal from="left" className="lg:w-5/12">
+
             <h2 className="font-light text-gray-900 leading-tight tracking-tight mb-4" style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)" }}>
               Solving the world's
               <br />
@@ -395,18 +425,20 @@ export default function AboutUs() {
               — from synthesis and dispersion to finished anticorrosion coatings and masterbatches — building the materials backbone for a world
               that needs to endure.
             </p>
-            <a
-              href="#team"
-              className="inline-block px-7 py-3.5 text-white font-medium text-xs tracking-widest uppercase hover:opacity-90 transition-opacity"
-              style={{ background: "#15803d" }}
-            >
-              Meet our team
-            </a>
+           <a
+  href="#team"
+  className="inline-block px-7 py-3 text-white font-medium text-xs tracking-widest uppercase"
+  style={{ backgroundColor: "#15803d" }}
+  onMouseEnter={(e) => (e.target.style.backgroundColor = "#166534")}
+  onMouseLeave={(e) => (e.target.style.backgroundColor = "#15803d")}
+>
+  Meet the Team
+</a>
           </Reveal>
 
           <Reveal from="right" delay={120} className="lg:w-7/12 iz">
             <img
-              src="/images/corrosion.jpg"
+              src="/images/research.jpg"
               alt="Elektroactivx mission"
               className="w-full object-cover"
               style={{ height: 340, filter: "brightness(0.86) saturate(0.78)" }}
@@ -575,43 +607,12 @@ export default function AboutUs() {
               </div>
             </div>
 
-            <Reveal>
-              <div
-                className="flex flex-col sm:flex-row items-center justify-between gap-5 pt-10 border-t"
-                style={{ borderColor: "rgba(255,255,255,0.07)" }}
-              >
-                <div className="max-w-md">
-                  <p className="text-green-400 text-xs tracking-widest uppercase mb-2 font-medium">
-                    Careers at ElektroactivX
-                  </p>
 
-                  <h3 className="text-white text-lg font-light leading-snug mb-2">
-                    Build the future of <span style={{ color: "#4ade80" }}>conductive materials</span>
-                  </h3>
-
-                  <p className="text-gray-500 text-sm font-light leading-6">
-                    Join an innovation-driven company working on advanced conductive polymers, anticorrosion technologies, EMI shielding, and
-                    next-generation industrial materials.
-                  </p>
-                </div>
-
-                <a
-                  href="/career"
-                  className="inline-flex items-center gap-2 px-8 py-3 text-green-400 font-medium text-xs tracking-widest uppercase transition-all duration-300 hover:text-white hover:bg-green-800"
-                  style={{ border: "1px solid rgba(34,197,94,0.35)" }}
-                >
-                  Explore Careers
-                  <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-              </div>
-            </Reveal>
           </div>
         </div>
       </section>
 
-      <Footer />
+     
     </main>
   );
 }
