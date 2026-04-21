@@ -22,6 +22,7 @@ const productLinks = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
 
   const location = useLocation();
   const isHome = location.pathname === "/";
@@ -44,12 +45,13 @@ export default function Header() {
 
         {/* Logo */}
         <NavLink to="/" className="flex items-center">
-  <img
-    src="/images/logo.png"
-    alt="ElektroactivX"
-    className="h-10 w-auto object-contain"
-  />
-</NavLink>
+          <img
+            src="/images/logo.png"
+            alt="ElektroactivX"
+            className="h-10 w-auto object-contain"
+          />
+        </NavLink>
+
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => {
@@ -73,11 +75,10 @@ export default function Header() {
                   {/* Dropdown */}
                   <div className="absolute left-0 top-[calc(100%+16px)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                     <div
-  className={`w-64 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl py-2
-  ${!isHome || scrolled ? "bg-black/60" : "bg-black/20"}
-`}
->
-
+                      className={`w-64 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl py-2
+                      ${!isHome || scrolled ? "bg-black/60" : "bg-black/20"}
+                    `}
+                    >
                       {productLinks.map((item) => (
                         <NavLink
                           key={item.label}
@@ -93,7 +94,6 @@ export default function Header() {
                           {item.label}
                         </NavLink>
                       ))}
-
                     </div>
                   </div>
 
@@ -136,34 +136,60 @@ export default function Header() {
       >
         <nav className="flex flex-col px-6 py-4 gap-4">
 
-          {navLinks.map((link) => (
-            <div key={link.label}>
+          {navLinks.map((link) => {
+            if (link.label === "PRODUCTS") {
+              return (
+                <div key={link.label}>
 
-              <NavLink
-                to={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-base text-white/80 hover:text-white"
-              >
-                {link.label}
-              </NavLink>
-
-              {link.label === "PRODUCTS" && (
-                <div className="pl-4 flex flex-col gap-2 border-l border-white/10 mt-2">
-                  {productLinks.map((item) => (
-                    <NavLink
-                      key={item.label}
-                      to={item.href}
-                      onClick={() => setMenuOpen(false)}
-                      className="text-sm text-white/70 hover:text-white"
+                  {/* Toggle button for PRODUCTS on mobile */}
+                  <button
+                    onClick={() => setProductsOpen(!productsOpen)}
+                    className="w-full flex items-center justify-between text-base text-white/80 hover:text-white"
+                  >
+                    <span>{link.label}</span>
+                    <span
+                      className="text-xs transition-transform duration-300"
+                      style={{ transform: productsOpen ? "rotate(180deg)" : "rotate(0deg)" }}
                     >
-                      {item.label}
-                    </NavLink>
-                  ))}
-                </div>
-              )}
+                      ▾
+                    </span>
+                  </button>
 
-            </div>
-          ))}
+                  {/* Collapsible dropdown */}
+                  <div
+                    className="overflow-hidden transition-all duration-300"
+                    style={{ maxHeight: productsOpen ? "400px" : "0px", opacity: productsOpen ? 1 : 0 }}
+                  >
+                    <div className="pl-4 flex flex-col gap-2 border-l border-white/10 mt-2">
+                      {productLinks.map((item) => (
+                        <NavLink
+                          key={item.label}
+                          to={item.href}
+                          onClick={() => { setMenuOpen(false); setProductsOpen(false); }}
+                          className="text-sm text-white/70 hover:text-white"
+                        >
+                          {item.label}
+                        </NavLink>
+                      ))}
+                    </div>
+                  </div>
+
+                </div>
+              );
+            }
+
+            return (
+              <div key={link.label}>
+                <NavLink
+                  to={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-base text-white/80 hover:text-white"
+                >
+                  {link.label}
+                </NavLink>
+              </div>
+            );
+          })}
 
         </nav>
       </div>
