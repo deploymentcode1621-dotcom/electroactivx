@@ -11,7 +11,7 @@ const navLinks = [
 ];
 
 const productLinks = [
-  { label: "Conductive Polymer Dispersion", href: "/products/dispersion" },
+  // { label: "Conductive Polymer Dispersion", href: "/products/dispersion" },
   { label: "Polyaniline Emeraldine Base", href: "/products/pani-eb" },
   { label: "PAni-KOT Coating", href: "/products/pani-kot" },
   { label: "Polyaniline Masterbatches", href: "/products/masterbatch" },
