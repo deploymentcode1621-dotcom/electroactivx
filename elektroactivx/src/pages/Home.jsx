@@ -58,9 +58,9 @@ function Counter({ target, suffix = "" }) {
 }
 
 const APPLICATIONS = [
-  { title: "Corrosion Protection",  desc: "This is an extremely powerful corrosion protection principle.  " },
-  { title: "EMI Shielding",         desc: "Using our highly conductive masterbatch, products can be developed for medium requirements in EMI shielding." },
-  { title: "Antistatic",            desc: "Using our highly conductive masterbatch, products can be developed for various antistatic applications." },
+  { title: "Corrosion Protection",  desc: "Long-lasting smart intelligent corrosion protection technology for metals using conductive polymer based paint additives. This is safe and environmentally friendly alternative to hazardous anti-corrosion pigments. This is an extremely powerful corrosion protection principle having scratch/pinhole tolerant property.  " },
+  { title: "EMI Shielding",         desc: "Using our highly conductive masterbatch, products can be developed for ueful in protecting against Elctro-magnetic interference." },
+  { title: "Antistatic",            desc: "with our highly conductive masterbatch effective charge dissipative products can be developed suitable for films, coating and industrial packaging application." },
   { title: "Solid Capacitors",      desc: "Using specially prepared dispersed polyaniline, an extremely high-performing solid state capacitor had been.." },
   { title: "Electroluminescence",   desc: "Light-emitting polymer coatings enabling next-generation flexible and large-area display technologies." },
 ];
