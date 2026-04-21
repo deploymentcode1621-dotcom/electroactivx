@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Products from "./pages/Products";
 
-import Dispersion from "./pages/products/Dispersion";
+// import Dispersion from "./pages/products/Dispersion";
 import PaniEB from "./pages/products/PaniEB";
 import PaniKot from "./pages/products/PaniKot";
 import Masterbatch from "./pages/products/Masterbatch";
@@ -29,7 +29,7 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/products" element={<Products />} />
 
-          <Route path="/products/dispersion" element={<Dispersion />} />
+          {/* <Route path="/products/dispersion" element={<Dispersion />} /> */}
           <Route path="/products/pani-eb" element={<PaniEB />} />
           <Route path="/products/pani-kot" element={<PaniKot />} />
           <Route path="/products/masterbatch" element={<Masterbatch />} />

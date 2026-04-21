@@ -241,42 +241,38 @@ function SEMSection() {
           </div>
         </Reveal>
         <Reveal delay={150}>
-          <div className="rounded-2xl overflow-hidden" style={{ background: "#1a2e22" }}>
-            <div className="relative aspect-square" style={{ background: "radial-gradient(ellipse at 40% 40%, rgba(46,80,55,0.9) 0%, #0f1a14 100%)" }}>
-              <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full">
-                <defs>
-                  <radialGradient id="pg1" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#8ab89a" stopOpacity="0.9" />
-                    <stop offset="100%" stopColor="#2e5040" stopOpacity="0.6" />
-                  </radialGradient>
-                  <radialGradient id="pg2" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#a0c8a8" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#1a3025" stopOpacity="0.5" />
-                  </radialGradient>
-                </defs>
-                <g opacity="0.85">
-                  {[[80,160,22,"pg1"],[118,148,20,"pg2"],[154,158,21,"pg1"],[188,145,19,"pg2"],[220,158,22,"pg1"],
-                    [100,220,19,"pg2"],[135,230,21,"pg1"],[170,218,20,"pg2"],[205,228,22,"pg1"],[240,215,18,"pg2"],
-                    [270,170,20,"pg1"],[300,158,21,"pg2"],[330,168,19,"pg1"]].map(([cx,cy,r,g],i) => (
-                    <circle key={i} cx={cx} cy={cy} r={r} fill={`url(#${g})`} />
-                  ))}
-                  <circle cx="60" cy="280" r="18" fill="url(#pg2)" opacity="0.7" />
-                  <circle cx="290" cy="260" r="20" fill="url(#pg1)" opacity="0.75" />
-                  <circle cx="350" cy="240" r="16" fill="url(#pg2)" opacity="0.65" />
-                  <circle cx="140" cy="290" r="17" fill="url(#pg1)" opacity="0.7" />
-                </g>
-              </svg>
-              <div className="absolute bottom-4 left-4 flex items-center gap-2">
-                <div className="w-20 h-1 bg-white/60" />
-                <span className="text-xs text-white/55 font-mono">300 nm</span>
-              </div>
-            </div>
-            <div className="bg-black/50 px-5 py-3 flex justify-between items-center">
-              <span className="text-xs text-white/45 font-mono tracking-wider">SEM 0062B — Pearl-chain structure</span>
-              <span className="text-xs text-green-400/70 font-mono">×50,000</span>
-            </div>
-          </div>
-        </Reveal>
+  <div className="rounded-2xl overflow-hidden" style={{ background: "#1a2e22" }}>
+    
+    <div
+      className="relative aspect-square"
+      style={{
+        background:
+          "radial-gradient(ellipse at 40% 40%, rgba(46,80,55,0.9) 0%, #0f1a14 100%)",
+      }}
+    >
+      
+      {/* IMAGE ADDED HERE */}
+      <img
+        src="/images/PolyanilineProcessingInProgress.jpeg"
+        alt="Pearl Chain Structure"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+
+      <div className="absolute bottom-4 left-4 flex items-center gap-2">
+        <div className="w-20 h-1 bg-white/60" />
+        <span className="text-xs text-white/55 font-mono">300 nm</span>
+      </div>
+    </div>
+
+    <div className="bg-black/50 px-5 py-3 flex justify-between items-center">
+      <span className="text-xs text-white/45 font-mono tracking-wider">
+        SEM 0062B — Pearl-chain structure
+      </span>
+      <span className="text-xs text-green-400/70 font-mono">×50,000</span>
+    </div>
+
+  </div>
+</Reveal>
       </div>
     </section>
   );

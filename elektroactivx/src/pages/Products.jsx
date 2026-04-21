@@ -347,9 +347,9 @@ For understanding the structure, see above graph and this link. Conducting Polym
                   Polyaniline processing in progress
                 </span>
               </div>
-              <div className="absolute top-5 right-6">
+              {/* <div className="absolute top-5 right-6">
                 <span className="text-white/60 text-xs tracking-widest uppercase font-light">Komstruk R&D Lab — Navi Mumbai</span>
-              </div>
+              </div> */}
             </div>
           </Reveal>
 

@@ -219,12 +219,12 @@ const Footer = () => {
               Germany
             </p>
 
-            <a
+            {/* <a
               href="mailto:bernhard.wessling@Elektroactivx.eu"
               className="text-white text-sm underline underline-offset-4 block mt-4 hover:text-emerald-400 transition-colors whitespace-nowrap"
             >
               bernhard.wessling@elektroactivx.co
-            </a>
+            </a> */}
           </div>
 
           {/* Column 4: Products */}
@@ -233,7 +233,7 @@ const Footer = () => {
 
             <ul className="flex flex-col gap-3">
               {[
-                "Conductive Polymer Dispersion",
+                // "Conductive Polymer Dispersion",
                 "Polyaniline Emeraldine Base",
                 "PAni-KOT Coating",
                 "Polyaniline Masterbatches",
