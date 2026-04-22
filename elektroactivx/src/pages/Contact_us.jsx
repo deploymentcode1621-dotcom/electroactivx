@@ -197,8 +197,9 @@ export default function ContactUs() {
                     India
                   </span>
                   <p className="text-sm text-gray-500 leading-6 font-light">
-                   	HQ:Lower Gangapara, Behind Circuit <br />
+                   	HQ: Lower Gangapara, Behind Circuit <br />
                     House, Dibrugarh, Assam, 786125 India<br />
+                    <br />
 
                     Branch: 604, Ramanbag Society, Shaniwar Peth<br />
                     Pune, 411030, Maharashtra<br />
@@ -213,7 +214,7 @@ export default function ContactUs() {
                   </svg>
                 </div>
                 <a href="tel:9820251549" className="text-sm text-gray-600 font-light hover:text-green-600 transition-colors">
-                	9028004416
+                	+91 9028004416
                 </a>
               </div>
 
@@ -260,7 +261,7 @@ export default function ContactUs() {
                   </svg>
                 </div>
                 <a href="mailto:bernhard.wessling@komstruk.eu" className="text-sm text-gray-600 font-light hover:text-green-600 transition-colors">
-                 	bernhard.wessling@elektroactivx.eu
+                 	bernhard.wessling@elektroactivx.com
                 </a>
               </div>
             </div>
@@ -393,12 +394,12 @@ export default function ContactUs() {
         <div className="max-w-6xl mx-auto px-8 md:px-16 lg:px-24 py-16">
           <Reveal>
             <p className="text-xs tracking-widest uppercase font-medium text-gray-400 mb-2">Find Us</p>
-            <h3 className="text-2xl font-light text-gray-900 mb-8 tracking-tight">Our Locations</h3>
+            <h3 className="text-2xl font-light text-gray-900 mb-8 tracking-tight">Our Plant</h3>
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* India Map */}
-            <Reveal delay={0} className="card-hover">
+            {/* <Reveal delay={0} className="card-hover">
               <div className="map-wrap relative overflow-hidden border border-gray-200 bg-white">
                 <div className="map-overlay absolute inset-0 bg-black/10 z-10 flex items-center justify-center pointer-events-none">
                   <div className="bg-white px-4 py-2 text-xs tracking-widest uppercase font-medium text-gray-600 shadow">
@@ -423,10 +424,10 @@ export default function ContactUs() {
                   <p className="text-xs text-gray-400 font-light mt-1 ml-4">A-309, Nand Dham, CBD Belapur, Navi Mumbai – 400614</p>
                 </div>
               </div>
-            </Reveal>
+            </Reveal> */}
 
             {/* Germany Map */}
-            <Reveal delay={100} className="card-hover">
+            {/* <Reveal delay={100} className="card-hover">
               <div className="map-wrap relative overflow-hidden border border-gray-200 bg-white">
                 <div className="map-overlay absolute inset-0 bg-black/10 z-10 flex items-center justify-center pointer-events-none">
                   <div className="bg-white px-4 py-2 text-xs tracking-widest uppercase font-medium text-gray-600 shadow">
@@ -434,7 +435,7 @@ export default function ContactUs() {
                   </div>
                 </div>
                 <iframe
-                  title="Komstruk Germany"
+                  title="Electroactivx Germany"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2370!2d10.2897!3d53.8503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b1f1f1f1f1f1f1%3A0xf1f1f1f1f1f1f1f1!2sJersbek%2C+Germany!5e0!3m2!1sen!2sde!4v1234567890"
                   width="100%"
                   height="220"
@@ -451,7 +452,7 @@ export default function ContactUs() {
                   <p className="text-xs text-gray-400 font-light mt-1 ml-4">Am Wischhof 38a, D-22941 Jersbek OT Klein Hansdorf</p>
                 </div>
               </div>
-            </Reveal>
+            </Reveal> */}
           </div>
         </div>
       </section>
