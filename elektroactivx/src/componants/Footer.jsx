@@ -66,6 +66,15 @@ const Footer = () => {
               Klein Hansdorf <br />
               Germany
             </p>
+
+            {/* Germany Email */}
+            <a
+              href="mailto:bernhard.wessling@elektroactivx.com"
+              className="flex items-center gap-2 text-white text-sm underline underline-offset-4 mt-4 hover:text-emerald-400 transition-colors break-all"
+            >
+              <FaEnvelope className="text-xs" />
+              bernhard.wessling@elektroactivx.com
+            </a>
           </div>
 
           {/* Column 4: Products */}
