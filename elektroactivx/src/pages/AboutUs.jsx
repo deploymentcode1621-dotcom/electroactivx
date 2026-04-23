@@ -280,7 +280,7 @@ export default function AboutUs() {
     {
       name: "Mrs. Joyeeta Adhikari",
       role: "Co-Founder & HR Head",
-      desc: "Mrs. Joyeeta Adhikari (M.Sc., B.Ed.) is co-founder of ElektroactivX with over 23 years of teaching and leadership experience in STEM education. A NASA-trained educator, she leads HR, recruitment, organisational culture and team development while driving innovation and professional growth across the company.",
+      desc: "Mrs. Joyeeta Adhikari (M.Sc., B.Ed.) is co-founder of ElektroactivX with over 25 years of teaching and leadership experience in STEM education. A NASA-trained educator, she leads HR, recruitment, organisational culture and team development while driving innovation and professional growth across the company.",
       img: "/images/joyeeta.jpeg",
       linkedin: "https://linkedin.com/in/example"
     },
@@ -438,7 +438,7 @@ export default function AboutUs() {
 
           <Reveal from="right" delay={120} className="lg:w-7/12 iz">
             <img
-              src="/images/research.jpg"
+              src="/images/corrosion.jpg"
               alt="Elektroactivx mission"
               className="w-full object-cover"
               style={{ height: 340, filter: "brightness(0.86) saturate(0.78)" }}

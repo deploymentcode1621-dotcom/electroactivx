@@ -231,7 +231,7 @@ export default function Applications() {
           </h1>
           <p className="text-white/55 font-light leading-relaxed fu d4"
             style={{ fontSize: "0.80rem", maxWidth: 550, lineHeight: 1.80 }}>
-            Conductive polymers find application in large variety of areas which is due to their conductivity and redox properties. Some of the interesting application areas are anticorrosion paint, Antistatic, EMI Shielding, RADAR absorbing materials, Catalysis, Supercapacitor, Sensors, Membrane etc. Interest in research on conducting polymers has grown after the 2000 Nobel prize and people found the way to make polymer processible.
+            Conductive polymers find application in large variety of areas which is due to their conductivity and redox properties. Some of the interesting application areas are anticorrosion paint, Antistatic, EMI Shielding, RADAR absorbing materials, Catalysis, Supercapacitor, Sensors, Membrane etc. Interest in research on conductive polymers has grown after the 2000 Nobel prize and people found the way to make polymer processible.
           </p>
           <div className="flex items-center gap-4 mt-7 fu d6">
             <a href="#applications"
@@ -276,14 +276,14 @@ export default function Applications() {
                 <h2 className="font-light text-gray-900 leading-tight tracking-tight mb-4"
                   style={{ fontSize: "clamp(1.8rem,3.5vw,2.8rem)" }}>
                   The broad reach of<br />
-                  <strong className="font-bold">conducting polymers</strong>
+                  <strong className="font-bold">conductive polymers</strong>
                 </h2>
                 <div className="w-8 h-0.5 mb-5" style={{ background: "linear-gradient(90deg,#16a34a,#c9a84c)" }} />
                 <p className="text-sm text-gray-500 leading-7 font-light mb-4">
-                  Conducting polymers find application in a large variety of areas which is due to their conductivity and redox properties. Some of the interesting application areas are anticorrosion paint, Antistatic, EMI Shielding, RADAR absorbing materials, Catalysis, Supercapacitor, Sensors, Membrane etc.
+                  Conductive polymers find application in a large variety of areas which is due to their conductivity and redox properties. Some of the interesting application areas are anticorrosion paint, Antistatic, EMI Shielding, RADAR absorbing materials, Catalysis, Supercapacitor, Sensors, Membrane etc.
                 </p>
                 <p className="text-sm text-gray-500 leading-7 font-light">
-                  Interest in research on conducting polymers has grown after the 2000 Nobel Prize in Chemistry, and people found the way to make polymer processable — opening the door to practical, scalable commercial applications across virtually every industrial sector.
+                  Interest in research on conductive polymers has grown after the 2000 Nobel Prize in Chemistry, and people found the way to make polymer processable — opening the door to practical, scalable commercial applications across virtually every industrial sector.
                 </p>
               </Reveal>
             </div>
