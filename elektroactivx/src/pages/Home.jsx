@@ -352,7 +352,7 @@ export default function Home() {
             <Reveal delay={200} direction="right">
               <div className="relative">
                 <img
-                   src="/images/innovation.jpeg"
+                   src="/images/Innovation Lab.png"
                   alt="Innovation Laboratory"
                   className="w-full h-[500px] object-cover"
                 />
