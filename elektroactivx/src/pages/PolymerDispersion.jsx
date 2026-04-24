@@ -241,58 +241,55 @@ function SEMSection() {
           </div>
         </Reveal>
         <Reveal delay={150}>
-  <div className="rounded-2xl overflow-hidden" style={{ background: "#1a2e22" }}>
-    
-    <div
-      className="relative aspect-square"
-      style={{
-        background:
-          "radial-gradient(ellipse at 40% 40%, rgba(46,80,55,0.9) 0%, #0f1a14 100%)",
-      }}
-    >
-      
-      {/* IMAGE ADDED HERE */}
-      <img
-        src="/images/PolyanilineProcessingInProgress.jpeg"
-        alt="Pearl Chain Structure"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-
-      <div className="absolute bottom-4 left-4 flex items-center gap-2">
-        <div className="w-20 h-1 bg-white/60" />
-        <span className="text-xs text-white/55 font-mono">300 nm</span>
-      </div>
-    </div>
-
-    <div className="bg-black/50 px-5 py-3 flex justify-between items-center">
-      <span className="text-xs text-white/45 font-mono tracking-wider">
-        SEM 0062B — Pearl-chain structure
-      </span>
-      <span className="text-xs text-green-400/70 font-mono">×50,000</span>
-    </div>
-
-  </div>
-</Reveal>
+          <div className="rounded-2xl overflow-hidden" style={{ background: "#1a2e22" }}>
+            <div
+              className="relative aspect-square"
+              style={{
+                background: "radial-gradient(ellipse at 40% 40%, rgba(46,80,55,0.9) 0%, #0f1a14 100%)",
+              }}
+            >
+              <img
+                src="/images/PolyanilineProcessingInProgress.jpeg"
+                alt="Pearl Chain Structure"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute bottom-4 left-4 flex items-center gap-2">
+                <div className="w-20 h-1 bg-white/60" />
+                <span className="text-xs text-white/55 font-mono">300 nm</span>
+              </div>
+            </div>
+            <div className="bg-black/50 px-5 py-3 flex justify-between items-center">
+              <span className="text-xs text-white/45 font-mono tracking-wider">
+                SEM 0062B — Pearl-chain structure
+              </span>
+              <span className="text-xs text-green-400/70 font-mono">×50,000</span>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
 }
 
+// ✅ UPDATED: Pearl-Chain Networks card now has image on the left
 const infoCards = [
   {
     title: "Dissipative Structures",
     desc: "Self-organising systems maintained by a continuous flow of energy, far from thermodynamic equilibrium — as described by Prigogine (Nobel, 1977).",
-    icon: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="#2e7d4f" strokeWidth="1.4"/><path d="M8 5.5v3l2 1" stroke="#2e7d4f" strokeWidth="1.4" strokeLinecap="round"/></svg>
+    icon: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="#2e7d4f" strokeWidth="1.4"/><path d="M8 5.5v3l2 1" stroke="#2e7d4f" strokeWidth="1.4" strokeLinecap="round"/></svg>,
+    image: null,
   },
   {
     title: "Critical Concentration",
     desc: "Below the threshold, particles remain isolated. Above it, they spontaneously connect into conductive networks — a sharp, tuneable transition.",
-    icon: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8 Q5 2 8 8 Q11 14 14 8" stroke="#2e7d4f" strokeWidth="1.4" strokeLinecap="round" fill="none"/></svg>
+    icon: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8 Q5 2 8 8 Q11 14 14 8" stroke="#2e7d4f" strokeWidth="1.4" strokeLinecap="round" fill="none"/></svg>,
+    image: null,
   },
   {
     title: "Pearl-Chain Networks",
     desc: "Directly contacting particle chains form the conductive pathways — confirmed by SEM imaging and electrical measurements across formulations.",
-    icon: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="6" width="5" height="5" rx="1" stroke="#2e7d4f" strokeWidth="1.4"/><rect x="9" y="5" width="5" height="5" rx="1" stroke="#2e7d4f" strokeWidth="1.4"/><path d="M7 8.5h2" stroke="#2e7d4f" strokeWidth="1.4" strokeLinecap="round"/></svg>
+    icon: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="6" width="5" height="5" rx="1" stroke="#2e7d4f" strokeWidth="1.4"/><rect x="9" y="5" width="5" height="5" rx="1" stroke="#2e7d4f" strokeWidth="1.4"/><path d="M7 8.5h2" stroke="#2e7d4f" strokeWidth="1.4" strokeLinecap="round"/></svg>,
+    image: "/images/Pearl chain network.jpg",
   },
 ];
 
@@ -322,11 +319,32 @@ function TheorySection() {
           <div className="flex flex-col gap-4">
             {infoCards.map((card) => (
               <div key={card.title} className="bg-white border border-gray-200 rounded-xl p-7">
-                <div className="w-9 h-9 bg-green-50 rounded-lg flex items-center justify-center mb-4">
-                  {card.icon}
-                </div>
-                <h4 className="text-sm font-bold text-gray-900 mb-2">{card.title}</h4>
-                <p className="text-sm text-gray-500 font-light leading-relaxed">{card.desc}</p>
+                {card.image ? (
+                  /* ✅ Pearl-Chain Networks: image on left, content on right */
+                  <div className="flex gap-4 items-start">
+                    <img
+                      src={card.image}
+                      alt={card.title}
+                      className="w-20 h-20 object-cover rounded-lg flex-shrink-0"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="w-9 h-9 bg-green-50 rounded-lg flex items-center justify-center mb-3">
+                        {card.icon}
+                      </div>
+                      <h4 className="text-sm font-bold text-gray-900 mb-2">{card.title}</h4>
+                      <p className="text-sm text-gray-500 font-light leading-relaxed">{card.desc}</p>
+                    </div>
+                  </div>
+                ) : (
+                  /* Default layout for other cards */
+                  <>
+                    <div className="w-9 h-9 bg-green-50 rounded-lg flex items-center justify-center mb-4">
+                      {card.icon}
+                    </div>
+                    <h4 className="text-sm font-bold text-gray-900 mb-2">{card.title}</h4>
+                    <p className="text-sm text-gray-500 font-light leading-relaxed">{card.desc}</p>
+                  </>
+                )}
               </div>
             ))}
           </div>
