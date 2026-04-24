@@ -470,8 +470,7 @@ export default function Applications() {
         </div>
       </section>
 
-      <Footer />
-
+      
       {/* ══════════════════════════════════════════
           MODAL — Centered popup overlay
       ══════════════════════════════════════════ */}
