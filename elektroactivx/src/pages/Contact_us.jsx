@@ -224,7 +224,7 @@ export default function ContactUs() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                   </svg>
                 </div>
-                <a href="mailto:info@komstruk.co" className="text-sm text-gray-600 font-light hover:text-green-600 transition-colors">
+                <a href="mailto:info@elektroactivx.co" className="text-sm text-gray-600 font-light hover:text-green-600 transition-colors">
                  	info@elektroactivx.com
                 </a>
               </div>
@@ -260,7 +260,7 @@ export default function ContactUs() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                   </svg>
                 </div>
-                <a href="mailto:bernhard.wessling@komstruk.eu" className="text-sm text-gray-600 font-light hover:text-green-600 transition-colors">
+                <a href="mailto:bernhard.wessling@elektroactivx.eu" className="text-sm text-gray-600 font-light hover:text-green-600 transition-colors">
                  	bernhard.wessling@elektroactivx.com
                 </a>
               </div>
@@ -268,12 +268,12 @@ export default function ContactUs() {
 
             {/* Social links */}
             <div className="mt-10 pt-8 border-t border-gray-100">
-              <p className="text-xs tracking-widest uppercase font-medium text-gray-400 mb-4">Follow Us</p>
+              <p className="text-xs tracking-widest uppercase font-medium text-gray-400 mb-4"></p>
               <div className="flex gap-3">
                 {[
-                  { label: "in", href: "#" },
-                  { label: "tw", href: "#" },
-                  { label: "fb", href: "#" },
+                  // { label: "in", href: "#" },
+                  // { label: "tw", href: "#" },
+                  // { label: "fb", href: "#" },
                 ].map(s => (
                   <a
                     key={s.label}
