@@ -249,7 +249,7 @@ function SEMSection() {
               }}
             >
               <img
-                src="/images/PolyanilineProcessingInProgress.jpeg"
+                src="/images/Pearl chain network.jpeg"
                 alt="Pearl Chain Structure"
                 className="absolute inset-0 w-full h-full object-cover"
               />
@@ -289,7 +289,7 @@ const infoCards = [
     title: "Pearl-Chain Networks",
     desc: "Directly contacting particle chains form the conductive pathways — confirmed by SEM imaging and electrical measurements across formulations.",
     icon: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="6" width="5" height="5" rx="1" stroke="#2e7d4f" strokeWidth="1.4"/><rect x="9" y="5" width="5" height="5" rx="1" stroke="#2e7d4f" strokeWidth="1.4"/><path d="M7 8.5h2" stroke="#2e7d4f" strokeWidth="1.4" strokeLinecap="round"/></svg>,
-    image: "/images/Pearl chain network.jpg",
+    image: "null",
   },
 ];
 

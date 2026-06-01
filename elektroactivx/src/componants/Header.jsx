@@ -5,6 +5,7 @@ const navLinks = [
   { label: "HOME", href: "/" },
   { label: "ABOUT US", href: "/about" },
   { label: "PRODUCTS", href: "/products" },
+  { label: "CONDUCTIVE POLYMER DISPERSION", href: "/conductive-polymer-dispersion" },
   { label: "APPLICATIONS", href: "/applications" },
   { label: "BLOGS", href: "/blogs" },
   { label: "CONTACT US", href: "/contact_us" },

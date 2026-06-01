@@ -551,7 +551,7 @@ export default function Home() {
   <Reveal delay={150}>
     <div className="flex justify-center mb-24">
       <a
-        href="/products"
+        href="/conductive-polymer-dispersion"
         className="group inline-flex items-center gap-3 bg-stone-900 hover:bg-green-600 text-white font-medium text-sm px-10 py-4 tracking-wide transition-all duration-300"
       >
         Conductive Polymer Dispersion
