@@ -334,7 +334,7 @@ For understanding the structure, see above graph and this link. Conducting Polym
           <Reveal className="iz mb-12 overflow-hidden" style={{ boxShadow:"0 4px 32px rgba(0,0,0,0.08)" }}>
             <div className="relative overflow-hidden" style={{ height:320 }}>
               <img
-                src="/images/PolyanilineProcessing.jpg"
+                src="/images/Pearl chain network.jpeg"
                 alt="Polymer science laboratory"
                 className="w-full h-full object-cover"
                 style={{ filter:"brightness(0.82) saturate(0.78)", objectPosition:"center 40%" }}

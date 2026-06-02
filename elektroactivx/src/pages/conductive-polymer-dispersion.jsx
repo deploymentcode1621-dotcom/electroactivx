@@ -92,29 +92,29 @@ const features = [
 
 /* ─── Product data ───────────────────────────────────── */
 const products = [
-  {
-    id: "emeraldine-salt",
-    tag: "Polyaniline",
-    title: "Polyaniline Emeraldine Salt",
-    subtitle: "Primary conductive form of Polyaniline",
-    desc: "Polyaniline Emeraldine Salt (PAni-ES) is the primary conductive form of Polyaniline and the basis of all our dispersion technology. With conductivity ranging from 1–100 S/cm and nanoscopic particle sizes of ~100 nm, it enables a wide variety of industrial applications including EMI shielding, antistatic coatings, and corrosion protection.",
-    specs: [
-      { label: "Conductivity", value: "1–100 S/cm" },
-      { label: "Particle Size", value: "~100 nm" },
-      { label: "Form", value: "Fine green powder" },
-      { label: "Purity", value: ">98%" },
-    ],
-    badge: "Conductive",
-    badgeColor: "#16a34a",
-    applications: ["EMI Shielding", "Anticorrosion", "Antistatic"],
-  },
+  // {
+  //   id: "emeraldine-salt",
+  //   tag: "Polyaniline",
+  //   title: "Polyaniline Emeraldine Salt",
+  //   subtitle: "Primary conductive form of Polyaniline",
+  //   desc: "Polyaniline Emeraldine Salt (PAni-ES) is the primary conductive form of Polyaniline and the basis of all our dispersion technology. With conductivity ranging from 1–100 S/cm and nanoscopic particle sizes of ~100 nm, it enables a wide variety of industrial applications including EMI shielding, antistatic coatings, and corrosion protection.",
+  //   specs: [
+  //     { label: "Conductivity", value: "1–100 S/cm" },
+  //     { label: "Particle Size", value: "~100 nm" },
+  //     { label: "Form", value: "Fine green powder" },
+  //     { label: "Purity", value: ">98%" },
+  //   ],
+  //   badge: "Conductive",
+  //   badgeColor: "#16a34a",
+  //   applications: ["EMI Shielding", "Anticorrosion", "Antistatic"],
+  // },
   {
     id: "emeraldine-base",
     tag: "Polyaniline",
     title: "Polyaniline Emeraldine Base",
     subtitle: "Conjugated, non-conducting precursor",
-    desc: "Polyaniline Emeraldine Base is a conjugated, non-conducting polymer produced by neutralizing the Emeraldine Salt form. It serves as a versatile precursor for manufacturing ultrafine dispersions of Polyaniline and ES forms with different counter ions, enabling custom conductivity profiles suited to specialized industrial needs.",
-    specs: [
+    desc: "Polyaniline Emeraldine Base is a conjugated, non conducting polymer. It is made by neutralizing the Emeraldine Salt form. It can be used for manufacturing ultrafine dispersions of Polyaniline and ES forms with different counter ions than used by us."
+, specs: [
       { label: "Form", value: "Blue/violet powder" },
       { label: "Conductivity", value: "Non-conducting" },
       { label: "Solubility", value: "Limited organic solvents" },
@@ -129,7 +129,8 @@ const products = [
     tag: "Ready-to-Use",
     title: "PAni-KOT",
     subtitle: "Conductive Polyaniline-based coating",
-    desc: "PAni-KOT is a ready-to-use conductive PAni-based coating designed for immediate deployment. Its primary applications include EMI shielding, RADAR absorbing coatings, and as an anticorrosive additive for solvent-borne paint systems. PAni-KOT can also be used in custom development of applications requiring Polyaniline Emeraldine Salt integration into solvent-borne systems.",
+    desc: "Conductive Polyaniline based coating.Pani-KOT is a ready to use conductive PAni based conductive coating.The primary application of PAni-KOT is as EMI shielding coating, RADAR absorbing coating,an anticorrosive additive for solvent borne paint systems. PAni-KOT may also be used in the custom development of various applications which require insertion of Polyaniline Emeraldine Salt in solvent borne system.",
+
     specs: [
       { label: "Type", value: "Ready-to-use coating" },
       { label: "System", value: "Solvent-borne" },
@@ -145,7 +146,7 @@ const products = [
     tag: "Advanced Blend",
     title: "Polyaniline Masterbatches",
     subtitle: "Nanoparticle dispersion in thermoplastic matrix",
-    desc: "A highly specialized type of Polyaniline (Organic Metal) nanoparticle dispersion in thermoplastic material. Since Polyaniline itself is insoluble in water or any organic solvent, the masterbatch matrix — a thermoplastic resin — is soluble in aromatics, ketones, esters, glycol ethers, glycol ether acetates, and alcohols. This enables fine dispersion of conductive polyaniline in virtually any solvent system or polymer composition.",
+    desc: "This is a special type of polyaniline (Organic Metal ) nano particle dispersion in thermoplastic material. This is a very highly specialized product. It is known to all that the polyaniline itself is insoluble in water or any other organic solvent. The masterbatch matrix (a thermoplastic resin) is soluble in solvents like aromatics, ketones, esters, glycol ethers, glycol ether acetates, alcohols etc., allowing a fine dispersion of conductive polyaniline in various solvents and other media. This finds application in Antistatic, EMI shielding, conductive additive for paints and related coatings, for solvent based system.",
     specs: [
       { label: "Matrix", value: "Thermoplastic resin" },
       { label: "Solvents", value: "Aromatics, ketones, esters" },
@@ -161,7 +162,7 @@ const products = [
     tag: "Protection",
     title: "Anticorrosion Primers",
     subtitle: "ORMECON ST & ORMECON AL",
-    desc: "Elektroactivx provides specially formulated Organic Metal-based primers for both steel and aluminium surfaces. ORMECON ST (for steel) and ORMECON AL (for aluminium) offer exceptional bonding characteristics on all metal surfaces. The noble metal properties of the Organic Metal component act to passivate and ennoble the substrate, providing superior long-term corrosion protection unmatched by conventional primer technology.",
+    desc: "The Elektroactivx Pvt. Ltd provides specially formulated Organic Metal based primers both for steel surface and for Aluminium surface. Both the primers ORMECON ST and ORMECON AL have exceptional bonding characteristics on all metals surfaces. The noble metal properties of the Primer’s Organic Metal act to passivate and ennoble the substrate, hence providing superior corrosion protection.",
     specs: [
       { label: "Steel Primer", value: "ORMECON ST" },
       { label: "Aluminium Primer", value: "ORMECON AL" },
@@ -393,21 +394,12 @@ export default function Products() {
                     </div>
 
                     {/* Applications */}
-                    <div className="px-7 py-5 flex items-center justify-between flex-wrap gap-4">
+                    <div className="px-7 py-5">
                       <div className="flex flex-wrap gap-2">
                         {p.applications.map(a => (
                           <span key={a} className="app-tag">{a}</span>
                         ))}
                       </div>
-                      <a
-                        href={`/products/${p.id}`}
-                        className="inline-flex items-center gap-2 text-green-700 text-xs font-semibold hover:text-green-900 transition-colors"
-                      >
-                        Full details
-                        <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </a>
                     </div>
 
                   </div>
@@ -435,7 +427,7 @@ export default function Products() {
           <Reveal className="iz mb-12 overflow-hidden" style={{ boxShadow: "0 4px 32px rgba(0,0,0,0.08)" }}>
             <div className="relative overflow-hidden" style={{ height: 320 }}>
               <img
-                src="/images/PolyanilineProcessing.jpg"
+                src="/images/Pearl chain network.jpeg"
                 alt="Polymer science laboratory"
                 className="w-full h-full object-cover"
                 style={{ filter: "brightness(0.82) saturate(0.78)", objectPosition: "center 40%" }}
